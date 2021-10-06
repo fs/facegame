@@ -1,6 +1,6 @@
-[![Build Status](https://flatstack.semaphoreci.com/badges/react-next-base/branches/master.svg?style=shields)](https://flatstack.semaphoreci.com/projects/react-next-base)
+[![Build Status](https://flatstack.semaphoreci.com/badges/facegame/branches/master.svg?style=shields)](https://flatstack.semaphoreci.com/projects/facegame)
 
-# react-next-base
+# FaceGame App
 
 ### Install dependencies:
 
