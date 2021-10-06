@@ -43,3 +43,9 @@ blocks:
         - name: Unit test
           commands:
             - 'yarn run ci:jest'
+
+promotions:
+  - name: Deploy to Heroku
+    pipeline_file: heroku.yml
+    auto_promote:
+      when: "result = 'passed' and branch = 'master'"
