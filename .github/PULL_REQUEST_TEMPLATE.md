@@ -2,7 +2,7 @@
 
 #### A brief description of the pull request.
 
-[Task](https://app.clickup.com/t/PIVOTAL_TASK_ID)
+[Task](https://app.clickup.com/t/CLICKUP_TASK_ID)
 
 #### Screenshots in case of UI changes
 
