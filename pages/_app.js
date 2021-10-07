@@ -15,7 +15,7 @@ class MyApp extends App {
     return (
       <>
         <Head>
-          <title>React Next Base</title>
+          <title>FaceGame</title>
         </Head>
         <ThemeProvider theme={theme}>
           <>
