@@ -44,7 +44,7 @@ Ask for token and key represented above from admin
 
 ### Staging
 
-The staging area can be found at the following link: [https://react-next-base.herokuapp.com/](https://react-next-base.herokuapp.com/)
+The staging area can be found at the following link: [https://facegame-staging.herokuapp.com/](https://facegame-staging.herokuapp.com/)
 
 ### Useful links
 
