@@ -6,28 +6,27 @@ import ISignOut from 'interfaces/actionsType';
 import Logo from 'components/shared/atoms/Logo';
 import { signInWithGoogle } from 'lib/auth/signInWithGoogle';
 import { useSignIn } from 'lib/apollo/hooks/actions/auth';
-import { GOOGLE_CLIENT_ID } from 'public/publicRuntimeVars';
 import { HeaderWrapper, Links } from './styled';
 
 interface Props {
   user: IUser;
   signOut: ISignOut;
 }
+const googleClientId = process.env.GOOGLE_CLIENT_ID;
 
 const Header = ({ user, signOut }: Props): JSX.Element => {
   const [signIn] = useSignIn();
-  const signInCallable = signIn as CallableFunction;
-  async function signInWithGoogleHandler() {
+  const signInWithGoogleHandler = async () => {
     try {
       const resultAuth = await signInWithGoogle({
         // eslint-disable-next-line @typescript-eslint/camelcase
-        client_id: GOOGLE_CLIENT_ID,
+        client_id: googleClientId,
       });
-      await signInCallable({ googleAuthCode: resultAuth.code });
+      await signIn({ googleAuthCode: resultAuth.code });
     } catch (error) {
       console.error(error);
     }
-  }
+  };
   return (
     <HeaderWrapper>
       <Logo />

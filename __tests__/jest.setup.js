@@ -3,12 +3,6 @@ import '@testing-library/jest-dom';
 // fix https://github.com/testing-library/dom-testing-library/releases/tag/v7.0.0
 import MutationObserver from '@sheerun/mutationobserver-shim';
 
-jest.mock('next/config', () => () => ({
-  publicRuntimeConfig: {
-    GOOGLE_CLIENT_ID: '',
-  },
-}));
-
 window.MutationObserver = MutationObserver;
 
 jest.setTimeout(30000);
