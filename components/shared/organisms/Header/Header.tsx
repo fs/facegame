@@ -6,6 +6,8 @@ import IUser from 'interfaces/userType';
 import ISignOut from 'interfaces/actionsType';
 
 import Logo from 'components/shared/atoms/Logo';
+import Button from 'components/shared/atoms/Button';
+import GoogleIcon from 'public/images/icons/google-icon';
 import UserNavigation from './UserNavigation';
 import { HeaderWrapper, Links } from './styled';
 
