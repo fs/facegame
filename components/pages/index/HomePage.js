@@ -6,7 +6,7 @@ import { withApolloClient } from 'lib/withApolloClient';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import { NotifierProvider } from 'contexts/NotifierContext';
 
-import Button from 'components/shared/atoms/Button';
+import Button from 'components/shared/atoms/ButtonWithIcon';
 import GoogleIcon from 'public/images/icons/google-icon';
 import { Title, PageContent, Content, Oranization, TagLine, Description, PreviewImg, ImgGroup } from './styled';
 
