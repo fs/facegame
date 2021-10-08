@@ -43,6 +43,9 @@ const nextConfig = {
     ASSET_HOST: process.env.ASSET_HOST || '',
     API_URL: process.env.API_URL,
   },
+  publicRuntimeConfig: {
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  },
   assetPrefix: process.env.ASSET_HOST || '',
   experimental: {
     modern: true, // split bundles for modern/old browsers (production mode only)
