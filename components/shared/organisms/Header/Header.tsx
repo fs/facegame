@@ -16,13 +16,14 @@ interface Props {
 
 const Header = ({ user, signOut }: Props): JSX.Element => {
   const [signIn] = useSignIn();
+  const signInCallable = signIn as CallableFunction;
   async function signInWithGoogleHandler() {
     try {
       const resultAuth = await signInWithGoogle({
         // eslint-disable-next-line @typescript-eslint/camelcase
         client_id: GOOGLE_CLIENT_ID,
       });
-      await signIn({ googleAuthCode: resultAuth.code });
+      await signInCallable({ googleAuthCode: resultAuth.code });
     } catch (error) {
       console.error(error);
     }
