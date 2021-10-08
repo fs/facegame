@@ -10,7 +10,7 @@
 
 #### List of steps to manually test introduced functionality:
 
-- Go to [ReviewApp](ReviewAppLink)
+- Go to [ReviewApp](https://facegame-staging-pr-PR_NUMBER.herokuapp.com)
 - ...
 
 #### What do need to pay more attention to, some implicit changes that influence the app:
