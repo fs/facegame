@@ -11,8 +11,9 @@ import useNotifier from 'hooks/useNotifier';
 import User from 'interfaces/userType';
 
 type SignInProps = {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
+  googleAuthCode?: string;
 };
 type SignInMutationInputVariable = SignInProps;
 
@@ -43,10 +44,11 @@ const useSignIn = () => {
     },
   });
 
-  const mutate = async ({ email, password }: SignInProps) => {
+  const mutate = async ({ email, password, googleAuthCode }: SignInProps) => {
     const signInInput = {
       email,
       password,
+      googleAuthCode,
     };
 
     try {
@@ -56,7 +58,7 @@ const useSignIn = () => {
 
       router.push(HOME);
     } catch (error) {
-      if (setError) setError(error);
+      if (setError && typeof error === 'string') setError(error);
     }
   };
 
