@@ -7,7 +7,7 @@ import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import { NotifierProvider } from 'contexts/NotifierContext';
 
 import Button from 'components/shared/atoms/ButtonWithIcon';
-import GoogleIcon from 'public/images/icons/google-icon';
+import { component as GoogleIcon } from 'public/images/icons/google-icon.svg';
 import { Title, PageContent, Content, Oranization, TagLine, Description, PreviewImg, ImgGroup } from './styled';
 
 const HomePage = () => {

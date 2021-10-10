@@ -5,11 +5,12 @@ import { ButtonWrapper, Text, Icon } from './styled';
 interface Props {
   icon: JSX.Element;
   text: string;
+  customStyles?: string;
 }
 
-const Button = ({ icon, text }: Props): JSX.Element => {
+const Button = ({ icon, text, customStyles }: Props): JSX.Element => {
   return (
-    <ButtonWrapper>
+    <ButtonWrapper customStyles={customStyles}>
       <Icon>{icon}</Icon>
       <Text>{text}</Text>
     </ButtonWrapper>
