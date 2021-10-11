@@ -9,14 +9,18 @@ import { NotifierProvider } from 'contexts/NotifierContext';
 import Button from 'components/shared/atoms/ButtonWithIcon';
 import { component as GoogleIcon } from 'public/images/icons/google-icon.svg';
 import useSignIn from 'lib/apollo/hooks/actions/useSignIn';
+import { GAME } from 'config/routes';
 import { signInWithGoogle } from 'lib/auth/signInWithGoogle';
 import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
+import { useRouter } from 'next/router';
 import { Title, PageContent, Content, Oranization, TagLine, Description, PreviewImg, ImgGroup } from './styled';
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
 const HomePage = () => {
   const { user } = useCurrentUser();
   const [signIn] = useSignIn();
+  const router = useRouter();
+
   const signInWithGoogleHandler = async () => {
     try {
       const resultAuth = await signInWithGoogle({
@@ -28,7 +32,9 @@ const HomePage = () => {
       console.error(error);
     }
   };
-
+  const handleClick = () => {
+    router.push(GAME);
+  };
   return (
     <NotifierProvider>
       <DefaultTemplate>
@@ -41,7 +47,7 @@ const HomePage = () => {
               speed.
             </TagLine>
             {user ? (
-              <button type="button" style={{ width: '200px', height: '60px' }}>
+              <button type="button" style={{ width: '200px', height: '60px' }} onClick={handleClick}>
                 начать новую игру
               </button>
             ) : (
