@@ -3,14 +3,15 @@ import React from 'react';
 import { ButtonWrapper, Text, Icon } from './styled';
 
 interface Props {
+  onClick?: () => void;
   icon: JSX.Element;
   text: string;
   customStyles?: string;
 }
 
-const Button = ({ icon, text, customStyles }: Props): JSX.Element => {
+const Button = ({ icon, text, customStyles, onClick }: Props): JSX.Element => {
   return (
-    <ButtonWrapper customStyles={customStyles}>
+    <ButtonWrapper onClick={onClick} customStyles={customStyles}>
       <Icon>{icon}</Icon>
       <Text>{text}</Text>
     </ButtonWrapper>

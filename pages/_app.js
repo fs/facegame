@@ -15,7 +15,8 @@ class MyApp extends App {
     return (
       <>
         <Head>
-          <title>FaceGame</title>
+          <title>React Next Base</title>
+          <script src="https://apis.google.com/js/platform.js" async defer />
         </Head>
         <ThemeProvider theme={theme}>
           <>

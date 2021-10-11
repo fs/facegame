@@ -8,9 +8,27 @@ import { NotifierProvider } from 'contexts/NotifierContext';
 
 import Button from 'components/shared/atoms/ButtonWithIcon';
 import { component as GoogleIcon } from 'public/images/icons/google-icon.svg';
+import useSignIn from 'lib/apollo/hooks/actions/useSignIn';
+import { signInWithGoogle } from 'lib/auth/signInWithGoogle';
+import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
 import { Title, PageContent, Content, Oranization, TagLine, Description, PreviewImg, ImgGroup } from './styled';
 
+const googleClientId = process.env.GOOGLE_CLIENT_ID;
 const HomePage = () => {
+  const { user } = useCurrentUser();
+  const [signIn] = useSignIn();
+  const signInWithGoogleHandler = async () => {
+    try {
+      const resultAuth = await signInWithGoogle({
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        client_id: googleClientId,
+      });
+      await signIn({ googleAuthCode: resultAuth.code });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <NotifierProvider>
       <DefaultTemplate>
@@ -22,7 +40,13 @@ const HomePage = () => {
               Dentify as many superheroes as you can in 30 seconds. You`&apos;`ll get a score based on your accuracy and
               speed.
             </TagLine>
-            <Button icon={<GoogleIcon />} text="Login with Google" />
+            {user ? (
+              <button type="button" style={{ width: '200px', height: '60px' }}>
+                начать новую игру
+              </button>
+            ) : (
+              <Button onClick={signInWithGoogleHandler} icon={<GoogleIcon />} text="Login with Google" />
+            )}
             <Description>to save game results and have access to the leaderboard</Description>
           </Content>
           <ImgGroup>
