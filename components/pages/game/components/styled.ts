@@ -66,7 +66,7 @@ interface ICustomStyles {
 export const Button = styled.button<ICustomStyles>(
   ({ theme: { colors }, customStyles }) => css`
     flex: 1 1 40%;
-    width: 470px;
+    min-width: 470px;
     height: 72px;
     margin: 8px;
     border-radius: 90px;

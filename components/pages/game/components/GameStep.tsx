@@ -65,19 +65,3 @@ const GameStep = ({ question, addAnswer }: IStep) => {
 };
 
 export default GameStep;
-
-// <Button
-//   type="button"
-//   // color={isShowResultAnswer ? answerStatusColor : Colors.lightGrey}
-//   onClick={() => {
-//     if (isShowResultAnswer) {
-//       setSelectedId(null);
-//       addAnswer(name);
-//     } else {
-//       setSelectedId(id);
-//     }
-//   }}
-//   key={id}
-// >
-
-// </Button>
