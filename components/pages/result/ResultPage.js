@@ -1,19 +1,15 @@
 import React from 'react';
-
+import Link from 'next/link';
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
-
+import WithAuthSecurity from 'lib/auth/withAuthSecurity';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import { NotifierProvider } from 'contexts/NotifierContext';
 import { GAME } from 'config/routes';
-import { useRouter } from 'next/router';
+import ButtonedLink from 'components/shared/atoms/ButtonedLink';
 import { Title, PageContent, Content, PreviewImg, ImgGroup } from './styled';
 
 const ResultPage = () => {
-  const router = useRouter();
-  const handleClick = () => {
-    router.push(GAME);
-  };
   return (
     <NotifierProvider>
       <DefaultTemplate>
@@ -24,13 +20,13 @@ const ResultPage = () => {
               <PreviewImg zIndex={3} opacity={1} rotate={0} />
             </ImgGroup>
           </Content>
-          <button type="button" style={{ width: '200px', height: '60px' }} onClick={handleClick}>
-            начать новую игру
-          </button>
+          <Link href={GAME} passHref>
+            <ButtonedLink>Начать новую игру</ButtonedLink>
+          </Link>
         </PageContent>
       </DefaultTemplate>
     </NotifierProvider>
   );
 };
 
-export default withApolloClient(WithAuth(ResultPage));
+export default withApolloClient(WithAuth(WithAuthSecurity(ResultPage)));
