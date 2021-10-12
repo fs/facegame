@@ -14,9 +14,9 @@ export enum Colors {
   link = '#00f',
   darkGrey = '#606c76',
   grey = '#ccc',
-  lightGrey = '#eee',
+  lightGrey = '#F1F1F1',
   green = '#46a049',
-  red = '#d40b0b',
+  red = '#FA0E1C',
 }
 
 export const up = (breakpoint: Breakpoints, vertical = false) =>

@@ -1,23 +1,13 @@
 import React, { useState } from 'react';
-import { Colors } from 'public/styles/theme';
-
 import IQuestion from 'interfaces/questionType';
-import { Title, PageContent, Content, PreviewImg, ImgGroup, Button } from './styled';
+import { component as CorrectIcon } from 'public/images/icons/correct.svg';
+import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
+import { Title, PageContent, Content, PreviewImg, ImgGroup, ButtonForAnswer, ButtonForQuestion } from './styled';
 
 interface IStep {
   question: IQuestion;
   addAnswer: (answer: string) => void;
 }
-
-const getAnswerStatusColor = (isCorrect: boolean, isMatchSelected: boolean): Colors => {
-  if (isCorrect) {
-    return Colors.green;
-  }
-  if (!isCorrect && isMatchSelected) {
-    return Colors.red;
-  }
-  return Colors.lightGrey;
-};
 
 const GameStep = ({ question, addAnswer }: IStep) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -28,7 +18,8 @@ const GameStep = ({ question, addAnswer }: IStep) => {
     return {
       id,
       name,
-      answerStatusColor: getAnswerStatusColor(isCorrect, isMatchSelected),
+      isCorrect,
+      isMatchSelected,
     };
   });
 
@@ -41,26 +32,31 @@ const GameStep = ({ question, addAnswer }: IStep) => {
           <PreviewImg zIndex={2} opacity={0.44} rotate={11} />
         </ImgGroup>
       </div>
-
+      <Title>What is the name of that superhero?</Title>
       <Content>
-        <Title>What is the name of that superhero?</Title>
-        {optionsWithUi.map(({ id, name, answerStatusColor }) => {
-          return (
-            <Button
-              type="button"
-              color={isShowResultAnswer ? answerStatusColor : Colors.lightGrey}
-              onClick={() => {
-                if (isShowResultAnswer) {
-                  setSelectedId(null);
-                  addAnswer(name);
-                } else {
-                  setSelectedId(id);
-                }
-              }}
+        {optionsWithUi.map(({ id, name, isCorrect, isMatchSelected }) => {
+          return isShowResultAnswer ? (
+            <ButtonForAnswer
+              isCorrect={isCorrect}
+              isMatchSelected={isMatchSelected}
               key={id}
+              onClick={() => {
+                setSelectedId(null);
+                addAnswer(name);
+              }}
+            >
+              {isCorrect ? <CorrectIcon /> : <IncorrectIcon />}
+              {name}
+            </ButtonForAnswer>
+          ) : (
+            <ButtonForQuestion
+              key={id}
+              onClick={() => {
+                setSelectedId(id);
+              }}
             >
               {name}
-            </Button>
+            </ButtonForQuestion>
           );
         })}
       </Content>
@@ -69,3 +65,19 @@ const GameStep = ({ question, addAnswer }: IStep) => {
 };
 
 export default GameStep;
+
+// <Button
+//   type="button"
+//   // color={isShowResultAnswer ? answerStatusColor : Colors.lightGrey}
+//   onClick={() => {
+//     if (isShowResultAnswer) {
+//       setSelectedId(null);
+//       addAnswer(name);
+//     } else {
+//       setSelectedId(id);
+//     }
+//   }}
+//   key={id}
+// >
+
+// </Button>
