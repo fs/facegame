@@ -1,5 +1,6 @@
 import { Colors } from 'public/styles/theme';
 import styled, { css } from 'styled-components';
+import Button from 'components/shared/atoms/Button';
 
 export const Title = styled.h1`
   font-size: 2rem;
@@ -59,30 +60,6 @@ export const PreviewImg = styled.img<IImgStyles>(
     transform-origin: 50% 50% 0;
   `,
 );
-interface ICustomStyles {
-  customStyles?: string;
-}
-
-export const Button = styled.button<ICustomStyles>(
-  ({ theme: { colors }, customStyles }) => css`
-    flex: 1 1 40%;
-    min-width: 470px;
-    height: 72px;
-    margin: 8px;
-    border-radius: 90px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 48px;
-    background-color: ${colors.white};
-    &:active {
-      position: relative;
-      top: 0.1em;
-      left: 0.1em;
-    }
-    ${customStyles}
-  `,
-);
 
 export const ButtonForQuestion = styled(Button)(
   ({ theme: { colors } }) => css`
@@ -121,7 +98,7 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(({ theme: { colo
     svg {
       position: absolute;
       right: 5%;
-      display: ${isMatchSelected ? 'block' : 'none'};
+      display: ${isCorrect || isMatchSelected ? 'block' : 'none'};
     }
   `;
 });
