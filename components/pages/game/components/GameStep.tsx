@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import IQuestion from 'interfaces/questionType';
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
 import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
+import TimerBar from 'components/shared/atoms/TimerBar';
+
 import { Title, PageContent, Content, PreviewImg, ImgGroup, ButtonForAnswer, ButtonForQuestion } from './styled';
 
+const FULL_BAR = 100;
+const FULL_TIME = 30;
 interface IStep {
   question: IQuestion;
   addAnswer: (answer: string) => void;
+  endGame: () => void;
 }
 
-const GameStep = ({ question, addAnswer }: IStep) => {
+function useTimer(limit: number, cb = console.log): number {
+  const [time, setTime] = useState(limit);
+  if (time <= 0) {
+    cb('таймер сработал');
+  }
+  useEffect(() => {
+    function tick() {
+      setTime((prevTime) => prevTime - 1);
+    }
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [time]);
+  return time;
+}
+
+const GameStep = ({ question, endGame, addAnswer }: IStep) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const isShowResultAnswer = selectedId !== null;
   const optionsWithUi = question.options.map((name, id) => {
@@ -23,8 +44,12 @@ const GameStep = ({ question, addAnswer }: IStep) => {
     };
   });
 
+  const currentSecond = useTimer(30, endGame);
+
+  const barWidth = (FULL_BAR * currentSecond) / FULL_TIME;
   return (
     <PageContent data-testid="page-content">
+      <TimerBar time={currentSecond} width={barWidth} />
       <div>
         <div> {question.fullName} </div>
         <ImgGroup>
