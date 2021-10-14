@@ -1,0 +1,10 @@
+query gameQuestions($limitQuestions: Int, $limitWrongAnswers: Int) {
+  questions(sortBy: "random", limit: $limitQuestions) {
+    id
+    email
+    fullName
+    department
+    avatarUrl
+    wrongAnswers(sortBy: "random", limit: $limitWrongAnswers)
+  }
+}

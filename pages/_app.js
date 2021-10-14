@@ -16,6 +16,7 @@ class MyApp extends App {
       <>
         <Head>
           <title>React Next Base</title>
+          <script src="https://apis.google.com/js/platform.js" async defer />
         </Head>
         <ThemeProvider theme={theme}>
           <>

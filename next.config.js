@@ -42,6 +42,7 @@ const nextConfig = {
   env: {
     ASSET_HOST: process.env.ASSET_HOST || '',
     API_URL: process.env.API_URL,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   },
   assetPrefix: process.env.ASSET_HOST || '',
   experimental: {

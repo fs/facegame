@@ -2,7 +2,7 @@
 
 #### A brief description of the pull request.
 
-#### Resolves: #issue_number
+[Task](https://app.clickup.com/t/CLICKUP_TASK_ID)
 
 #### Screenshots in case of UI changes
 
@@ -10,11 +10,7 @@
 
 #### List of steps to manually test introduced functionality:
 
-- Go to [ReviewApp](ReviewAppLink)
-- ...
-
-#### What do need to pay more attention to, some implicit changes that influence the app:
-
+- Go to [ReviewApp](https://facegame-staging-pr-PR_NUMBER.herokuapp.com)
 - ...
 
 # Review notes

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 2rem;
 `;
 
 export const PageContent = styled.div`
@@ -13,18 +13,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const Oranization = styled.div`
-  font-size: 2rem;
-  margin-bottom: 5rem;
-`;
-export const TagLine = styled.div`
-  font-size: 1.5rem;
-  margin-bottom: 5rem;
-`;
-export const Description = styled.div`
-  margin-top: 2rem;
-  font-size: 0.7rem;
-`;
+
 export const ImgGroup = styled.div`
   position: relative;
   width: 580px;
