@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import IQuestion from 'interfaces/questionType';
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
@@ -47,6 +46,10 @@ const GameStep = ({ question, endGame, addAnswer }: IStep) => {
   const currentSecond = useTimer(30, endGame);
 
   const barWidth = (FULL_BAR * currentSecond) / FULL_TIME;
+  const callNextStep = (name: string) => () => {
+    setSelectedId(null);
+    addAnswer(name);
+  };
   return (
     <PageContent data-testid="page-content">
       <TimerBar time={currentSecond} width={barWidth} />
@@ -61,15 +64,7 @@ const GameStep = ({ question, endGame, addAnswer }: IStep) => {
       <Content>
         {optionsWithUi.map(({ id, name, isCorrect, isMatchSelected }) => {
           return isShowResultAnswer ? (
-            <ButtonForAnswer
-              isCorrect={isCorrect}
-              isMatchSelected={isMatchSelected}
-              key={id}
-              onClick={() => {
-                setSelectedId(null);
-                addAnswer(name);
-              }}
-            >
+            <ButtonForAnswer isCorrect={isCorrect} isMatchSelected={isMatchSelected} key={id}>
               {isCorrect ? <CorrectIcon /> : <IncorrectIcon />}
               {name}
             </ButtonForAnswer>
@@ -78,6 +73,7 @@ const GameStep = ({ question, endGame, addAnswer }: IStep) => {
               key={id}
               onClick={() => {
                 setSelectedId(id);
+                setTimeout(callNextStep(name), 1000);
               }}
             >
               {name}
