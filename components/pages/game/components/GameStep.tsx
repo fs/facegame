@@ -60,7 +60,6 @@ const GameStep = ({ question, endGame, addAnswer }: IStep) => {
           <PreviewImg zIndex={2} opacity={0.44} rotate={11} />
         </ImgGroup>
       </div>
-      <Title>What is the name of that superhero?</Title>
       <Content>
         {optionsWithUi.map(({ id, name, isCorrect, isMatchSelected }) => {
           return isShowResultAnswer ? (

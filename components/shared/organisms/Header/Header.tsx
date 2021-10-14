@@ -1,29 +1,22 @@
 import React from 'react';
-
+import type { PropsWithChildren } from 'react';
 import IUser from 'interfaces/userType';
 import ISignOut from 'interfaces/actionsType';
-import Button from 'components/shared/atoms/ButtonWithIcon';
 import Logo from 'components/shared/atoms/Logo';
-import { component as GoogleIcon } from 'public/images/icons/google-icon.svg';
-import { HeaderWrapper, Links } from './styled';
+import { HeaderWrapper, Links, Title } from './styled';
 
 interface Props {
-  user: IUser;
-  signOut: ISignOut;
+  user?: IUser;
+  signOut?: ISignOut;
+  title?: string;
 }
 
-const Header = ({ user, signOut }: Props): JSX.Element => {
+const Header = ({ title, children }: PropsWithChildren<Props>): JSX.Element => {
   return (
     <HeaderWrapper>
       <Logo />
-      <Links data-cy="header-links">
-        {!!user && (
-          <>
-            <div>{`${user.firstName} ${user.lastName}`}</div>
-            <Button onClick={signOut} icon={<GoogleIcon />} text="Logout of Google" />
-          </>
-        )}
-      </Links>
+      <Title>{title}</Title>
+      <Links data-cy="header-links">{children}</Links>
     </HeaderWrapper>
   );
 };
