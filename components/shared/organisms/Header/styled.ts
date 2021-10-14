@@ -10,10 +10,19 @@ export const HeaderWrapper = styled.header(
     height: 80px;
     padding: 1rem;
     z-index: 5;
-    background-color: ${colors.white};
+    background-color: ${colors.lightGrey};
     border-bottom: 1px solid ${colors.lightGrey};
   `,
 );
+
+export const Title = styled.span`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
 
 export const Links = styled.div`
   display: flex;

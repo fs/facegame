@@ -12,13 +12,18 @@ import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import { LIMIT_QUESTIONS } from './components/constants';
 
 import GamePage from './components/GamePage';
+import HeaderChildren from './components/HeaderChildren';
 
 const Game = () => {
-  const { questions, loading } = useGameQuestions({ limitQuestions: LIMIT_QUESTIONS });
-
+  const { questions, loading } = useGameQuestions({
+    limitQuestions: LIMIT_QUESTIONS,
+  });
   return (
     <NotifierProvider>
-      <DefaultTemplate>{!loading && <GamePage questions={questions} />}</DefaultTemplate>
+      <DefaultTemplate title="What is the name of that superhero?" headerChildren={<HeaderChildren />}>
+        {loading && <>Грузим...Загружаем...</>}
+        {!loading && <GamePage questions={questions} />}
+      </DefaultTemplate>
     </NotifierProvider>
   );
 };

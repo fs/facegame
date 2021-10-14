@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import IQuestion from 'interfaces/questionType';
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
 import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
 import TimerBar from 'components/shared/atoms/TimerBar';
 
-import { Title, PageContent, Content, PreviewImg, ImgGroup, ButtonForAnswer, ButtonForQuestion } from './styled';
+import { PageContent, Content, PreviewImg, ImgGroup, ButtonForAnswer, ButtonForQuestion } from './styled';
 
 const FULL_BAR = 100;
 const FULL_TIME = 30;
@@ -47,6 +46,10 @@ const GameStep = ({ question, endGame, addAnswer }: IStep) => {
   const currentSecond = useTimer(30, endGame);
 
   const barWidth = (FULL_BAR * currentSecond) / FULL_TIME;
+  const callNextStep = (name: string) => () => {
+    setSelectedId(null);
+    addAnswer(name);
+  };
   return (
     <PageContent data-testid="page-content">
       <TimerBar time={currentSecond} width={barWidth} />
@@ -57,19 +60,10 @@ const GameStep = ({ question, endGame, addAnswer }: IStep) => {
           <PreviewImg zIndex={2} opacity={0.44} rotate={11} />
         </ImgGroup>
       </div>
-      <Title>What is the name of that superhero?</Title>
       <Content>
         {optionsWithUi.map(({ id, name, isCorrect, isMatchSelected }) => {
           return isShowResultAnswer ? (
-            <ButtonForAnswer
-              isCorrect={isCorrect}
-              isMatchSelected={isMatchSelected}
-              key={id}
-              onClick={() => {
-                setSelectedId(null);
-                addAnswer(name);
-              }}
-            >
+            <ButtonForAnswer isCorrect={isCorrect} isMatchSelected={isMatchSelected} key={id}>
               {isCorrect ? <CorrectIcon /> : <IncorrectIcon />}
               {name}
             </ButtonForAnswer>
@@ -78,6 +72,7 @@ const GameStep = ({ question, endGame, addAnswer }: IStep) => {
               key={id}
               onClick={() => {
                 setSelectedId(id);
+                setTimeout(callNextStep(name), 1000);
               }}
             >
               {name}
