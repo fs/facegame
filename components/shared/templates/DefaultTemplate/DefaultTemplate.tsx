@@ -6,12 +6,16 @@ import Header from 'components/shared/organisms/Header';
 
 import { Wrapper, PageContent } from './styled';
 
+interface IProps extends ITest {
+  headerChildren: JSX.Element;
+  title?: string;
+}
 const DefaultTemplate = ({
   children,
   title,
   headerChildren,
   testId = 'default-template',
-}: PropsWithChildren<ITest>): JSX.Element => {
+}: PropsWithChildren<IProps>): JSX.Element => {
   return (
     <Wrapper data-cy={testId} data-testid={testId}>
       <Header title={title}>{headerChildren}</Header>
