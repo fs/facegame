@@ -73,7 +73,7 @@ const GameStep = ({ question, addAnswer }: IStep) => {
               key={id}
               onClick={() => {
                 setSelectedId(id);
-                setTimeout(callNextStep(name), 1000);
+                setTimeout(callNextStep(name), 500);
               }}
             >
               {name}

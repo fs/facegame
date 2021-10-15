@@ -26,15 +26,16 @@ const GamePage = ({ questions }: { questions: IQuestion[] }) => {
 
   const { increaseCorrectAnswersCount, addAnswer, endGame } = useGameProcess(gameProcess);
 
-  if (questions.length > 0 && step >= questions.length) {
-    endGame();
-  }
   const handleAddAnswer = (question: IQuestion) => (answer: string) => {
     addAnswer({ ...question, answer });
     if (question.fullName === answer) {
       increaseCorrectAnswersCount();
     }
-    setStep(step + 1);
+    const nextStep = step + 1;
+    setStep(nextStep);
+    if (questions.length > 0 && nextStep >= questions.length) {
+      endGame();
+    }
   };
   const currentQuestion = getCurrentQuestion(questions, step);
 

@@ -1,0 +1,11 @@
+mutation createResult($input: CreateResultInput!){
+  createResult (
+    input: $input
+  ) {
+    id
+    score
+    user {
+      id
+    }
+  }
+}
