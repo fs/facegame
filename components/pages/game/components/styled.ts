@@ -110,10 +110,6 @@ export const CountAnswer = styled.div`
   font-weight: 600;
 `;
 
-export const HoverIcon = styled.div(
-  () => css`
-    &:hover {
-      cursor: pointer;
-    }
-  `,
-);
+export const HoverIcon = styled.div`
+  cursor: pointer;
+`;
