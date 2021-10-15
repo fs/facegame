@@ -1,18 +1,26 @@
 import React from 'react';
-import Button from 'components/shared/atoms/ButtonWithIcon';
-import { component as GoogleIcon } from 'public/images/icons/google-icon.svg';
+import { component as ExitIcon } from 'public/images/icons/exit.svg';
 import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
-import { useSignOut } from 'lib/apollo/hooks/actions/auth';
-import ISignOut from 'interfaces/actionsType';
+import { useGetGameProcess } from 'lib/apollo/hooks/state/useGetGameProcess';
+import { component as StarIcon } from 'public/images/icons/star.svg';
+import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
+import { gameProcess } from 'lib/cache';
+import { CountAnswer, HoverIcon } from './styled';
 
 const HeaderChildren = () => {
   const { user } = useCurrentUser(false);
-  const [signOut] = useSignOut() as [ISignOut];
+  const {
+    gameProcess: { correctAnswersCount },
+  } = useGetGameProcess();
+  const { endGame } = useGameProcess(gameProcess);
   return (
     !!user && (
       <>
-        {/* <div>{`${user.firstName} ${user.lastName}`}</div> */}
-        <Button onClick={signOut} icon={<GoogleIcon />} text="Logout of Google" />
+        <StarIcon />
+        <CountAnswer>{correctAnswersCount}</CountAnswer>
+        <HoverIcon onClick={endGame}>
+          <ExitIcon />
+        </HoverIcon>
       </>
     )
   );

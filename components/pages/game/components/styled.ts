@@ -102,3 +102,18 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(({ theme: { colo
     }
   `;
 });
+
+export const CountAnswer = styled.div`
+  margin-left: 16px;
+  margin-right: 48px;
+  font-size: 1.5rem;
+  font-weight: 600;
+`;
+
+export const HoverIcon = styled.div(
+  () => css`
+    &:hover {
+      cursor: pointer;
+    }
+  `,
+);
