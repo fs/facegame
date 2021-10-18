@@ -4,6 +4,8 @@ import { component as CorrectIcon } from 'public/images/icons/correct.svg';
 import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
 import TimerBar from 'components/shared/atoms/TimerBar';
 
+import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
+import { gameProcess } from 'lib/cache';
 import { PageContent, Content, PreviewImg, ImgGroup, ButtonForAnswer, ButtonForQuestion } from './styled';
 
 const FULL_BAR = 100;
@@ -11,7 +13,6 @@ const FULL_TIME = 30;
 interface IStep {
   question: IQuestion;
   addAnswer: (answer: string) => void;
-  endGame: () => void;
 }
 
 function useTimer(limit: number, cb = console.log): number {
@@ -29,7 +30,7 @@ function useTimer(limit: number, cb = console.log): number {
   return time;
 }
 
-const GameStep = ({ question, endGame, addAnswer }: IStep) => {
+const GameStep = ({ question, addAnswer }: IStep) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const isShowResultAnswer = selectedId !== null;
   const optionsWithUi = question.options.map((name, id) => {
@@ -42,7 +43,7 @@ const GameStep = ({ question, endGame, addAnswer }: IStep) => {
       isMatchSelected,
     };
   });
-
+  const { endGame } = useGameProcess(gameProcess);
   const currentSecond = useTimer(30, endGame);
 
   const barWidth = (FULL_BAR * currentSecond) / FULL_TIME;
@@ -72,7 +73,7 @@ const GameStep = ({ question, endGame, addAnswer }: IStep) => {
               key={id}
               onClick={() => {
                 setSelectedId(id);
-                setTimeout(callNextStep(name), 1000);
+                setTimeout(callNextStep(name), 500);
               }}
             >
               {name}

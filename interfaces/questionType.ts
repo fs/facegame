@@ -7,4 +7,5 @@ export default interface IQuestion {
   wrongAnswers: string[];
   answerStatusColor: Colors;
   options: string[];
+  answer?: string;
 }
