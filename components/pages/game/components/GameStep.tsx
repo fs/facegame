@@ -18,7 +18,7 @@ interface IStep {
 function useTimer(limit: number, cb = console.log): number {
   const [time, setTime] = useState(limit);
   if (time <= 0) {
-    cb('таймер сработал');
+    cb();
   }
   useEffect(() => {
     function tick() {
