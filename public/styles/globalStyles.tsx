@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: ${({ theme }) => theme.colors.lightGrey};
+    background-color: ${({ theme }) => theme.colors.pink};
   }
 
   :focus {

@@ -10,7 +10,6 @@ export const HeaderWrapper = styled.header(
     height: 80px;
     padding: 1rem;
     z-index: 5;
-    background-color: ${colors.lightGrey};
     border-bottom: 1px solid ${colors.lightGrey};
   `,
 );
