@@ -21,16 +21,10 @@ const GameResult = ({ currentUserResult }: IResultsBoard) => {
       <WrapperFlexCenter>
         <StarIcon /> <Count>{`${correctAnswersCount}/${questionsCount}`}</Count>
       </WrapperFlexCenter>
-      <WrapperFlexCenter>
-        <Score>
-          <div>Time spent</div>
-          <ScoreResult>30s</ScoreResult>
-        </Score>
-        <Score>
-          <div>Score</div>
-          <ScoreResult>{score}</ScoreResult>
-        </Score>
-      </WrapperFlexCenter>
+      <Score>
+        <div>Score</div>
+        <ScoreResult>{score}</ScoreResult>
+      </Score>
       <Link href={GAME} passHref>
         <ButtonedLink>Play again</ButtonedLink>
       </Link>
