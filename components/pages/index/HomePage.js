@@ -11,21 +11,20 @@ import { NotifierProvider } from 'contexts/NotifierContext';
 import { GAME } from 'config/routes';
 
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
-import ButtonWithIcon from 'components/shared/atoms/ButtonWithIcon';
+import Button from 'components/shared/atoms/Button';
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
-
-import { component as GoogleIcon } from 'public/images/icons/google-icon.svg';
 
 import {
   Title,
   PageContent,
   Content,
-  Oranization,
   TagLine,
   Description,
-  PreviewImg,
-  ImgGroup,
+  FacesImg,
+  StarsImg,
   customButtonStyles,
+  customLoginButtonStyles,
+  GoogleIcon,
 } from './styled';
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
@@ -51,26 +50,29 @@ const HomePage = () => {
       <DefaultTemplate>
         <PageContent data-testid="page-content">
           <Content>
-            <Oranization>FaceGame</Oranization>
-            <Title>Узнай на сколько хорошо ты знаешь коллег</Title>
+            <StarsImg src={`${process.env.ASSET_HOST}/images/stars.png`} />
+            <FacesImg src={`${process.env.ASSET_HOST}/images/faces.png`} />
+
+            <Title>Check how good do you know your colleagues</Title>
+
             <TagLine>
-              Dentify as many superheroes as you can in 30 seconds. You`&apos;`ll get a score based on your accuracy and
-              speed.
+              Dentify as many colleagues as you can in 30 seconds. You'll get a score based on your accuracy and speed.
             </TagLine>
+
             {user ? (
               <Link href={GAME} passHref>
                 <ButtonedLink customStyles={customButtonStyles}>Начать новую игру</ButtonedLink>
               </Link>
             ) : (
-              <ButtonWithIcon onClick={signInWithGoogleHandler} icon={<GoogleIcon />} text="Login with Google" />
+              <>
+                <Button onClick={signInWithGoogleHandler} customStyles={customLoginButtonStyles}>
+                  <GoogleIcon />
+                  Login with Google
+                </Button>
+                <Description>to save game results and have access to the leaderboard</Description>
+              </>
             )}
-            <Description>to save game results and have access to the leaderboard</Description>
           </Content>
-          <ImgGroup>
-            <PreviewImg zIndex={3} opacity={1} rotate={0} />
-            <PreviewImg zIndex={2} opacity={0.44} rotate={11} />
-            <PreviewImg zIndex={1} opacity={0.44} rotate={22} />
-          </ImgGroup>
         </PageContent>
       </DefaultTemplate>
     </NotifierProvider>
