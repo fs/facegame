@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import IQuestion from 'interfaces/questionType';
 
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
@@ -20,8 +20,10 @@ interface IStep {
 
 function useTimer(limit: number, cb = console.log): number {
   const [time, setTime] = useState(limit);
-  if (time <= 0) {
+  const onceCallRef = useRef(false);
+  if (time <= 0 && onceCallRef.current === false) {
     cb();
+    onceCallRef.current = true;
   }
   useEffect(() => {
     function tick() {
