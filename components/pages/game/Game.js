@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { component as LogoIcon } from 'public/images/face-game-logo.svg';
+
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
 import WithAuthSecurity from 'lib/auth/withAuthSecurity';
@@ -10,6 +12,7 @@ import { useGameQuestions } from 'lib/apollo/hooks/state/game';
 import { NotifierProvider } from 'contexts/NotifierContext';
 
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
+import Loader from 'components/shared/atoms/Loader';
 
 import { LIMIT_QUESTIONS } from './components/constants';
 import GamePage from './components/GamePage';
@@ -29,7 +32,11 @@ const Game = () => {
   return (
     <NotifierProvider>
       <DefaultTemplate title="What is the name of that superhero?" headerChildren={<HeaderChildren />}>
-        {loading && <>Грузим...Загружаем...</>}
+        {loading && (
+          <Loader testId="profile-updating-loader">
+            <LogoIcon />
+          </Loader>
+        )}
         {!loading && <GamePage questions={questions} />}
       </DefaultTemplate>
     </NotifierProvider>
