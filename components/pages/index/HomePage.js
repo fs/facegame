@@ -13,7 +13,17 @@ import { GAME } from 'config/routes';
 import { signInWithGoogle } from 'lib/auth/signInWithGoogle';
 import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
-import { Title, PageContent, Content, Oranization, TagLine, Description, PreviewImg, ImgGroup } from './styled';
+import {
+  Title,
+  PageContent,
+  Content,
+  Oranization,
+  TagLine,
+  Description,
+  PreviewImg,
+  ImgGroup,
+  customButtonStyles,
+} from './styled';
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
 
