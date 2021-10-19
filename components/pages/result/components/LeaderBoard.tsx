@@ -1,8 +1,11 @@
 import React from 'react';
+
 import IResultsBoard from 'interfaces/resultsBoard';
+
 import { component as StarIcon } from 'public/images/icons/star.svg';
-import { StarWrapperRight, Title, WrapperLeaderBoard } from './styled';
+
 import LeaderBoardItem from './LeaderBoardItem';
+import { StarWrapperRight, Title, WrapperLeaderBoard } from './styled';
 
 const LeaderBoard = ({ topResults, currentUserResult }: IResultsBoard) => {
   const isOutsider = currentUserResult.rate >= 5;

@@ -1,18 +1,21 @@
 import React from 'react';
+import Link from 'next/link';
 
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
-
-import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
-import { NotifierProvider } from 'contexts/NotifierContext';
-import Link from 'next/link';
-import ButtonWithIcon from 'components/shared/atoms/ButtonWithIcon';
-import { component as GoogleIcon } from 'public/images/icons/google-icon.svg';
 import useSignIn from 'lib/apollo/hooks/actions/useSignIn';
-import { GAME } from 'config/routes';
 import { signInWithGoogle } from 'lib/auth/signInWithGoogle';
 import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
+
+import { NotifierProvider } from 'contexts/NotifierContext';
+import { GAME } from 'config/routes';
+
+import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
+import ButtonWithIcon from 'components/shared/atoms/ButtonWithIcon';
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
+
+import { component as GoogleIcon } from 'public/images/icons/google-icon.svg';
+
 import {
   Title,
   PageContent,

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import IQuestion from 'interfaces/questionType';
+
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
 import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
-import TimerBar from 'components/shared/atoms/TimerBar';
 
 import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
 import { gameProcess } from 'lib/cache';
+
+import TimerBar from 'components/shared/atoms/TimerBar';
+
 import { PageContent, Content, PreviewImg, ImgGroup, ButtonForAnswer, ButtonForQuestion } from './styled';
 
 const FULL_BAR = 100;

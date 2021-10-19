@@ -3,15 +3,15 @@ import React, { useEffect } from 'react';
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
 import WithAuthSecurity from 'lib/auth/withAuthSecurity';
-
-import { NotifierProvider } from 'contexts/NotifierContext';
-import { useGameQuestions } from 'lib/apollo/hooks/state/game';
-
-import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
 import { gameProcess } from 'lib/cache';
-import { LIMIT_QUESTIONS } from './components/constants';
+import { useGameQuestions } from 'lib/apollo/hooks/state/game';
 
+import { NotifierProvider } from 'contexts/NotifierContext';
+
+import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
+
+import { LIMIT_QUESTIONS } from './components/constants';
 import GamePage from './components/GamePage';
 import HeaderChildren from './components/HeaderChildren';
 

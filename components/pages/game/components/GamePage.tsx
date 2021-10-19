@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import shuffle from 'lodash/shuffle';
 
-import IQuestion from 'interfaces/questionType';
 import { gameProcess } from 'lib/cache';
 import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
+
+import IQuestion from 'interfaces/questionType';
+
 import GameStep from './GameStep';
 
 const getCurrentQuestion = (questions: IQuestion[], index: number) => {
