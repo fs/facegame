@@ -2,12 +2,15 @@ import React from 'react';
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
 import WithAuthSecurity from 'lib/auth/withAuthSecurity';
-import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
-import { NotifierProvider } from 'contexts/NotifierContext';
 import { useGetResultsBoard } from 'lib/apollo/hooks/state/useGetResultsBoard';
+
+import { NotifierProvider } from 'contexts/NotifierContext';
+
+import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import HeaderChildrenResult from './components/HeaderChildren';
 import GameResult from './components/GameResult';
 import LeaderBoard from './components/LeaderBoard';
+
 import { WrapperFlexCenter } from './components/styled';
 
 const ResultPage = () => {
