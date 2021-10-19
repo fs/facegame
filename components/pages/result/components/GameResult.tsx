@@ -1,13 +1,12 @@
 import React from 'react';
-
-import WithAuth from 'lib/auth/withAuth';
-import { withApolloClient } from 'lib/withApolloClient';
-import WithAuthSecurity from 'lib/auth/withAuthSecurity';
-import IResultsBoard from 'interfaces/resultsBoard';
-import { component as StarIcon } from 'public/images/icons/star.svg';
 import Link from 'next/link';
+
+import IResultsBoard from 'interfaces/resultsBoard';
 import { GAME } from 'config/routes';
+
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
+
+import { component as StarIcon } from 'public/images/icons/star.svg';
 import { Count, Score, ScoreResult, StarWrapperLeft, Title, WrapperFlexCenter, WrapperGameResult } from './styled';
 
 const GameResult = ({ currentUserResult }: IResultsBoard) => {
