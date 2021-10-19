@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Title = styled.h1`
   font-size: 3rem;
+`;
+
+export const customButtonStyles = () => css`
+  align-self: start;
 `;
 
 export const PageContent = styled.div`
