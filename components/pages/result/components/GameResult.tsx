@@ -39,4 +39,4 @@ const GameResult = ({ currentUserResult }: IResultsBoard) => {
   );
 };
 
-export default withApolloClient(WithAuth(WithAuthSecurity(GameResult)));
+export default GameResult;

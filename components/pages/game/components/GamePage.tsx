@@ -46,4 +46,4 @@ const GamePage = ({ questions }: { questions: IQuestion[] }) => {
   );
 };
 
-export default withApolloClient(WithAuth(WithAuthSecurity(GamePage)));
+export default GamePage;

@@ -10,7 +10,11 @@ interface IUseGetResultsBoard {
 }
 
 export const useGetResultsBoard = (): IUseGetResultsBoard => {
-  const { data, loading, error } = useQuery(ResultsBoard);
+  const { data, loading, error } = useQuery(ResultsBoard, {
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
+  });
+
   return {
     topResults: data?.resultsBoard?.topResults,
     currentUserResult: data?.resultsBoard?.currentUserResult,

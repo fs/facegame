@@ -12,6 +12,7 @@ import { WrapperFlexCenter } from './components/styled';
 
 const ResultPage = () => {
   const { topResults, currentUserResult, loading } = useGetResultsBoard();
+
   return (
     <NotifierProvider>
       <DefaultTemplate headerChildren={<HeaderChildrenResult />}>
