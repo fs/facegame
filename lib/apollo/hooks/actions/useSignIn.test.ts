@@ -9,7 +9,7 @@ import { useNotifier } from 'contexts/NotifierContext';
 
 import useSignIn from './useSignIn';
 
-jest.mock('hooks/useNotifier');
+jest.mock('contexts/NotifierContext');
 
 describe('useSignIn', () => {
   useNotifier.mockImplementation(jest.fn(() => ({ setError: jest.fn(), setSuccess: jest.fn() })));
