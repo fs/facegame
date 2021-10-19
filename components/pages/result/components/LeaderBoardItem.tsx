@@ -11,7 +11,7 @@ const LeaderBoardItem = ({ user, isCurrentUser, isOutsider = false }: IProps) =>
   return (
     <WrapperTop isCurrentUser={isCurrentUser} isOutsider={isOutsider}>
       <Rate>{`${user.rate}`}</Rate>
-      <Avatar />
+      <Avatar src={user.avatarUrl} />
       <FullName>{`${user.fullName}`} </FullName>
       <div>{`${user.score}`} </div>
     </WrapperTop>

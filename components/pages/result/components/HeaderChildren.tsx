@@ -13,7 +13,7 @@ const HeaderChildrenResult = () => {
   return (
     !!user && (
       <WrapperFlexCenter>
-        <Avatar />
+        <Avatar src={user.avatarUrl} />
         <InfoColumn>
           <FullNameInfo>{`${user.firstName} ${user.lastName}`}</FullNameInfo>
           <EmailInfo>{user.email}</EmailInfo>
