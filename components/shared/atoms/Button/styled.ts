@@ -1,16 +1,17 @@
-import styled, { css } from 'styled-components';
+import styled, { css, DefaultTheme, FlattenSimpleInterpolation } from 'styled-components';
 
 interface ICustomStyles {
-  customStyles?: string;
+  customStyles?: (theme: DefaultTheme) => FlattenSimpleInterpolation;
 }
 
 export const Button = styled.button<ICustomStyles>(
-  ({ theme: { colors }, customStyles }) => css`
+  ({ theme: { colors }, theme, customStyles }) => css`
     flex: 1 1 40%;
     min-width: 470px;
     height: 72px;
     margin: 8px;
     border-radius: 90px;
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -21,6 +22,6 @@ export const Button = styled.button<ICustomStyles>(
       top: 0.1em;
       left: 0.1em;
     }
-    ${customStyles}
+    ${customStyles && customStyles(theme)}
   `,
 );

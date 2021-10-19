@@ -1,29 +1,25 @@
 import React from 'react';
-import Link from 'next/link';
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
 import WithAuthSecurity from 'lib/auth/withAuthSecurity';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import { NotifierProvider } from 'contexts/NotifierContext';
-import { GAME } from 'config/routes';
-import ButtonedLink from 'components/shared/atoms/ButtonedLink';
-import { Title, PageContent, Content, PreviewImg, ImgGroup } from './styled';
+import { useGetResultsBoard } from 'lib/apollo/hooks/state/useGetResultsBoard';
+import HeaderChildrenResult from './components/HeaderChildren';
+import GameResult from './components/GameResult';
+import LeaderBoard from './components/LeaderBoard';
+import { WrapperFlexCenter } from './components/styled';
 
 const ResultPage = () => {
+  const { topResults, currentUserResult, loading } = useGetResultsBoard();
   return (
     <NotifierProvider>
-      <DefaultTemplate>
-        <PageContent data-testid="page-content">
-          <Content>
-            <Title>Game Results</Title>
-            <ImgGroup>
-              <PreviewImg zIndex={3} opacity={1} rotate={0} />
-            </ImgGroup>
-          </Content>
-          <Link href={GAME} passHref>
-            <ButtonedLink>Начать новую игру</ButtonedLink>
-          </Link>
-        </PageContent>
+      <DefaultTemplate headerChildren={<HeaderChildrenResult />}>
+        {loading && <>Грузим...Загружаем...</>}
+        <WrapperFlexCenter>
+          {!loading && currentUserResult && <GameResult currentUserResult={currentUserResult} />}
+          {!loading && topResults && <LeaderBoard topResults={topResults} currentUserResult={currentUserResult} />}
+        </WrapperFlexCenter>
       </DefaultTemplate>
     </NotifierProvider>
   );

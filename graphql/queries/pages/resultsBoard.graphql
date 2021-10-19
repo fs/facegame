@@ -1,0 +1,18 @@
+query resultsBoard {
+  resultsBoard(limit: 4) {
+    topResults {
+      rate
+      fullName
+      score
+      avatarUrl
+    }
+    currentUserResult {
+      rate
+      fullName
+      score
+      questionsCount
+      correctAnswersCount
+      avatarUrl
+    }
+  }
+}

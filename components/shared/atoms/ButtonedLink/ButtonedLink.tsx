@@ -1,11 +1,12 @@
 import React from 'react';
+import { DefaultTheme, FlattenSimpleInterpolation } from 'styled-components';
 
 import { ButtonWrapper, Text } from './styled';
 
 interface Props {
   onClick?: () => void;
   children: React.ReactNode;
-  customStyles?: string;
+  customStyles?: (theme: DefaultTheme) => FlattenSimpleInterpolation;
   href?: string;
 }
 

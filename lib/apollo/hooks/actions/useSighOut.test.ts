@@ -1,39 +1,39 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import { MockedProvider } from '@apollo/client/testing';
 
-import SignIn from 'graphql/mutations/signIn.graphql';
-
-import { mockCurrentUser, mockCurrentUserData } from '__tests__/mocks/mockCurrentUser';
+import SignOut from 'graphql/mutations/signOut.graphql';
 
 import { useNotifier } from 'contexts/NotifierContext';
 
-import useSignIn from './useSignIn';
+import useSignOut from './useSignOut';
 
-jest.mock('hooks/useNotifier');
+jest.mock('contexts/NotifierContext');
 
-describe('useSignIn', () => {
+describe('useSignOut', () => {
   useNotifier.mockImplementation(jest.fn(() => ({ setError: jest.fn(), setSuccess: jest.fn() })));
 
   test('should mutate state & call localStorage.setItem', async () => {
     // Arrange
-    const data = { email: 'test', password: null };
+    const data = {
+      everywhere: false,
+    };
 
     const mocks = [
       {
         request: {
-          query: SignIn,
+          query: SignOut,
           variables: {
             input: data,
           },
         },
         result: {
-          data: { signin: { me: { ...mockCurrentUser } } },
+          data: { signOut: 'success' },
         },
       },
     ];
 
     // Act
-    const { result, waitForNextUpdate } = renderHook(() => useSignIn(), {
+    const { result, waitForNextUpdate } = renderHook(() => useSignOut(), {
       wrapper: MockedProvider,
       initialProps: {
         mocks,
@@ -45,7 +45,7 @@ describe('useSignIn', () => {
     await waitForNextUpdate();
 
     // Assert
-    expect(result.current[1].data.signin).toEqual(mockCurrentUserData);
+    expect(result.current[1].data.signOut).toEqual('success');
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);
   });
 });

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useUpdateUser, usePresignFile } from 'lib/apollo/hooks/actions/auth';
 import { useFileUpload } from 'hooks/useFileUpload';
 import ErrorDecorator from 'decorators/ErrorDecorator';
-import useNotifier from 'hooks/useNotifier';
+import { useNotifier } from 'contexts/NotifierContext';
 import ProfileFormContent from './ProfileFormContent';
 
 const ProfileForm = ({ profile }) => {
