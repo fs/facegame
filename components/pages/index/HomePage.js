@@ -13,13 +13,19 @@ import { GAME } from 'config/routes';
 import { signInWithGoogle } from 'lib/auth/signInWithGoogle';
 import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
-import { css } from 'styled-components';
-import { Title, PageContent, Content, Oranization, TagLine, Description, PreviewImg, ImgGroup } from './styled';
+import {
+  Title,
+  PageContent,
+  Content,
+  Oranization,
+  TagLine,
+  Description,
+  PreviewImg,
+  ImgGroup,
+  customButtonStyles,
+} from './styled';
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
-const customButtonStyles = () => css`
-  align-self: start;
-`;
 
 const HomePage = () => {
   const { user } = useCurrentUser();
