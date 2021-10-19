@@ -56,7 +56,8 @@ const HomePage = () => {
             <Title>Check how good do you know your colleagues</Title>
 
             <TagLine>
-              Dentify as many colleagues as you can in 30 seconds. You'll get a score based on your accuracy and speed.
+              Dentify as many colleagues as you can in 30 seconds. You&apos;ll get a score based on your accuracy and
+              speed.
             </TagLine>
 
             {user ? (
