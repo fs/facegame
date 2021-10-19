@@ -13,9 +13,20 @@ import { GAME } from 'config/routes';
 import { signInWithGoogle } from 'lib/auth/signInWithGoogle';
 import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
-import { Title, PageContent, Content, Oranization, TagLine, Description, PreviewImg, ImgGroup } from './styled';
+import {
+  Title,
+  PageContent,
+  Content,
+  Oranization,
+  TagLine,
+  Description,
+  PreviewImg,
+  ImgGroup,
+  customButtonStyles,
+} from './styled';
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
+
 const HomePage = () => {
   const { user } = useCurrentUser();
   const [signIn] = useSignIn();
@@ -45,7 +56,7 @@ const HomePage = () => {
             </TagLine>
             {user ? (
               <Link href={GAME} passHref>
-                <ButtonedLink>Начать новую игру</ButtonedLink>
+                <ButtonedLink customStyles={customButtonStyles}>Начать новую игру</ButtonedLink>
               </Link>
             ) : (
               <ButtonWithIcon onClick={signInWithGoogleHandler} icon={<GoogleIcon />} text="Login with Google" />

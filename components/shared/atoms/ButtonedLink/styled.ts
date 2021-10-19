@@ -1,25 +1,26 @@
-import styled, { css } from 'styled-components';
+import styled, { css, DefaultTheme, FlattenSimpleInterpolation } from 'styled-components';
 
 export const Text = styled.div`
   padding: 0.6rem;
 `;
-interface IStyles {
-  customStyles?: string;
+interface ICustomStyles {
+  customStyles?: (theme: DefaultTheme) => FlattenSimpleInterpolation;
 }
 
-export const ButtonWrapper = styled.a<IStyles>(
-  ({ theme: { colors }, customStyles }) => css`
-    background-color: ${colors.white};
-    border: 1px solid ${colors.grey};
+export const ButtonWrapper = styled.a<ICustomStyles>(
+  ({ theme: { colors }, theme, customStyles }) => css`
+    background-color: ${colors.red};
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${colors.darkGrey};
-    width: 200px;
-    height: 60px;
+    color: ${colors.white};
+    padding: 0.8rem 3rem;
+    border-radius: 90px;
+    font-weight: 600;
+    font-size: 1.5rem;
     :active {
-      background-color: ${colors.lightGrey};
+      opacity: 0.5;
     }
-    ${customStyles}
+    ${customStyles && customStyles(theme)}
   `,
 );

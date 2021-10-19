@@ -8,10 +8,10 @@ export const HeaderWrapper = styled.header(
     justify-content: space-between;
     width: 100%;
     height: 80px;
-    padding: 1rem;
+    padding: 1rem 5rem;
     z-index: 5;
-    background-color: ${colors.lightGrey};
     border-bottom: 1px solid ${colors.lightGrey};
+    background-color: ${colors.pink};
   `,
 );
 

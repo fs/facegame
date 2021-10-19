@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import shuffle from 'lodash/shuffle';
 
-import WithAuth from 'lib/auth/withAuth';
-import { withApolloClient } from 'lib/withApolloClient';
-import WithAuthSecurity from 'lib/auth/withAuthSecurity';
-
 import IQuestion from 'interfaces/questionType';
 import { gameProcess } from 'lib/cache';
 import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
@@ -46,4 +42,4 @@ const GamePage = ({ questions }: { questions: IQuestion[] }) => {
   );
 };
 
-export default withApolloClient(WithAuth(WithAuthSecurity(GamePage)));
+export default GamePage;
