@@ -126,10 +126,8 @@ export const StarsImg = styled.img(
   `,
 );
 
-export const customButtonStyles = ({ colors }) => css`
-  self-align: start;
-  min-width: auto;
-  margin: 0;
+export const customButtonStyles = () => css`
+  display: inline-block;
   padding: 0.75rem 3rem;
 `;
 
