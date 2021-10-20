@@ -104,6 +104,7 @@ describe('useGameProcess', () => {
     });
   });
 
+  // TODO: do test with check redirect
   test.skip('should reset game', () => {
     const mockPush = jest.fn();
     const mockUseRouter = jest.fn(() => ({ push: mockPush }));
