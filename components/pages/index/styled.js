@@ -126,9 +126,9 @@ export const StarsImg = styled.img(
   `,
 );
 
-export const customButtonStyles = ({ colors }) => css`
-  align-self: start;
-  color: ${colors.red};
+export const customButtonStyles = () => css`
+  display: inline-block;
+  padding: 0.75rem 3rem;
 `;
 
 export const customLoginButtonStyles = ({ colors }) => css`

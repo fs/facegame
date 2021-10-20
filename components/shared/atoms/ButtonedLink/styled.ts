@@ -1,8 +1,5 @@
 import styled, { css, DefaultTheme, FlattenSimpleInterpolation } from 'styled-components';
 
-export const Text = styled.div`
-  padding: 0.6rem;
-`;
 interface ICustomStyles {
   customStyles?: (theme: DefaultTheme) => FlattenSimpleInterpolation;
 }
