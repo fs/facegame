@@ -4,7 +4,6 @@ import { ReactiveVar, makeVar } from '@apollo/client';
 import { useRouter } from 'next/router';
 import IGameProcess from 'interfaces/gameProcess';
 import { MockedProvider } from '@apollo/client/testing';
-import { RESULT } from 'config/routes';
 import { act } from 'react-dom/test-utils';
 import useGameProcess from './useGameProcess';
 

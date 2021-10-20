@@ -92,7 +92,6 @@ export const Avatar = styled.img`
   height: 40px;
   margin-right: 1rem;
   background-color: white;
-  border: 1px solid grey;
   border-radius: 50%;
 `;
 

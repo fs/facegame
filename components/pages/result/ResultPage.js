@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { component as LogoIcon } from 'public/images/face-game-logo.svg';
+
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
 import WithAuthSecurity from 'lib/auth/withAuthSecurity';
@@ -6,6 +9,7 @@ import { useGetResultsBoard } from 'lib/apollo/hooks/state/useGetResultsBoard';
 
 import { NotifierProvider } from 'contexts/NotifierContext';
 
+import Loader from 'components/shared/atoms/Loader';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import HeaderChildrenResult from './components/HeaderChildren';
 import GameResult from './components/GameResult';
@@ -19,7 +23,11 @@ const ResultPage = () => {
   return (
     <NotifierProvider>
       <DefaultTemplate headerChildren={<HeaderChildrenResult />}>
-        {loading && <>Грузим...Загружаем...</>}
+        {loading && (
+          <Loader testId="profile-updating-loader">
+            <LogoIcon />
+          </Loader>
+        )}
         <WrapperFlexCenter>
           {!loading && currentUserResult && <GameResult currentUserResult={currentUserResult} />}
           {!loading && topResults && <LeaderBoard topResults={topResults} currentUserResult={currentUserResult} />}

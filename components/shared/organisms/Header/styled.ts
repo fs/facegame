@@ -1,17 +1,26 @@
 import styled, { css } from 'styled-components';
 
 export const HeaderWrapper = styled.header(
-  ({ theme: { colors } }) => css`
+  ({ theme: { colors, breakpoints, up, between } }) => css`
     position: sticky;
     top: 0;
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: 80px;
-    padding: 1rem 5rem;
+    margin: 0 auto;
+    padding: 1rem 2rem;
     z-index: 5;
     border-bottom: 1px solid ${colors.lightGrey};
     background-color: ${colors.pink};
+
+    ${up(breakpoints.xl)} {
+      max-width: ${breakpoints.xl}px;
+    }
+
+    ${between(breakpoints.lg, breakpoints.xl)} {
+      max-width: ${breakpoints.lg}px;
+    }
   `,
 );
 
