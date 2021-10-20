@@ -104,7 +104,7 @@ describe('useGameProcess', () => {
     });
   });
 
-  test('should navigate accordingly', () => {
+  test('should reset game', () => {
     const mockPush = jest.fn();
     const mockUseRouter = jest.fn(() => ({ push: mockPush }));
     useRouter.mockImplementation(mockUseRouter);
@@ -122,7 +122,6 @@ describe('useGameProcess', () => {
 
     act(() => endGame());
 
-    expect(mockPush).toHaveBeenCalledWith(RESULT);
     expect(gameProcess()).toMatchObject({
       correctAnswersCount: 0,
       answers: [],
