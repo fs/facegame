@@ -5,4 +5,5 @@ export default interface IQuestion {
   wrongAnswers: string[];
   options: string[];
   answer?: string;
+  avatarUrl: string;
 }
