@@ -10,6 +10,12 @@ export const Timer = styled.h2`
   font-size: 1.5rem;
 `;
 
+export const Portret = styled.img`
+  width: 200px;
+  height: 300px;
+  border-radius: 5%;
+`;
+
 export const PageContent = styled.div`
   display: flex;
   flex-direction: column;
