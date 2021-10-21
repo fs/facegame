@@ -55,6 +55,7 @@ export const Count = styled.div`
 export const Score = styled.div`
   font-size: 1.5rem;
   margin: 0px 40px;
+  text-align: center;
 `;
 
 export const ScoreResult = styled.div(
@@ -63,7 +64,6 @@ export const ScoreResult = styled.div(
     padding: 4px 24px;
     margin-top: 8px;
     border-radius: 90px;
-    text-align: center;
   `,
 );
 

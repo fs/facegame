@@ -8,8 +8,8 @@ import LeaderBoardItem from './LeaderBoardItem';
 import { StarWrapperRight, Title, WrapperLeaderBoard } from './styled';
 
 const LeaderBoard = ({ topResults, currentUserResult }: IResultsBoard) => {
-  const isOutsider = currentUserResult.rate >= 5;
-
+  const isOutsider = currentUserResult.rate >= 6;
+  const isShowSpacer = currentUserResult.rate > 6;
   return (
     <WrapperLeaderBoard>
       <StarWrapperRight>
@@ -22,7 +22,7 @@ const LeaderBoard = ({ topResults, currentUserResult }: IResultsBoard) => {
       })}
       {isOutsider && (
         <>
-          <div>...</div>
+          {isShowSpacer && <div>...</div>}
           <LeaderBoardItem user={currentUserResult} isCurrentUser isOutsider />
         </>
       )}

@@ -8,7 +8,7 @@ import CreateResult from 'graphql/mutations/сreateResult.graphql';
 const useGameProcess = (gameProcessVar: ReactiveVar<IGameProcess>) => {
   const router = useRouter();
 
-  const [mutationCreateResult] = useMutation(CreateResult, {});
+  const [mutationCreateResult] = useMutation(CreateResult);
 
   const increaseCorrectAnswersCount = () => {
     const gameProcess = gameProcessVar();
@@ -39,15 +39,15 @@ const useGameProcess = (gameProcessVar: ReactiveVar<IGameProcess>) => {
     gameProcessVar(result);
   };
 
-  const endGame = () => {
+  const endGame = async () => {
     const gameProcess = gameProcessVar();
-    router.push(RESULT);
-    console.log('место вызова мутации', gameProcess.answers);
     const results = gameProcess.answers.map(({ id, answer }) => ({
       questionId: Number(id),
       value: answer,
     }));
-    mutationCreateResult({ variables: { input: { answers: results } } });
+    await mutationCreateResult({ variables: { input: { answers: results } } });
+
+    router.push(RESULT);
     resetAnswers();
     resetCorrectAnswersCount();
   };

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import IQuestion from 'interfaces/questionType';
-
+import { component as LogoIcon } from 'public/images/face-game-logo.svg';
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
 import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
 
@@ -8,6 +8,7 @@ import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
 import { gameProcess } from 'lib/cache';
 
 import TimerBar from 'components/shared/atoms/TimerBar';
+import Loader from 'components/shared/atoms/Loader';
 
 import { PageContent, Content, PreviewImg, ImgGroup, ButtonForAnswer, ButtonForQuestion } from './styled';
 
@@ -20,12 +21,14 @@ interface IStep {
 
 function useTimer(limit: number, cb = console.log): number {
   const [time, setTime] = useState(limit);
-  if (time <= 0) {
+  const onceCallRef = useRef(false);
+  if (time <= 0 && onceCallRef.current === false) {
     cb();
+    onceCallRef.current = true;
   }
   useEffect(() => {
     function tick() {
-      setTime((prevTime) => prevTime - 1);
+      setTime((prevTime) => (prevTime === 0 ? 0 : prevTime - 1));
     }
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
@@ -54,14 +57,22 @@ const GameStep = ({ question, addAnswer }: IStep) => {
     setSelectedId(null);
     addAnswer(name);
   };
+  if (currentSecond === 0) {
+    return (
+      <Loader testId="profile-updating-loader">
+        <LogoIcon />
+      </Loader>
+    );
+  }
   return (
     <PageContent data-testid="page-content">
       <TimerBar time={currentSecond} width={barWidth} />
       <div>
         <div> {question.fullName} </div>
         <ImgGroup>
-          <PreviewImg zIndex={3} opacity={1} rotate={0} />
-          <PreviewImg zIndex={2} opacity={0.44} rotate={11} />
+          <PreviewImg src={question.avatarUrl} zIndex={3} opacity={1} rotate={0} />
+          <PreviewImg zIndex={2} opacity={0.34} rotate={3} />
+          <PreviewImg zIndex={1} opacity={0.54} rotate={6} />
         </ImgGroup>
       </div>
       <Content>

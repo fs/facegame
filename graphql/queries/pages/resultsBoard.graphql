@@ -1,5 +1,5 @@
 query resultsBoard {
-  resultsBoard(limit: 4) {
+  resultsBoard(limit: 5) {
     topResults {
       rate
       fullName
