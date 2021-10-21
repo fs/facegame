@@ -21,7 +21,6 @@ const getCurrentQuestion = (questions: IQuestion[], index: number) => {
 
 const GamePage = ({ questions }: { questions: IQuestion[] }) => {
   const [step, setStep] = useState(0);
-
   const { increaseCorrectAnswersCount, addAnswer, endGame } = useGameProcess(gameProcess);
 
   const handleAddAnswer = (question: IQuestion) => (answer: string) => {
