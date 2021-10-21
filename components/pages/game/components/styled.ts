@@ -1,6 +1,40 @@
 import { Colors } from 'public/styles/theme';
 import styled, { css } from 'styled-components';
+import { component as Exit } from 'public/images/icons/exit.svg';
+import { component as Star } from 'public/images/icons/star.svg';
+
 import Button from 'components/shared/atoms/Button';
+
+export const ExitIcon = styled(Exit)(
+  ({ theme: { breakpoints, down } }) => css`
+    cursor: pointer;
+
+    ${down(breakpoints.lg)} {
+      width: 2rem;
+    }
+  `,
+);
+
+export const StarIcon = styled(Star)(
+  ({ theme: { breakpoints, down } }) => css`
+    ${down(breakpoints.lg)} {
+      width: 2rem;
+    }
+  `,
+);
+
+export const TitleDescription = styled.div(
+  ({ theme: { breakpoints, down } }) => css`
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    display: none;
+    ${down(breakpoints.lg)} {
+      display: block;
+    }
+  `,
+);
 
 export const Title = styled.h1`
   font-size: 2rem;
@@ -24,17 +58,25 @@ export const PageContent = styled.div`
   margin: 0 auto;
 `;
 export const Content = styled.div`
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-`;
-export const ImgGroup = styled.div`
-  position: relative;
-  left: 0%;
-  height: 400px;
-  width: 280px;
+  width: 100%;
 `;
 
+export const ImgGroup = styled.div(
+  ({ theme: { down, breakpoints } }) => css`
+    position: relative;
+    left: 0%;
+    height: 400px;
+    width: 280px;
+    ${down(breakpoints.lg)} {
+      width: 215px;
+      height: 215px;
+    }
+  `,
+);
 interface ITimeBar {
   width: number;
 }
@@ -54,13 +96,13 @@ interface IImgStyles {
 }
 
 export const PreviewImg = styled.img<IImgStyles>(
-  ({ zIndex = 1, opacity = 1, rotate = 0 }) => css`
+  ({ zIndex = 1, opacity = 1, rotate = 0, theme: { colors } }) => css`
     position: absolute;
-    width: 280px;
-    height: 364px;
+    width: 100%;
+    height: 100%;
     z-index: ${zIndex};
     border-radius: 10px;
-    background-color: ${({ theme: { colors } }) => colors.lightGrey};
+    background-color: ${colors.lightGrey};
     opacity: ${opacity};
     transform: rotate(${rotate}deg);
     transform-origin: 50% 50% 0;
@@ -69,8 +111,11 @@ export const PreviewImg = styled.img<IImgStyles>(
 
 export const ButtonForQuestion = styled(Button)(
   ({ theme: { colors } }) => css`
+    flex: 1 1 48%;
+    margin: 5px;
     color: ${colors.black};
     border: none;
+    padding: 0.5rem 0;
     &:hover {
       border: 2px solid ${colors.black};
     }
@@ -91,31 +136,47 @@ interface IButtonForAnswer {
   isMatchSelected: boolean;
 }
 
-export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(({ theme: { colors }, isCorrect, isMatchSelected }) => {
-  const color = getColor(isCorrect, isMatchSelected);
-  return css`
-    color: ${colors[color]};
-    border: 2px solid ${colors[color]};
-    background-color: ${colors.white};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    svg {
-      position: absolute;
-      right: 5%;
-      display: ${isCorrect || isMatchSelected ? 'block' : 'none'};
+export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
+  ({ theme: { colors, down, breakpoints }, isCorrect, isMatchSelected }) => {
+    const color = getColor(isCorrect, isMatchSelected);
+    return css`
+      flex: 1 1 40%;
+      padding: 0.5rem 0;
+      margin: 5px;
+      color: ${colors[color]};
+      border: 2px solid ${colors[color]};
+      background-color: ${colors.white};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      ${down(breakpoints.md)} {
+        margin: 3px;
+        flex: 1 1 100%;
+      }
+      svg {
+        position: absolute;
+        right: 5%;
+
+        display: ${isCorrect || isMatchSelected ? 'block' : 'none'};
+        ${down(breakpoints.lg)} {
+          right: 0;
+          max-height: 1rem;
+        }
+      }
+    `;
+  },
+);
+
+export const CountAnswer = styled.div(
+  ({ theme: { breakpoints, down } }) => css`
+    margin-left: 1rem;
+    margin-right: 3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    ${down(breakpoints.lg)} {
+      margin-right: 1rem;
     }
-  `;
-});
-
-export const CountAnswer = styled.div`
-  margin-left: 16px;
-  margin-right: 48px;
-  font-size: 1.5rem;
-  font-weight: 600;
-`;
-
-export const HoverIcon = styled.div`
-  cursor: pointer;
-`;
+  `,
+);

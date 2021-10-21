@@ -5,11 +5,8 @@ interface ICustomStyles {
 }
 
 export const Button = styled.button<ICustomStyles>(
-  ({ theme: { colors }, theme, customStyles }) => css`
-    flex: 1 1 40%;
-    min-width: 470px;
-    height: 72px;
-    margin: 8px;
+  ({ theme: { colors, down, breakpoints }, theme, customStyles }) => css`
+    height: 4.5rem;
     border-radius: 90px;
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
@@ -22,6 +19,13 @@ export const Button = styled.button<ICustomStyles>(
       top: 0.1em;
       left: 0.1em;
     }
+
+    ${down(breakpoints.sm)} {
+      font-size: 1rem;
+      line-height: 1.2rem;
+      height: auto;
+    }
+
     ${customStyles && customStyles(theme)}
   `,
 );
