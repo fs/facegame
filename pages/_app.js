@@ -16,6 +16,10 @@ class MyApp extends App {
       <>
         <Head>
           <title>FaceGame</title>
+          <meta property="og:title" content="Face game" />
+          <meta property="og:description" content="Check how good do you know your colleagues" />
+          <meta property="og:image" content={`${process.env.ASSET_HOST}/images/open-graph.jpg`} />
+          <meta property="og:url" content={`${process.env.ASSET_HOST}`} />
           <script src="https://apis.google.com/js/platform.js" async defer />
         </Head>
         <ThemeProvider theme={theme}>
@@ -28,5 +32,4 @@ class MyApp extends App {
     );
   }
 }
-
 export default MyApp;
