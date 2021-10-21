@@ -76,13 +76,7 @@ const GameStep = ({ question, addAnswer }: IStep) => {
     <PageContent data-testid="page-content">
       <TitleDescription>What is the name of that superhero?</TitleDescription>
       <TimerBar time={currentSecond} width={barWidth} />
-      <div>
-        <ImgGroup>
-          <PreviewImg src={question.avatarUrl} zIndex={3} opacity={1} rotate={0} />
-          <PreviewImg zIndex={2} opacity={0.34} rotate={3} />
-          <PreviewImg zIndex={1} opacity={0.54} rotate={6} />
-        </ImgGroup>
-      </div>
+      <PreviewImg src={question.avatarUrl} zIndex={3} opacity={1} rotate={0} />
       <Content>
         {optionsWithUi.map(({ id, name, isCorrect, isMatchSelected }) => {
           return isShowResultAnswer ? (
