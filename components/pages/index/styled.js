@@ -8,14 +8,15 @@ export const Title = styled.h1(
       line-height: 5rem;
     }
 
-    ${between(breakpoints.lg, breakpoints.xl)} {
+    ${between(breakpoints.sm, breakpoints.xl)} {
       font-size: 3.1rem;
       line-height: 3.8rem;
     }
 
-    ${down(breakpoints.lg)} {
-      font-size: 4.25rem;
-      line-height: 5rem;
+    ${down(breakpoints.sm)} {
+      margin-top: 0px;
+      font-size: 2rem;
+      line-height: 2.4rem;
     }
   `,
 );
@@ -24,7 +25,6 @@ export const PageContent = styled.div(
   ({ theme: { breakpoints, between, up, down } }) => css`
     display: flex;
     margin: 0 auto;
-    padding: 0 2rem;
 
     ${up(breakpoints.xl)} {
       max-width: ${breakpoints.xl}px;
@@ -53,7 +53,7 @@ export const Content = styled.div(
     }
 
     ${down(breakpoints.lg)} {
-      padding-right: 23rem;
+      padding-right: 0;
     }
   `,
 );
@@ -71,14 +71,32 @@ export const TagLine = styled.div(
     }
 
     ${down(breakpoints.lg)} {
-      font-size: 1rem;
-      margin-bottom: 3rem;
+      font-size: 0.875rem;
+      line-height: 1.3rem;
+      margin-bottom: 2rem;
     }
   `,
 );
 
+export const Footer = styled.footer(
+  ({ theme: { colors, breakpoints, down } }) => css`
+    display: none;
+    margin-top: auto;
+    text-align: center;
+    padding-top: 1.5rem;
+    opacity: 0.5;
+    & a {
+      color: ${colors.red};
+    }
+    ${down(breakpoints.sm)} {
+      display: block;
+      font-size: 0.875rem;
+      line-height: 1.3rem;
+    }
+  `,
+);
 export const Description = styled.div`
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 0.825rem;
 `;
 
@@ -86,6 +104,7 @@ export const FacesImg = styled.img(
   ({ theme: { breakpoints, between, up, down } }) => css`
     position: absolute;
     right: 0;
+    top: 0;
     pointer-events: none;
     z-index: -1;
 
@@ -98,7 +117,8 @@ export const FacesImg = styled.img(
     }
 
     ${down(breakpoints.lg)} {
-      width: 23rem;
+      position: static;
+      width: 100%;
     }
   `,
 );
@@ -108,6 +128,7 @@ export const StarsImg = styled.img(
     position: absolute;
     pointer-events: none;
     z-index: -1;
+    top: 0;
 
     ${up(breakpoints.xl)} {
       left: -5rem;
@@ -120,8 +141,7 @@ export const StarsImg = styled.img(
     }
 
     ${down(breakpoints.lg)} {
-      left: -2rem;
-      width: 56rem;
+      display: none;
     }
   `,
 );
@@ -131,21 +151,32 @@ export const customButtonStyles = () => css`
   padding: 0.75rem 3rem;
 `;
 
-export const customLoginButtonStyles = ({ colors }) => css`
+export const customLoginButtonStyles = ({ colors, breakpoints, down }) => css`
   display: flex;
   align-items: center;
   flex: none;
   min-width: auto;
   margin: 0;
-  padding: 0.75rem 3rem;
+  padding: 0.75rem 2rem;
   background: ${colors.red};
   color: ${colors.white};
   border: 0;
   border-radius: 2rem;
   outline: none;
   font-size: 1.5rem;
+
+  ${down(breakpoints.lg)} {
+    padding: 0.5rem 2rem;
+  }
 `;
 
-export const GoogleIcon = styled(GoogleSvg)`
-  margin-right: 1rem;
-`;
+export const GoogleIcon = styled(GoogleSvg)(
+  ({ theme: { breakpoints, down } }) => css`
+    margin-right: 0.4rem;
+
+    ${down(breakpoints.lg)} {
+      width: 2rem;
+      height: 2rem;
+    }
+  `,
+);

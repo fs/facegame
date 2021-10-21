@@ -10,7 +10,15 @@ import { gameProcess } from 'lib/cache';
 import TimerBar from 'components/shared/atoms/TimerBar';
 import Loader from 'components/shared/atoms/Loader';
 
-import { PageContent, Content, PreviewImg, ImgGroup, ButtonForAnswer, ButtonForQuestion } from './styled';
+import {
+  PageContent,
+  Content,
+  PreviewImg,
+  ImgGroup,
+  ButtonForAnswer,
+  ButtonForQuestion,
+  TitleDescription,
+} from './styled';
 
 const FULL_BAR = 100;
 const FULL_TIME = 30;
@@ -66,9 +74,9 @@ const GameStep = ({ question, addAnswer }: IStep) => {
   }
   return (
     <PageContent data-testid="page-content">
+      <TitleDescription>What is the name of that superhero?</TitleDescription>
       <TimerBar time={currentSecond} width={barWidth} />
       <div>
-        <div> {question.fullName} </div>
         <ImgGroup>
           <PreviewImg src={question.avatarUrl} zIndex={3} opacity={1} rotate={0} />
           <PreviewImg zIndex={2} opacity={0.34} rotate={3} />

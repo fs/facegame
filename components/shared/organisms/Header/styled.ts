@@ -24,14 +24,21 @@ export const HeaderWrapper = styled.header(
   `,
 );
 
-export const Title = styled.span`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
-  font-weight: bold;
-`;
+export const Title = styled.span(
+  ({ theme: { breakpoints, down } }) => css`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    ${down(breakpoints.lg)} {
+      /* max-width: ${breakpoints.xl}px; */
+      display: none;
+    }
+  `,
+);
 
 export const Links = styled.div`
   display: flex;

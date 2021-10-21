@@ -16,6 +16,7 @@ import GameResult from './components/GameResult';
 import LeaderBoard from './components/LeaderBoard';
 
 import { WrapperFlexCenter } from './components/styled';
+import { Footer } from '../index/styled';
 
 const ResultPage = () => {
   const { topResults, currentUserResult, loading } = useGetResultsBoard();
@@ -32,6 +33,11 @@ const ResultPage = () => {
           {!loading && currentUserResult && <GameResult currentUserResult={currentUserResult} />}
           {!loading && topResults && <LeaderBoard topResults={topResults} currentUserResult={currentUserResult} />}
         </WrapperFlexCenter>
+        {!loading && (
+          <Footer>
+            Designed and developed by <a href="https://www.flatstack.com/">Flatstack</a>
+          </Footer>
+        )}
       </DefaultTemplate>
     </NotifierProvider>
   );

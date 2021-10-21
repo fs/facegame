@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Wrapper, Bar } from './styled';
+import { Wrapper, Bar, Timer } from './styled';
 
 interface ITimerBar {
   width: number;
@@ -10,7 +10,10 @@ interface ITimerBar {
 const TimerBar = ({ width, time }: ITimerBar): JSX.Element => {
   return (
     <Wrapper>
-      <div>{`${time} s.`}</div>
+      <div>
+        <Timer>{time}</Timer>
+        {` sec`}
+      </div>
       <Bar width={width} />
     </Wrapper>
   );

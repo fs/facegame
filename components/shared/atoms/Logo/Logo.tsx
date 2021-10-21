@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-
-import { component as LogoIcon } from 'public/images/face-game-logo.svg';
+import { LogoIcon } from './styled';
 
 const Logo = (): JSX.Element => (
   <Link href="/" passHref>

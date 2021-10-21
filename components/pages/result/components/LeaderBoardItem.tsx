@@ -1,6 +1,6 @@
 import React from 'react';
 import IResultsBoard from 'interfaces/resultsBoard';
-import { Avatar, FullName, Rate, WrapperTop } from './styled';
+import { Avatar, FullName, Rate, WrapperTop, ScoreTop } from './styled';
 
 interface IProps {
   user: IResultsBoard['topResults'][number];
@@ -11,9 +11,9 @@ const LeaderBoardItem = ({ user, isCurrentUser, isOutsider = false }: IProps) =>
   return (
     <WrapperTop isCurrentUser={isCurrentUser} isOutsider={isOutsider}>
       <Rate>{`${user.rate}`}</Rate>
-      <Avatar src={user.avatarUrl} />
+      <Avatar src={user.avatarUrl} alt="ava" />
       <FullName>{`${user.fullName}`} </FullName>
-      <div>{`${user.score}`} </div>
+      <ScoreTop>{`${user.score}`} </ScoreTop>
     </WrapperTop>
   );
 };

@@ -8,14 +8,10 @@ export const Wrapper = styled.div`
 `;
 
 export const PageContent = styled.div(
-  ({ theme: { down, breakpoints } }) =>
+  ({ theme: { breakpoints } }) =>
     css`
-      padding: 2rem 1rem;
+      padding: 1rem 2rem;
       width: 100%;
-      max-width: ${breakpoints.xl};
-
-      ${down(breakpoints.xl)} {
-        max-width: 100%;
-      }
+      max-width: ${breakpoints.xl}px;
     `,
 );

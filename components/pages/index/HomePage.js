@@ -14,6 +14,7 @@ import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import Button from 'components/shared/atoms/Button';
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
 
+import HeaderChildrenResult from '../result/components/HeaderChildren';
 import {
   Title,
   PageContent,
@@ -25,6 +26,7 @@ import {
   customButtonStyles,
   customLoginButtonStyles,
   GoogleIcon,
+  Footer,
 } from './styled';
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
@@ -47,12 +49,9 @@ const HomePage = () => {
 
   return (
     <NotifierProvider>
-      <DefaultTemplate>
+      <DefaultTemplate headerChildren={<HeaderChildrenResult />}>
         <PageContent data-testid="page-content">
           <Content>
-            <StarsImg src={`${process.env.ASSET_HOST}/images/stars.png`} />
-            <FacesImg src={`${process.env.ASSET_HOST}/images/faces.png`} />
-
             <Title>Check how good do you know your colleagues</Title>
 
             <TagLine>
@@ -62,7 +61,7 @@ const HomePage = () => {
 
             {user ? (
               <Link href={GAME} passHref>
-                <ButtonedLink customStyles={customButtonStyles}>Начать новую игру</ButtonedLink>
+                <ButtonedLink customStyles={customButtonStyles}>Start game</ButtonedLink>
               </Link>
             ) : (
               <>
@@ -73,8 +72,14 @@ const HomePage = () => {
                 <Description>to save game results and have access to the leaderboard</Description>
               </>
             )}
+            <StarsImg src={`${process.env.ASSET_HOST}/images/stars.png`} />
+            <FacesImg src={`${process.env.ASSET_HOST}/images/faces.png`} />
           </Content>
         </PageContent>
+        <Footer>
+          Development and design by
+          <a href="https://www.flatstack.com/"> Flatstack</a>
+        </Footer>
       </DefaultTemplate>
     </NotifierProvider>
   );
