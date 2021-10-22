@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { component as StarIcon } from 'public/images/icons/star.svg';
 
 export const WrapperCard = styled.div(
   () => css`
@@ -23,7 +24,6 @@ export const WrapperGameResult = styled(WrapperCard)(
 
 export const WrapperLeaderBoard = styled(WrapperCard)(
   ({ theme: { breakpoints, down } }) => css`
-    overflow: hidden;
     justify-content: start;
     ${down(breakpoints.lg)} {
       min-height: 400px;
@@ -84,19 +84,35 @@ export const ScoreResult = styled.div(
   `,
 );
 
-export const StarWrapperLeft = styled.div`
-  position: absolute;
-  left: -3rem;
-  top: 3rem;
-  transform: rotate(-15deg);
-`;
+export const StarWrapperLeft = styled(StarIcon)(
+  ({ theme: { breakpoints, down } }) => css`
+    position: absolute;
+    left: -3rem;
+    top: 3rem;
+    transform: rotate(-15deg);
+    width: 90px;
+    height: 90px;
+    ${down(breakpoints.lg)} {
+      width: 0;
+      height: 0;
+    }
+  `,
+);
 
-export const StarWrapperRight = styled.div`
-  position: absolute;
-  right: -2.5rem;
-  top: -1.5rem;
-  transform: rotate(-30deg);
-`;
+export const StarWrapperRight = styled(StarIcon)(
+  ({ theme: { breakpoints, down } }) => css`
+    position: absolute;
+    right: -2.5rem;
+    top: -1.5rem;
+    transform: rotate(-30deg);
+    width: 90px;
+    height: 90px;
+    ${down(breakpoints.lg)} {
+      width: 0;
+      height: 0;
+    }
+  `,
+);
 
 export const FullName = styled.div`
   flex-grow: 1;
