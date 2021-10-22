@@ -77,7 +77,6 @@ export const InfoColumn = styled.div(
 );
 
 export const Count = styled.div`
-  margin-left: 1rem;
   font-size: 1.5rem;
   font-weight: 600;
 `;
