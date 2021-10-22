@@ -46,18 +46,17 @@ const HomePage = () => {
       console.error(error);
     }
   };
-
+  const tagLineUnAuth = 'FaceGame is a web app that will help you to get to know your coworkers.';
+  const tagLineAuth =
+    'Identify as many colleagues as you can in 30 seconds. You’ll get a score based on the accuracy of your answers.';
   return (
     <NotifierProvider>
       <DefaultTemplate headerChildren={<HeaderChildrenResult />}>
         <PageContent data-testid="page-content">
           <Content>
-            <Title>Check how good do you know your colleagues</Title>
+            <Title>Check how well you know your colleagues!</Title>
 
-            <TagLine>
-              Dentify as many colleagues as you can in 30 seconds. You&apos;ll get a score based on your accuracy and
-              speed.
-            </TagLine>
+            <TagLine>{user ? tagLineAuth : tagLineUnAuth}</TagLine>
 
             {user ? (
               <Link href={GAME} passHref>
