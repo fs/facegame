@@ -105,10 +105,10 @@ export const PreviewImg = styled.img<IImgStyles>(
     transform: rotate(${rotate}deg);
     transform-origin: 50% 50% 0;
 
-    ${between(breakpoints.lg, breakpoints.xl)} {
+    ${between(breakpoints.sm, breakpoints.xl)} {
       max-height: 350px;
     }
-    ${down(breakpoints.lg)} {
+    ${down(breakpoints.sm)} {
       max-height: 215px;
     }
   `,

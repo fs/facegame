@@ -10,15 +10,7 @@ import { gameProcess } from 'lib/cache';
 import TimerBar from 'components/shared/atoms/TimerBar';
 import Loader from 'components/shared/atoms/Loader';
 
-import {
-  PageContent,
-  Content,
-  PreviewImg,
-  ImgGroup,
-  ButtonForAnswer,
-  ButtonForQuestion,
-  TitleDescription,
-} from './styled';
+import { PageContent, Content, PreviewImg, ButtonForAnswer, ButtonForQuestion, TitleDescription } from './styled';
 
 const FULL_BAR = 100;
 const FULL_TIME = 30;
