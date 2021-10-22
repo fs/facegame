@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { component as LogoIcon } from 'public/images/face-game-logo.svg';
-
+import Image from 'next/image';
+import logoIcon from 'public/images/loader-logo.gif';
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
 import WithAuthSecurity from 'lib/auth/withAuthSecurity';
@@ -26,7 +26,7 @@ const ResultPage = () => {
       <DefaultTemplate headerChildren={<HeaderChildrenResult />}>
         {loading && (
           <Loader testId="profile-updating-loader">
-            <LogoIcon />
+            <Image src={logoIcon} width={192} height={72} />
           </Loader>
         )}
         <WrapperFlexCenter>

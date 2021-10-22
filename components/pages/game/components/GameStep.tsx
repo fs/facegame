@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import IQuestion from 'interfaces/questionType';
-import { component as LogoIcon } from 'public/images/face-game-logo.svg';
+import Image from 'next/image';
+import logoIcon from 'public/images/loader-logo.gif';
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
 import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
-
 import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
 import { gameProcess } from 'lib/cache';
 
@@ -60,7 +60,7 @@ const GameStep = ({ question, addAnswer }: IStep) => {
   if (currentSecond === 0) {
     return (
       <Loader testId="profile-updating-loader">
-        <LogoIcon />
+        <Image src={logoIcon} width={192} height={72} />
       </Loader>
     );
   }
