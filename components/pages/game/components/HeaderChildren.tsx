@@ -13,14 +13,14 @@ const HeaderChildren = () => {
     gameProcess: { correctAnswersCount },
   } = useGetGameProcess();
   const { endGame } = useGameProcess(gameProcess);
-  return (
-    !!user && (
-      <>
-        <StarIcon />
-        <CountAnswer>{correctAnswersCount}</CountAnswer>
-        <ExitIcon onClick={endGame} />
-      </>
-    )
+  return user ? (
+    <>
+      <StarIcon />
+      <CountAnswer>{correctAnswersCount}</CountAnswer>
+      <ExitIcon onClick={endGame} />
+    </>
+  ) : (
+    <div />
   );
 };
 
