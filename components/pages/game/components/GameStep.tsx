@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import IQuestion from 'interfaces/questionType';
-import Image from 'next/image';
+import ImageNext from 'next/image';
 import logoIcon from 'public/images/loader-logo.gif';
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
 import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
@@ -60,7 +60,7 @@ const GameStep = ({ question, addAnswer }: IStep) => {
   if (currentSecond === 0) {
     return (
       <Loader testId="profile-updating-loader">
-        <Image src={logoIcon} width={192} height={72} />
+        <ImageNext src={logoIcon} width={192} height={72} />
       </Loader>
     );
   }

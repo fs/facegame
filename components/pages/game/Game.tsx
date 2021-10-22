@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import logoIcon from 'public/images/loader-logo.gif';
-import Image from 'next/image';
+import ImageNext from 'next/image';
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
 import WithAuthSecurity from 'lib/auth/withAuthSecurity';
@@ -55,7 +55,7 @@ const Game = () => {
       <DefaultTemplate title="What is the name of that superhero?" headerChildren={<HeaderChildren />}>
         {(!isCached || loading) && (
           <Loader testId="profile-updating-loader">
-            <Image src={logoIcon} width={192} height={72} />
+            <ImageNext src={logoIcon} width={192} height={72} />
           </Loader>
         )}
         {!loading && <GamePage questions={questions} />}
