@@ -4,7 +4,7 @@ import IGameProcess from 'interfaces/gameProcess';
  * Set initial values when we create cache variables.
  */
 
-const gameProcessInitialValue: IGameProcess = {
+export const gameProcessInitialValue: IGameProcess = {
   correctAnswersCount: 0,
   answers: [],
 };
