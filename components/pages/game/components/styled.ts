@@ -1,9 +1,12 @@
+import { fadeInLeft } from 'react-animations';
 import { Colors } from 'public/styles/theme';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { component as Exit } from 'public/images/icons/exit.svg';
 import { component as Star } from 'public/images/icons/star.svg';
 
 import Button from 'components/shared/atoms/Button';
+
+const fadeInLeftAnimation = keyframes`${fadeInLeft}`;
 
 export const ExitIcon = styled(Exit)(
   ({ theme: { breakpoints, down } }) => css`
@@ -63,19 +66,6 @@ export const Content = styled.div`
   flex-wrap: wrap;
   width: 100%;
 `;
-
-export const ImgGroup = styled.div(
-  ({ theme: { down, breakpoints } }) => css`
-    position: relative;
-    left: 0%;
-    height: 400px;
-    width: 280px;
-    ${down(breakpoints.lg)} {
-      width: 215px;
-      height: 215px;
-    }
-  `,
-);
 interface ITimeBar {
   width: number;
 }
@@ -95,21 +85,17 @@ interface IImgStyles {
 }
 
 export const PreviewImg = styled.img<IImgStyles>(
-  ({ zIndex = 1, opacity = 1, rotate = 0, theme: { colors, down, between, breakpoints } }) => css`
-    height: 100%;
-    max-height: 500px;
-    z-index: ${zIndex};
+  ({ theme: { colors, down, between, breakpoints } }) => css`
+    height: 500px;
     border-radius: 10px;
     background-color: ${colors.lightGrey};
-    opacity: ${opacity};
-    transform: rotate(${rotate}deg);
     transform-origin: 50% 50% 0;
-
+    animation: 0.5s ${fadeInLeftAnimation};
     ${between(breakpoints.sm, breakpoints.xl)} {
-      max-height: 350px;
+      height: 350px;
     }
     ${down(breakpoints.sm)} {
-      max-height: 215px;
+      height: 215px;
     }
   `,
 );
