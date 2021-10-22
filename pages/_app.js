@@ -17,7 +17,10 @@ class MyApp extends App {
         <Head>
           <title>FaceGame</title>
           <meta property="og:title" content="Face game" />
-          <meta property="og:description" content="Check how good do you know your colleagues" />
+          <meta
+            property="og:description"
+            content="Each of us probably asked ourselves a question: “What does this or that employee look like?” FaceGame is a web app that allows you to get to know your coworkers, so that you will never have such questions again."
+          />
           <meta property="og:image" content={`${process.env.ASSET_HOST}/images/open-graph.jpg`} />
           <meta property="og:url" content={`${process.env.ASSET_HOST}`} />
           <script src="https://apis.google.com/js/platform.js" async defer />
