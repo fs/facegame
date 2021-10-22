@@ -16,7 +16,7 @@ import {
   Title,
   WrapperFlexCenter,
   WrapperGameResult,
-  Star,
+  WrapperPosition,
 } from './styled';
 
 const GameResult = ({ currentUserResult }: IResultsBoard) => {
@@ -26,13 +26,16 @@ const GameResult = ({ currentUserResult }: IResultsBoard) => {
     <WrapperGameResult>
       <StarWrapperLeft />
       <Title>Game result</Title>
-      <WrapperFlexCenter>
-        <StarIcon /> <Count>{`${correctAnswersCount}/${questionsCount}`}</Count>
-      </WrapperFlexCenter>
-      <Score>
-        <div>Score</div>
-        <ScoreResult>{score}</ScoreResult>
-      </Score>
+      <WrapperPosition>
+        <WrapperFlexCenter>
+          <StarIcon /> <Count>{`${correctAnswersCount}/${questionsCount}`}</Count>
+        </WrapperFlexCenter>
+        <Score>
+          <div>Score</div>
+          <ScoreResult>{score}</ScoreResult>
+        </Score>
+      </WrapperPosition>
+
       <Link href={GAME} passHref>
         <ButtonedLink>Play again</ButtonedLink>
       </Link>
