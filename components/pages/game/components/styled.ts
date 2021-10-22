@@ -45,8 +45,7 @@ export const Timer = styled.h2`
 `;
 
 export const Portret = styled.img`
-  width: 200px;
-  height: 300px;
+  height: 500px;
   border-radius: 5%;
 `;
 
@@ -96,16 +95,22 @@ interface IImgStyles {
 }
 
 export const PreviewImg = styled.img<IImgStyles>(
-  ({ zIndex = 1, opacity = 1, rotate = 0, theme: { colors } }) => css`
-    position: absolute;
-    width: 100%;
+  ({ zIndex = 1, opacity = 1, rotate = 0, theme: { colors, down, between, breakpoints } }) => css`
     height: 100%;
+    max-height: 500px;
     z-index: ${zIndex};
     border-radius: 10px;
     background-color: ${colors.lightGrey};
     opacity: ${opacity};
     transform: rotate(${rotate}deg);
     transform-origin: 50% 50% 0;
+
+    ${between(breakpoints.sm, breakpoints.xl)} {
+      max-height: 350px;
+    }
+    ${down(breakpoints.sm)} {
+      max-height: 215px;
+    }
   `,
 );
 
