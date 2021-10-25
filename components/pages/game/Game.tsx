@@ -58,7 +58,7 @@ const Game = () => {
             <ImageNext src={logoIcon} width={192} height={72} />
           </Loader>
         )}
-        {!loading && <GamePage questions={questions} />}
+        {isCached && !loading && <GamePage questions={questions} />}
       </DefaultTemplate>
     </NotifierProvider>
   );
