@@ -1,4 +1,4 @@
-import { fadeInLeft } from 'react-animations';
+import { flip } from 'react-animations';
 import { Colors } from 'public/styles/theme';
 import styled, { css, keyframes } from 'styled-components';
 import { component as Exit } from 'public/images/icons/exit.svg';
@@ -6,7 +6,32 @@ import { component as Star } from 'public/images/icons/star.svg';
 
 import Button from 'components/shared/atoms/Button';
 
-const fadeInLeftAnimation = keyframes`${fadeInLeft}`;
+const fadeInLeftAnimation = keyframes`
+  from {
+    animation-timing-function: ease-out;
+    transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+  }
+
+  40% {
+    animation-timing-function: ease-out;
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+  }
+
+  50% {
+    animation-timing-function: ease-in;
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+  }
+
+  80% {
+    animation-timing-function: ease-in;
+    transform: perspective(400px) scale3d(0.95, 0.95, 0.95);
+  }
+
+  to {
+    animation-timing-function: ease-in;
+    transform: perspective(400px);
+  }
+`;
 
 export const ExitIcon = styled(Exit)(
   ({ theme: { breakpoints, down } }) => css`
