@@ -4,16 +4,18 @@ import { component as GoogleSvg } from 'public/images/icons/google-icon.svg';
 export const Title = styled.h1(
   ({ theme: { breakpoints, between, up, down } }) => css`
     ${up(breakpoints.xl)} {
-      font-size: 4.2rem;
-      line-height: 5rem;
+      font-size: 4.85rem;
+      line-height: 5.92rem;
     }
 
     ${between(breakpoints.sm, breakpoints.xl)} {
+      max-width: 600px;
       font-size: 3.1rem;
       line-height: 3.8rem;
     }
 
     ${down(breakpoints.sm)} {
+      max-width: 300px;
       margin-top: 0px;
       font-size: 2rem;
       line-height: 2.4rem;
@@ -60,6 +62,7 @@ export const Content = styled.div(
 
 export const TagLine = styled.div(
   ({ theme: { breakpoints, between, up, down } }) => css`
+    max-width: 450px;
     ${up(breakpoints.xl)} {
       font-size: 1.5rem;
       margin-bottom: 5rem;

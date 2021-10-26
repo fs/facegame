@@ -15,7 +15,7 @@ const HeaderChildren = () => {
   const { endGame } = useGameProcess(gameProcess);
   return user ? (
     <>
-      <StarIcon />
+      <StarIcon src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
       <CountAnswer>{correctAnswersCount}</CountAnswer>
       <ExitIcon onClick={endGame} />
     </>

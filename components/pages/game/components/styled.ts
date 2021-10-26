@@ -1,7 +1,6 @@
 import { Colors } from 'public/styles/theme';
 import styled, { css, keyframes } from 'styled-components';
 import { component as Exit } from 'public/images/icons/exit.svg';
-import { component as Star } from 'public/images/icons/star.svg';
 
 import Button from 'components/shared/atoms/Button';
 
@@ -24,11 +23,9 @@ export const ExitIcon = styled(Exit)(
   `,
 );
 
-export const StarIcon = styled(Star)(
-  ({ theme: { breakpoints, down } }) => css`
-    ${down(breakpoints.lg)} {
-      width: 2rem;
-    }
+export const StarIcon = styled.img(
+  () => css`
+    width: 2.85rem;
   `,
 );
 
@@ -65,13 +62,19 @@ export const PageContent = styled.div`
   max-width: 1000px;
   margin: 0 auto;
 `;
-export const Content = styled.div`
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-`;
+
+export const Content = styled.div(
+  ({ theme: { up, breakpoints } }) => css`
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    ${up(breakpoints.lg)} {
+      width: 80%;
+    }
+  `,
+);
 interface ITimeBar {
   width: number;
 }
@@ -108,14 +111,14 @@ export const PreviewImg = styled.img<IImgStyles>(
 );
 
 export const ButtonForQuestion = styled(Button)(
-  ({ theme: { colors } }) => css`
+  ({ theme: { colors, down, breakpoints } }) => css`
     flex: 1 1 48%;
     margin: 5px;
     color: ${colors.black};
     border: none;
     padding: 0.5rem 0;
-    &:hover {
-      border: 2px solid ${colors.black};
+    ${down(breakpoints.sm)} {
+      flex: 1 1 100%;
     }
   `,
 );
@@ -127,7 +130,7 @@ const getColor = (isCorrect: boolean, isMatchSelected: boolean): keyof typeof Co
   if (!isCorrect && isMatchSelected) {
     return 'red';
   }
-  return 'lightGrey';
+  return 'white';
 };
 interface IButtonForAnswer {
   isCorrect: boolean;
@@ -148,7 +151,7 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
       justify-content: center;
       align-items: center;
       position: relative;
-      ${down(breakpoints.md)} {
+      ${down(breakpoints.sm)} {
         margin: 3px;
         flex: 1 1 100%;
       }
@@ -157,7 +160,7 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
         right: 5%;
 
         display: ${isCorrect || isMatchSelected ? 'block' : 'none'};
-        ${down(breakpoints.lg)} {
+        ${down(breakpoints.md)} {
           right: 0;
           max-height: 1rem;
         }

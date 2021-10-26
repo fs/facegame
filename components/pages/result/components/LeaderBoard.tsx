@@ -2,8 +2,6 @@ import React from 'react';
 
 import IResultsBoard from 'interfaces/resultsBoard';
 
-import { component as StarIcon } from 'public/images/icons/star.svg';
-
 import LeaderBoardItem from './LeaderBoardItem';
 import { StarWrapperRight, Title, WrapperLeaderBoard } from './styled';
 
@@ -12,9 +10,7 @@ const LeaderBoard = ({ topResults, currentUserResult }: IResultsBoard) => {
   const isShowSpacer = currentUserResult.rate > 6;
   return (
     <WrapperLeaderBoard>
-      <StarWrapperRight>
-        <StarIcon width="90px" height="90px" />
-      </StarWrapperRight>
+      <StarWrapperRight src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
       <Title>LeaderBoard</Title>
       {topResults.map((user) => {
         const isCurrentUser = user.rate === currentUserResult.rate;
