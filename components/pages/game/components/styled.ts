@@ -1,8 +1,17 @@
 import { Colors } from 'public/styles/theme';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { component as Exit } from 'public/images/icons/exit.svg';
 
 import Button from 'components/shared/atoms/Button';
+
+const fadeIn = {
+  from: {
+    opacity: 0,
+  },
+  to: {
+    opacity: 1,
+  },
+};
 
 export const ExitIcon = styled(Exit)(
   ({ theme: { breakpoints, down } }) => css`
@@ -54,31 +63,16 @@ export const PageContent = styled.div`
   margin: 0 auto;
 `;
 
-export const Content = styled.div(
-  ({ theme: { up, breakpoints } }) => css`
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    ${up(breakpoints.lg)} {
-      width: 80%;
-    }
-  `,
-);
-
-export const ImgGroup = styled.div(
-  ({ theme: { down, breakpoints } }) => css`
-    position: relative;
-    left: 0%;
-    height: 400px;
-    width: 280px;
-    ${down(breakpoints.lg)} {
-      width: 215px;
-      height: 215px;
-    }
-  `,
-);
+export const Content = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  ${up(breakpoints.lg)} {
+    width: 80%;
+  }
+`;
 interface ITimeBar {
   width: number;
 }
@@ -98,21 +92,18 @@ interface IImgStyles {
 }
 
 export const PreviewImg = styled.img<IImgStyles>(
-  ({ zIndex = 1, opacity = 1, rotate = 0, theme: { colors, down, between, breakpoints } }) => css`
-    height: 100%;
-    max-height: 500px;
-    z-index: ${zIndex};
+  ({ theme: { colors, down, between, breakpoints } }) => css`
+    height: 500px;
     border-radius: 10px;
     background-color: ${colors.lightGrey};
-    opacity: ${opacity};
-    transform: rotate(${rotate}deg);
     transform-origin: 50% 50% 0;
+    animation: 1s ${keyframes`${fadeIn}`};
 
-    ${between(breakpoints.sm, breakpoints.xl)} {
-      max-height: 350px;
+    ${between(breakpoints.sm, breakpoints.lg, true)} {
+      height: 350px;
     }
     ${down(breakpoints.sm)} {
-      max-height: 215px;
+      height: 215px;
     }
   `,
 );

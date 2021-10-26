@@ -23,6 +23,8 @@ class MyApp extends App {
           />
           <meta property="og:image" content={`${process.env.ASSET_HOST}/images/open-graph.jpg`} />
           <meta property="og:url" content={`${process.env.ASSET_HOST}`} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content={`${process.env.ASSET_HOST}/images/open-graph.jpg`} />
           <script src="https://apis.google.com/js/platform.js" async defer />
         </Head>
         <ThemeProvider theme={theme}>
