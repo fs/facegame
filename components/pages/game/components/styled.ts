@@ -63,16 +63,18 @@ export const PageContent = styled.div`
   margin: 0 auto;
 `;
 
-export const Content = styled.div`
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  ${up(breakpoints.lg)} {
-    width: 80%;
-  }
-`;
+export const Content = styled.div(
+  ({ theme: { up, breakpoints } }) => css`
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    ${up(breakpoints.lg)} {
+      width: 80%;
+    }
+  `,
+);
 interface ITimeBar {
   width: number;
 }
