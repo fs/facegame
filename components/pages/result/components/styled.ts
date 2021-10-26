@@ -30,6 +30,7 @@ export const Trophy = styled.img(
   () => css`
     width: 1.5rem;
     height: 1.5rem;
+    margin: 0 0.25rem;
   `,
 );
 
@@ -163,7 +164,7 @@ export const FullName = styled.div`
   flex-grow: 1;
 `;
 export const Rate = styled.div`
-  min-width: 1.5rem;
+  min-width: 2rem;
   text-align: center;
 `;
 
