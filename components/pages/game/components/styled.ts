@@ -1,7 +1,6 @@
 import { Colors } from 'public/styles/theme';
 import styled, { css } from 'styled-components';
 import { component as Exit } from 'public/images/icons/exit.svg';
-import { component as Star } from 'public/images/icons/star.svg';
 
 import Button from 'components/shared/atoms/Button';
 
@@ -15,11 +14,9 @@ export const ExitIcon = styled(Exit)(
   `,
 );
 
-export const StarIcon = styled(Star)(
-  ({ theme: { breakpoints, down } }) => css`
-    ${down(breakpoints.lg)} {
-      width: 2rem;
-    }
+export const StarIcon = styled.img(
+  () => css`
+    width: 2.85rem;
   `,
 );
 

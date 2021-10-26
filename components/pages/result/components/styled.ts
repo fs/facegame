@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { component as StarIcon } from 'public/images/icons/star.svg';
 
 export const WrapperCard = styled.div(
   ({ theme: { breakpoints, down } }) => css`
@@ -18,6 +17,12 @@ export const WrapperCard = styled.div(
       margin: 0rem auto 0 auto;
       min-height: 200px;
     }
+  `,
+);
+
+export const StarIcon = styled.img(
+  () => css`
+    width: 2.85rem;
   `,
 );
 
@@ -123,8 +128,7 @@ export const StarWrapperLeft = styled(StarIcon)(
     width: 90px;
     height: 90px;
     ${down(breakpoints.lg)} {
-      width: 0;
-      height: 0;
+      display: none;
     }
   `,
 );
@@ -134,12 +138,11 @@ export const StarWrapperRight = styled(StarIcon)(
     position: absolute;
     right: -2.5rem;
     top: -1.5rem;
-    transform: rotate(-30deg);
-    width: 90px;
+    transform: rotate(30deg);
+    width: 90px !important;
     height: 90px;
     ${down(breakpoints.lg)} {
-      width: 0;
-      height: 0;
+      display: none;
     }
   `,
 );

@@ -3,9 +3,6 @@ import Link from 'next/link';
 
 import IResultsBoard from 'interfaces/resultsBoard';
 import { GAME } from 'config/routes';
-
-import { component as StarIcon } from 'public/images/icons/star.svg';
-
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
 
 import {
@@ -17,6 +14,7 @@ import {
   WrapperFlexCenter,
   WrapperGameResult,
   WrapperPosition,
+  StarIcon,
 } from './styled';
 
 const GameResult = ({ currentUserResult }: IResultsBoard) => {
@@ -24,11 +22,12 @@ const GameResult = ({ currentUserResult }: IResultsBoard) => {
 
   return (
     <WrapperGameResult>
-      <StarWrapperLeft />
+      <StarWrapperLeft src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
       <Title>Game result</Title>
       <WrapperPosition>
         <WrapperFlexCenter>
-          <StarIcon /> <Count>{`${correctAnswersCount}/${questionsCount}`}</Count>
+          <StarIcon src={`${process.env.ASSET_HOST}/images/icons/star.png`} />{' '}
+          <Count>{`${correctAnswersCount}/${questionsCount}`}</Count>
         </WrapperFlexCenter>
         <Score>
           <div>Score</div>
