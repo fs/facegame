@@ -76,7 +76,7 @@ export const WrapperFlexCenter = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin: -0.5em;
-  > * {
+  > div {
     margin: 0.5em;
   }
 `;
@@ -103,7 +103,7 @@ export const WrapperPosition = styled.div(
     ${down(breakpoints.lg)} {
       display: flex;
       margin: -1em;
-      > * {
+      > div {
         margin: 1em;
       }
     }
