@@ -118,7 +118,6 @@ export const ButtonForQuestion = styled(Button)(
     border: none;
     padding: 0.5rem 0;
     ${down(breakpoints.sm)} {
-      margin: 5px;
       flex: 1 1 100%;
     }
   `,
