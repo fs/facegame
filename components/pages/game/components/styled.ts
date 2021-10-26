@@ -130,7 +130,7 @@ const getColor = (isCorrect: boolean, isMatchSelected: boolean): keyof typeof Co
   if (!isCorrect && isMatchSelected) {
     return 'red';
   }
-  return 'white';
+  return 'pink';
 };
 interface IButtonForAnswer {
   isCorrect: boolean;
@@ -146,7 +146,6 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
       margin: 5px;
       color: ${colors[color]};
       border: 2px solid ${colors[color]};
-      background-color: ${colors.white};
       display: flex;
       justify-content: center;
       align-items: center;

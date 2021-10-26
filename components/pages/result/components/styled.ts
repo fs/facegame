@@ -123,12 +123,15 @@ export const Score = styled.div(
 );
 
 export const ScoreResult = styled.div(
-  () => css`
+  ({ theme: { breakpoints, down } }) => css`
     padding: 4px 24px;
     border-radius: 90px;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
+    ${down(breakpoints.sm)} {
+      padding: 4px 4px 4px 10px;
+    }
   `,
 );
 
