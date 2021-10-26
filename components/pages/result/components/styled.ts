@@ -26,6 +26,14 @@ export const StarIcon = styled.img(
   `,
 );
 
+export const Trophy = styled.img(
+  () => css`
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 0.25rem;
+  `,
+);
+
 export const WrapperGameResult = styled(WrapperCard)(
   () => css`
     justify-content: space-between;
@@ -67,7 +75,10 @@ export const WrapperFlexCenter = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  margin: -0.5em;
+  > div {
+    margin: 0.5em;
+  }
 `;
 
 export const InfoColumn = styled.div(
@@ -91,7 +102,10 @@ export const WrapperPosition = styled.div(
     display: block;
     ${down(breakpoints.lg)} {
       display: flex;
-      gap: 2rem;
+      margin: -1em;
+      > div {
+        margin: 1em;
+      }
     }
   `,
 );
@@ -104,18 +118,20 @@ export const Score = styled.div(
     ${down(breakpoints.lg)} {
       display: flex;
       align-items: center;
-      margin-top: 0;
     }
   `,
 );
 
 export const ScoreResult = styled.div(
-  () => css`
+  ({ theme: { breakpoints, down } }) => css`
     padding: 4px 24px;
     border-radius: 90px;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
+    ${down(breakpoints.sm)} {
+      padding: 4px 4px 4px 10px;
+    }
   `,
 );
 
@@ -151,7 +167,8 @@ export const FullName = styled.div`
   flex-grow: 1;
 `;
 export const Rate = styled.div`
-  min-width: 1.5rem;
+  min-width: 2rem;
+  text-align: center;
 `;
 
 export const ScoreTop = styled.div`
