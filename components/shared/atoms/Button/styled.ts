@@ -20,6 +20,10 @@ export const Button = styled.button<ICustomStyles>(
       left: 0.1em;
     }
 
+    ${down(breakpoints.md, true)} {
+      height: auto;
+    }
+
     ${down(breakpoints.sm)} {
       font-size: 1rem;
       line-height: 1.2rem;

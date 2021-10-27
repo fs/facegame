@@ -1,15 +1,15 @@
 import styled, { css } from 'styled-components';
-import { component as GoogleSvg } from 'public/images/icons/google-icon.svg';
 
 export const Title = styled.h1(
   ({ theme: { breakpoints, between, up, down } }) => css`
     ${up(breakpoints.xl)} {
-      font-size: 4.85rem;
-      line-height: 5.92rem;
+      max-width: 560px;
+      font-size: 4.2rem;
+      line-height: 5.18rem;
     }
 
     ${between(breakpoints.sm, breakpoints.xl)} {
-      max-width: 600px;
+      max-width: 550px;
       font-size: 3.1rem;
       line-height: 3.8rem;
     }
@@ -47,11 +47,11 @@ export const Content = styled.div(
     position: relative;
 
     ${up(breakpoints.xl)} {
-      padding-right: 32rem;
+      padding-right: 27rem;
     }
 
     ${between(breakpoints.lg, breakpoints.xl)} {
-      padding-right: 27rem;
+      padding-right: 23rem;
     }
 
     ${down(breakpoints.lg)} {
@@ -65,12 +65,12 @@ export const TagLine = styled.div(
     max-width: 450px;
     ${up(breakpoints.xl)} {
       font-size: 1.5rem;
-      margin-bottom: 5rem;
+      margin-bottom: 3rem;
     }
 
     ${between(breakpoints.lg, breakpoints.xl)} {
       font-size: 1.2rem;
-      margin-bottom: 4rem;
+      margin-bottom: 2.5rem;
     }
 
     ${down(breakpoints.lg)} {
@@ -153,33 +153,3 @@ export const customButtonStyles = () => css`
   display: inline-block;
   padding: 0.75rem 3rem;
 `;
-
-export const customLoginButtonStyles = ({ colors, breakpoints, down }) => css`
-  display: flex;
-  align-items: center;
-  flex: none;
-  min-width: auto;
-  margin: 0;
-  padding: 0.75rem 2rem;
-  background: ${colors.red};
-  color: ${colors.white};
-  border: 0;
-  border-radius: 2rem;
-  outline: none;
-  font-size: 1.5rem;
-
-  ${down(breakpoints.lg)} {
-    padding: 0.5rem 2rem;
-  }
-`;
-
-export const GoogleIcon = styled(GoogleSvg)(
-  ({ theme: { breakpoints, down } }) => css`
-    margin-right: 0.4rem;
-
-    ${down(breakpoints.lg)} {
-      width: 2rem;
-      height: 2rem;
-    }
-  `,
-);

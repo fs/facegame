@@ -95,14 +95,17 @@ interface IImgStyles {
 
 export const PreviewImg = styled.img<IImgStyles>(
   ({ theme: { colors, down, between, breakpoints } }) => css`
-    height: 500px;
+    height: 450px;
     border-radius: 10px;
     background-color: ${colors.lightGrey};
     transform-origin: 50% 50% 0;
     animation: 1s ${keyframes`${fadeIn}`};
 
-    ${between(breakpoints.sm, breakpoints.lg, true)} {
-      height: 350px;
+    ${between(breakpoints.sm, breakpoints.md, true)} {
+      height: 330px;
+    }
+    ${down(breakpoints.sm, true)} {
+      height: 215px;
     }
     ${down(breakpoints.sm)} {
       height: 215px;
@@ -115,9 +118,9 @@ export const ButtonForQuestion = styled(Button)(
     flex: 1 1 48%;
     margin: 5px;
     color: ${colors.black};
-    border: none;
-    padding: 0.5rem 0;
+    border: 2px solid ${colors.pink};
     ${down(breakpoints.sm)} {
+      padding: 0.5rem 0;
       flex: 1 1 100%;
     }
   `,
@@ -142,7 +145,7 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
     const color = getColor(isCorrect, isMatchSelected);
     return css`
       flex: 1 1 40%;
-      padding: 0.5rem 0;
+
       margin: 5px;
       color: ${colors[color]};
       border: 2px solid ${colors[color]};
@@ -150,8 +153,11 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
       justify-content: center;
       align-items: center;
       position: relative;
-      ${down(breakpoints.sm)} {
+      ${down(breakpoints.lg)} {
         margin: 3px;
+      }
+      ${down(breakpoints.sm)} {
+        padding: 0.5rem 0;
         flex: 1 1 100%;
       }
       svg {
