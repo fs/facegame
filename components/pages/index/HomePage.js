@@ -13,6 +13,7 @@ import { GAME } from 'config/routes';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import Button from 'components/shared/atoms/Button';
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
+import Notifier from 'components/shared/atoms/Notifier';
 
 import HeaderChildrenResult from '../result/components/HeaderChildren';
 import {
@@ -30,11 +31,8 @@ import {
 } from './styled';
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
-
-const HomePage = () => {
-  const { user } = useCurrentUser();
+const ButtonSignIn = () => {
   const [signIn] = useSignIn();
-
   const signInWithGoogleHandler = async () => {
     try {
       const resultAuth = await signInWithGoogle({
@@ -46,6 +44,16 @@ const HomePage = () => {
       console.error(error);
     }
   };
+  return (
+    <Button onClick={signInWithGoogleHandler} customStyles={customLoginButtonStyles}>
+      <GoogleIcon />
+      Login with Google
+    </Button>
+  );
+};
+const HomePage = () => {
+  const { user } = useCurrentUser();
+
   const tagLineUnAuth = 'FaceGame is a web app that will help you to get to know your coworkers.';
   const tagLineAuth =
     'Identify as many colleagues as you can in 30 seconds. You’ll get a score based on the accuracy of your answers.';
@@ -64,10 +72,7 @@ const HomePage = () => {
               </Link>
             ) : (
               <>
-                <Button onClick={signInWithGoogleHandler} customStyles={customLoginButtonStyles}>
-                  <GoogleIcon />
-                  Login with Google
-                </Button>
+                <ButtonSignIn />
                 <Description>to save game results and have access to the leaderboard</Description>
               </>
             )}
@@ -79,6 +84,7 @@ const HomePage = () => {
           Development and design by
           <a href="https://www.flatstack.com/"> Flatstack</a>
         </Footer>
+        <Notifier />
       </DefaultTemplate>
     </NotifierProvider>
   );
