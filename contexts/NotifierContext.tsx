@@ -34,31 +34,31 @@ export const NotifierProvider = ({ children }: NotifierProviderProps) => {
   const setError = useCallback(
     (errorMessage) => {
       const [parsedMessage] = new ErrorDecorator(errorMessage).getMessages();
-      setMessage(parsedMessage);
       setType(toast.TYPE.ERROR);
+      setMessage(parsedMessage);
     },
     [setMessage, setType],
   );
 
   const setInfo = useCallback(
     (infoMessage) => {
-      setMessage(infoMessage);
       setType(toast.TYPE.INFO);
+      setMessage(infoMessage);
     },
     [setMessage, setType],
   );
 
   const setSuccess = useCallback(
     (successMessage) => {
-      setMessage(successMessage);
       setType(toast.TYPE.SUCCESS);
+      setMessage(successMessage);
     },
     [setMessage, setType],
   );
 
   const clearMessage = useCallback(() => {
-    setMessage('');
     setType('default');
+    setMessage('');
   }, [setMessage, setType]);
 
   const context = useMemo(

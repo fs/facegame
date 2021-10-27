@@ -3,8 +3,6 @@ import Link from 'next/link';
 
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
-import useSignIn from 'lib/apollo/hooks/actions/useSignIn';
-import { signInWithGoogle } from 'lib/auth/signInWithGoogle';
 import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
 
 import { NotifierProvider } from 'contexts/NotifierContext';
