@@ -174,13 +174,6 @@ export const Rate = styled.div`
 export const ScoreTop = styled.div`
   margin-left: 1rem;
 `;
-export const Avatar = styled.img`
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: 50%;
-  margin-right: 0.3rem;
-`;
 
 interface IWrapperTop {
   isCurrentUser: boolean;
