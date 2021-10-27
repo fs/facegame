@@ -58,7 +58,7 @@ const useSignIn = () => {
 
       router.push(HOME);
     } catch (error) {
-      if (setError) setError(error as string);
+      if (setError) setError(error);
     }
   };
 
