@@ -10,10 +10,11 @@ import { Avatar, FullNameInfo, EmailInfo, WrapperFlexCenter, InfoColumn, HoverIc
 const HeaderChildrenResult = () => {
   const { user } = useCurrentUser(false);
   const [signOut] = useSignOut();
+
   return (
     !!user && (
       <WrapperFlexCenter>
-        <Avatar src={user.avatarUrl} alt="ava" />
+        <Avatar src={user.avatarUrl} alt={user.firstName} />
         <InfoColumn>
           <FullNameInfo>{`${user.firstName} ${user.lastName}`}</FullNameInfo>
           <EmailInfo>{user.email}</EmailInfo>
