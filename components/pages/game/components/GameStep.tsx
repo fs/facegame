@@ -50,7 +50,7 @@ const GameStep = ({ question, addAnswer }: IStep) => {
     };
   });
   const { endGame } = useGameProcess(gameProcess);
-  const currentSecond = useTimer(30, endGame);
+  const currentSecond = useTimer(FULL_TIME, endGame);
 
   const barWidth = (FULL_BAR * currentSecond) / FULL_TIME;
   const callNextStep = (name: string) => () => {
