@@ -11,7 +11,7 @@ import { NotifierProvider } from 'contexts/NotifierContext';
 import { GAME } from 'config/routes';
 
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
-import Button from 'components/shared/atoms/Button';
+import ButtonSignIn from 'components/shared/atoms/ButtonSignIn';
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
 import Notifier from 'components/shared/atoms/Notifier';
 
@@ -25,32 +25,9 @@ import {
   FacesImg,
   StarsImg,
   customButtonStyles,
-  customLoginButtonStyles,
-  GoogleIcon,
   Footer,
 } from './styled';
 
-const googleClientId = process.env.GOOGLE_CLIENT_ID;
-const ButtonSignIn = () => {
-  const [signIn] = useSignIn();
-  const signInWithGoogleHandler = async () => {
-    try {
-      const resultAuth = await signInWithGoogle({
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        client_id: googleClientId,
-      });
-      await signIn({ googleAuthCode: resultAuth.code });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  return (
-    <Button onClick={signInWithGoogleHandler} customStyles={customLoginButtonStyles}>
-      <GoogleIcon />
-      Login with Google
-    </Button>
-  );
-};
 const HomePage = () => {
   const { user } = useCurrentUser();
 
