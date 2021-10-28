@@ -153,9 +153,6 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
       justify-content: center;
       align-items: center;
       position: relative;
-      ${down(breakpoints.lg)} {
-        margin: 3px;
-      }
       ${down(breakpoints.sm)} {
         padding: 0.5rem 0;
         flex: 1 1 100%;
