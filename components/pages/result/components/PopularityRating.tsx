@@ -1,22 +1,26 @@
 import React from 'react';
-import Link from 'next/link';
 
-import IResultsBoard from 'interfaces/resultsBoard';
-import { GAME } from 'config/routes';
-import ButtonedLink from 'components/shared/atoms/ButtonedLink';
-
-import Avatar from 'components/shared/atoms/Avatar';
-import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
+import { useGetPopularityRating } from 'lib/apollo/hooks/state/useGetPopularityRating';
 import { TextBold, WrapperPopularityRating, TeamDirectoryImg } from './styled';
 
 const PopularityRating = () => {
-  const { user } = useCurrentUser(false);
+  const { popularityRating, loading } = useGetPopularityRating();
+  if (loading) {
+    return <></>;
+  }
   return (
     <WrapperPopularityRating>
-      <TeamDirectoryImg src={`${process.env.ASSET_HOST}/images/default-person.png`} alt="ava" />
+      <TeamDirectoryImg
+        src={`${popularityRating.avatarUrl || `${process.env.ASSET_HOST}/images/default-person.png`}`}
+        alt="TeamDirectoryIMG"
+        onError={(e: any) => {
+          e.target.onerror = null;
+          e.target.src = `${process.env.ASSET_HOST}/images/default-person.png`;
+        }}
+      />
       <div>
         <TextBold>Статистика вашей фотографии </TextBold>
-        <div>За последнюю неделю вас узнали 3 из 7 коллег.</div>
+        <div>{`За последнюю неделю вас узнали ${popularityRating.correctAnswersCount} из ${popularityRating.answersCount}  коллег.`}</div>
       </div>
     </WrapperPopularityRating>
   );

@@ -13,9 +13,6 @@ export const WrapperCard = styled.div(
     padding: 1rem 0px;
     ${down(breakpoints.lg)} {
       width: 100%;
-
-      /*margin: 0rem auto 0 auto;*/
-      /* min-height: 200px;   */
     }
   `,
 );
@@ -27,12 +24,7 @@ export const ResultContainer = styled.div(
     width: 45%;
     ${down(breakpoints.lg)} {
       width: 100%;
-      /* padding: 1rem 0px;
-      margin: 0rem auto 0 auto;
-      min-height: 200px;  */
     }
-    /* min-height: 280px;
-    justify-content: space-between; */
   `,
 );
 export const WrapperGameResult = styled(WrapperCard)(
@@ -40,8 +32,6 @@ export const WrapperGameResult = styled(WrapperCard)(
     flex-grow: 1;
     width: 100%;
     justify-content: space-around;
-    /* min-height: 280px;
-    justify-content: space-between; */
   `,
 );
 export const WrapperPopularityRating = styled(WrapperCard)(
@@ -51,27 +41,21 @@ export const WrapperPopularityRating = styled(WrapperCard)(
     flex-direction: row;
     width: 100%;
     padding: 0.7rem;
-    /* justify-content: space-between; */
   `,
 );
 export const WrapperLeaderBoard = styled(WrapperCard)(
-  ({ theme: { breakpoints, down } }) => css`
+  () => css`
     height: 100%;
-    /* justify-content: start;
-    ${down(breakpoints.lg)} {
-      min-height: auto;
-      flex: 1 1 100%;
-    } */
   `,
 );
 
 export const TeamDirectoryImg = styled.img(
-  ({ theme: { colors, down, between, breakpoints } }) => css`
+  ({ theme: { colors } }) => css`
     height: 100px;
     width: auto;
     border-radius: 10px;
     background-color: ${colors.lightGrey};
-    margin-right: 0.5rem;
+    margin-right: 0.7rem;
   `,
 );
 export const StarIcon = styled.img(
@@ -147,7 +131,7 @@ export const Count = styled.div`
 `;
 
 export const WrapperPosition = styled.div(
-  ({ theme: { breakpoints, down } }) => css`
+  () => css`
     display: flex;
     margin: -1em;
     > div {
