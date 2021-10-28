@@ -15,8 +15,9 @@ import HeaderChildrenResult from './components/HeaderChildren';
 import GameResult from './components/GameResult';
 import LeaderBoard from './components/LeaderBoard';
 
-import { WrapperFlexCenter } from './components/styled';
+import { WrapperFlexCenter, ResultContainer } from './components/styled';
 import { Footer } from '../index/styled';
+import PopularityRating from './components/PopularityRating';
 
 const ResultPage = () => {
   const { topResults, currentUserResult, loading } = useGetResultsBoard();
@@ -30,7 +31,12 @@ const ResultPage = () => {
           </Loader>
         )}
         <WrapperFlexCenter>
-          {!loading && currentUserResult && <GameResult currentUserResult={currentUserResult} />}
+          {!loading && currentUserResult && (
+            <ResultContainer>
+              <GameResult currentUserResult={currentUserResult} />
+              <PopularityRating />
+            </ResultContainer>
+          )}
           {!loading && topResults && currentUserResult && (
             <LeaderBoard topResults={topResults} currentUserResult={currentUserResult} />
           )}

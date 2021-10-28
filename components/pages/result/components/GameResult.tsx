@@ -11,10 +11,10 @@ import {
   ScoreResult,
   StarWrapperLeft,
   Title,
-  WrapperFlexCenter,
   WrapperGameResult,
   WrapperPosition,
   StarIcon,
+  WrapperFlex,
 } from './styled';
 
 const GameResult = ({ currentUserResult }: IResultsBoard) => {
@@ -25,10 +25,10 @@ const GameResult = ({ currentUserResult }: IResultsBoard) => {
       <StarWrapperLeft src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
       <Title>Game result</Title>
       <WrapperPosition>
-        <WrapperFlexCenter>
+        <WrapperFlex>
           <StarIcon src={`${process.env.ASSET_HOST}/images/icons/star.png`} />{' '}
           <Count>{`${correctAnswersCount}/${questionsCount}`}</Count>
-        </WrapperFlexCenter>
+        </WrapperFlex>
         <Score>
           <div>Score</div>
           <ScoreResult>{score}</ScoreResult>
