@@ -47,7 +47,7 @@ export const Content = styled.div(
     position: relative;
 
     ${up(breakpoints.xl)} {
-      padding-right: 35rem;
+      padding-right: 32rem;
     }
 
     ${between(breakpoints.lg, breakpoints.xl)} {
