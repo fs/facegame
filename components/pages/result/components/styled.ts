@@ -3,23 +3,61 @@ import styled, { css } from 'styled-components';
 export const WrapperCard = styled.div(
   ({ theme: { breakpoints, down } }) => css`
     position: relative;
-    flex: 1 1 45%;
-    min-height: 480px;
     border-radius: 40px;
-    margin: 1rem auto 0 auto;
-    padding: 3rem 0px;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 1rem 0px;
     ${down(breakpoints.lg)} {
-      padding: 1rem 0px;
-      margin: 0rem auto 0 auto;
-      min-height: 200px;
+      width: 100%;
     }
   `,
 );
+export const ResultContainer = styled.div(
+  ({ theme: { breakpoints, down } }) => css`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    ${down(breakpoints.lg)} {
+      width: 100%;
+    }
+  `,
+);
+export const WrapperGameResult = styled(WrapperCard)(
+  () => css`
+    flex-grow: 1;
+    width: 100%;
+    justify-content: space-around;
+  `,
+);
+export const WrapperPopularityRating = styled(WrapperCard)(
+  ({ theme: { colors } }) => css`
+    margin-top: 1rem;
+    background-color: ${colors.white};
+    flex-direction: row;
+    width: 100%;
+    padding: 0.7rem;
+  `,
+);
+export const WrapperLeaderBoard = styled(WrapperCard)(
+  () => css`
+    height: 100%;
+  `,
+);
 
+export const TeamDirectoryImg = styled.img(
+  ({ theme: { colors } }) => css`
+    height: 100px;
+    width: auto;
+    border-radius: 10px;
+    background-color: ${colors.lightGrey};
+    margin-right: 0.7rem;
+  `,
+);
 export const StarIcon = styled.img(
   () => css`
     width: 2.85rem;
@@ -31,22 +69,6 @@ export const Trophy = styled.img(
     width: 1.5rem;
     height: 1.5rem;
     margin: 0 0.25rem;
-  `,
-);
-
-export const WrapperGameResult = styled(WrapperCard)(
-  () => css`
-    justify-content: space-between;
-  `,
-);
-
-export const WrapperLeaderBoard = styled(WrapperCard)(
-  ({ theme: { breakpoints, down } }) => css`
-    justify-content: start;
-    ${down(breakpoints.lg)} {
-      min-height: auto;
-      flex: 1 1 100%;
-    }
   `,
 );
 
@@ -69,17 +91,28 @@ export const FullNameInfo = styled.div`
 export const EmailInfo = styled.div`
   font-size: 0.8rem;
 `;
-
-export const WrapperFlexCenter = styled.div`
+export const WrapperFlex = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  margin: -0.5em;
-  > div {
-    margin: 0.5em;
-  }
 `;
+
+export const WrapperFlexCenter = styled.div(
+  ({ theme: { breakpoints, down } }) => css`
+    height: 430px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: -0.5em;
+    > div {
+      margin: 0.5em;
+    }
+    ${down(breakpoints.lg)} {
+      height: auto;
+    }
+  `,
+);
 
 export const InfoColumn = styled.div(
   ({ theme: { breakpoints, down } }) => css`
@@ -98,14 +131,11 @@ export const Count = styled.div`
 `;
 
 export const WrapperPosition = styled.div(
-  ({ theme: { breakpoints, down } }) => css`
-    display: block;
-    ${down(breakpoints.lg)} {
-      display: flex;
-      margin: -1em;
-      > div {
-        margin: 1em;
-      }
+  () => css`
+    display: flex;
+    margin: -1em;
+    > div {
+      margin: 1em;
     }
   `,
 );
@@ -162,6 +192,10 @@ export const StarWrapperRight = styled(StarIcon)(
     }
   `,
 );
+
+export const TextBold = styled.div`
+  font-weight: 600;
+`;
 
 export const FullName = styled.div`
   flex-grow: 1;

@@ -1,0 +1,7 @@
+query {
+  popularityRating {
+    answersCount
+    correctAnswersCount
+    avatarUrl
+  }
+}

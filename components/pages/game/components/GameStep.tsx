@@ -13,7 +13,7 @@ import Loader from 'components/shared/atoms/Loader';
 import { PageContent, Content, PreviewImg, ButtonForAnswer, ButtonForQuestion, TitleDescription } from './styled';
 
 const FULL_BAR = 100;
-const FULL_TIME = 30;
+const FULL_TIME = 45;
 interface IStep {
   question: IQuestion;
   addAnswer: (answer: string) => void;

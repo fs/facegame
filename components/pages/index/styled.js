@@ -135,7 +135,7 @@ export const StarsImg = styled.img(
 
     ${up(breakpoints.xl)} {
       left: -5rem;
-      width: 74rem;
+      width: 64rem;
     }
 
     ${between(breakpoints.lg, breakpoints.xl)} {
