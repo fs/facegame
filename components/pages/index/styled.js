@@ -47,7 +47,7 @@ export const Content = styled.div(
     position: relative;
 
     ${up(breakpoints.xl)} {
-      padding-right: 27rem;
+      padding-right: 35rem;
     }
 
     ${between(breakpoints.lg, breakpoints.xl)} {
@@ -112,7 +112,7 @@ export const FacesImg = styled.img(
     z-index: -1;
 
     ${up(breakpoints.xl)} {
-      width: 32rem;
+      width: 30rem;
     }
 
     ${between(breakpoints.lg, breakpoints.xl)} {

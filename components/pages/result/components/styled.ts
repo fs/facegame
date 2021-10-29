@@ -55,7 +55,7 @@ export const TeamDirectoryImg = styled.img(
     width: auto;
     border-radius: 10px;
     background-color: ${colors.lightGrey};
-    margin-right: 0.7rem;
+    margin-right: 1rem;
   `,
 );
 export const StarIcon = styled.img(
