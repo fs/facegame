@@ -31,7 +31,7 @@ const HomePage = () => {
 
   const tagLineUnAuth = 'FaceGame is a web app that will help you to get to know your coworkers.';
   const tagLineAuth =
-    'Identify as many colleagues as you can in 30 seconds. You’ll get a score based on the accuracy of your answers.';
+    'Identify as many colleagues as you can in 45 seconds. You’ll get a score based on the accuracy of your answers.';
   return (
     <NotifierProvider>
       <DefaultTemplate headerChildren={<HeaderChildrenResult />}>
