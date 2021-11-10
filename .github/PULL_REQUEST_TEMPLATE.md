@@ -8,11 +8,6 @@
 
 # Test plan
 
-#### List of steps to manually test introduced functionality:
-
-- Go to [ReviewApp](https://facegame-staging-pr-PR_NUMBER.herokuapp.com)
-- ...
-
 # Review notes
 
 #### While reviewing pull-request (especially when it's your pull-request), please make sure that:
