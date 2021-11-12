@@ -5,7 +5,7 @@ import { TextBold, WrapperPopularityRating, TeamDirectoryImg } from './styled';
 
 const PopularityRating = () => {
   const { popularityRating, loading } = useGetPopularityRating();
-  if (loading) {
+  if (loading || !popularityRating) {
     return <></>;
   }
   return (
