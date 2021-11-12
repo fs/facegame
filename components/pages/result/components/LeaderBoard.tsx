@@ -6,14 +6,15 @@ import LeaderBoardItem from './LeaderBoardItem';
 import { StarWrapperRight, Title, WrapperLeaderBoard } from './styled';
 
 const LeaderBoard = ({ topResults, currentUserResult }: IResultsBoard) => {
-  const isOutsider = currentUserResult.rate >= 6;
-  const isShowSpacer = currentUserResult.rate > 6;
+  const rate = currentUserResult?.rate || -1;
+  const isOutsider = rate >= 6;
+  const isShowSpacer = rate > 6;
   return (
     <WrapperLeaderBoard>
       <StarWrapperRight src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
       <Title>LeaderBoard</Title>
       {topResults.map((user) => {
-        const isCurrentUser = user.rate === currentUserResult.rate;
+        const isCurrentUser = user.rate === rate;
         return <LeaderBoardItem key={user.rate} user={user} isCurrentUser={isCurrentUser} />;
       })}
       {isOutsider && (
