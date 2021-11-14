@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Avatar } from './styled';
 
 type TAvatar = {
-  src: string;
+  src: string | null;
   alt: string;
 };
 
@@ -19,7 +19,7 @@ const AvatarWithFallback = ({ src, alt }: TAvatar) => {
     e.target.src = src;
   };
 
-  return <Avatar onError={replaceImgWithError} alt={alt} src={src} />;
+  return <Avatar onError={replaceImgWithError} alt={alt} src={src || '/non-existent.png'} />;
 };
 
 export default AvatarWithFallback;
