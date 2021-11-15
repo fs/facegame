@@ -12,7 +12,7 @@ const ButtonSignIn = (): JSX.Element => {
   const signInWithGoogleHandler = async () => {
     try {
       const resultAuth = await signInWithGoogle({
-        // eslint-disable-next-line @typescript-eslint/camelcase
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         client_id: googleClientId,
       });
       // @ts-ignore
