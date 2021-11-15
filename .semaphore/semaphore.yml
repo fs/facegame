@@ -1,0 +1,54 @@
+version: v1.0
+name: FaceGame
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+execution_time_limit:
+  minutes: 15
+auto_cancel:
+  running:
+    when: 'true'
+global_job_config:
+  env_vars:
+    - name: API_URL
+      value: 'https://rails-base-graphql-api.herokuapp.com'
+    - name: PORT
+      value: '3000'
+  secrets:
+    - name: medagregator-staging-secrets
+  prologue:
+    commands:
+      - checkout
+      - cache restore
+      - nvm use
+blocks:
+  - name: Setup
+    task:
+      jobs:
+        - name: Deps and cache
+          commands:
+            - yarn install --frozen-lockfile
+            - cache store
+            - yarn print-env SEMAPHORE
+  - name: Tests
+    task:
+      jobs:
+        - name: Lint JS
+          commands:
+            - 'yarn run lint:js'
+        - name: Lint CSS
+          commands:
+            - 'yarn run lint:css'
+        - name: Unit test
+          commands:
+            - 'yarn run ci:jest'
+
+promotions:
+  - name: Deploy to Heroku
+    pipeline_file: staging_deploy.yml
+    auto_promote:
+      when: "result = 'passed' and branch = 'master'"
+
+  - name: Production deploy
+    pipeline_file: production_deploy.yml
