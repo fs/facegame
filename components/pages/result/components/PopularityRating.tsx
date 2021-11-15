@@ -23,7 +23,7 @@ const PopularityRating = () => {
         {popularityRating.correctAnswersCount === 0 ? (
           <div>No one recognized you in the last week.</div>
         ) : (
-          <div>{`You have been recognized ${popularityRating.correctAnswersCount} of ${popularityRating.answersCount}  time/times in the last week.`}</div>
+          <div>{`You have been recognized (${popularityRating.correctAnswersCount} of ${popularityRating.answersCount})  time/times in the last week.`}</div>
         )}
       </div>
     </WrapperPopularityRating>
