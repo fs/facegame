@@ -1,6 +1,9 @@
 mutation startGame {
   startGame {
     gameId
-    question
+    question {
+      answerOptions
+      avatarUrl
+    }
   }
 }
