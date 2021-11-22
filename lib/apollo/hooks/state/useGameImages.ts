@@ -1,18 +1,44 @@
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import Images from 'graphql/queries/images.graphql';
 import Image from 'domain/Image';
+import { useNotifier } from 'contexts/NotifierContext';
 
-type ImagesData = Image[];
+type ImagesData = {
+  images: Image[];
+};
 
-export const useGameImages = ({ prefetch = true, onCompleted }: { prefetch: boolean; onCompleted: () => void }) => {
+const warmUpBrowserCache = (data: Image[]) => {
+  const promises = data.map((url: string) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject();
+      img.src = url;
+    });
+  });
+  return Promise.allSettled(promises);
+};
+
+export const useGameImages = () => {
+  const { setError } = useNotifier();
+  const [isCached, setIsCached] = useState(false);
   const { data, loading, error } = useQuery<ImagesData>(Images, {
-    fetchPolicy: prefetch ? 'cache-first' : 'cache-only',
-    onCompleted,
+    onCompleted: async (response) => {
+      // await cache(data.slice(0, 2));
+      await warmUpBrowserCache(response.images);
+      setIsCached(true);
+      // await cache(data.slice(2, 5));
+      // await cache(data.slice(5));
+    },
+    onError: (err) => {
+      setError(err);
+    },
   });
 
   return {
-    images: data,
-    loadingImages: loading,
+    images: !loading && !error && isCached ? data?.images : undefined,
+    loading: (loading || !isCached) && !error,
     error,
   };
 };
