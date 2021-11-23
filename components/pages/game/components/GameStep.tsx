@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import IQuestion from 'interfaces/questionType';
+import type { Question } from 'lib/apollo/hooks/actions/useStartGame';
 import ImageNext from 'next/image';
 import logoIcon from 'public/images/loader-logo.gif';
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
 import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
-import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
-import { gameProcess } from 'lib/cache';
 
 import TimerBar from 'components/shared/atoms/TimerBar';
 import Loader from 'components/shared/atoms/Loader';
@@ -15,7 +14,7 @@ import { PageContent, Content, PreviewImg, ButtonForAnswer, ButtonForQuestion, T
 const FULL_BAR = 100;
 const FULL_TIME = 45;
 interface IStep {
-  question: IQuestion;
+  question: IQuestion | Question;
   addAnswer: (answer: string) => void;
 }
 
@@ -49,8 +48,8 @@ const GameStep = ({ question, addAnswer }: IStep) => {
       isMatchSelected,
     };
   });
-  const { endGame } = useGameProcess(gameProcess);
-  const currentSecond = useTimer(FULL_TIME, endGame);
+  // const { endGame } = useGameProcess(gameProcess);
+  // const currentSecond = useTimer(FULL_TIME, endGame);
 
   const barWidth = (FULL_BAR * currentSecond) / FULL_TIME;
   const callNextStep = (name: string) => () => {
