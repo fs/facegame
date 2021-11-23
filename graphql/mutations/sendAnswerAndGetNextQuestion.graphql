@@ -1,0 +1,9 @@
+mutation sendAnswerAndGetNextQuestion($input: AnswerAndNewQuestionInput!) {
+  sendAnswerAndGetNextQuestion(input: $input) {
+    correctAnswerValue
+    question {
+      answerOptions
+      avatarUrl
+    }
+  }
+}
