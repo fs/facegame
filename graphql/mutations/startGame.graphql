@@ -1,0 +1,9 @@
+mutation startGame {
+  startGame {
+    gameId
+    question {
+      answerOptions
+      avatarUrl
+    }
+  }
+}
