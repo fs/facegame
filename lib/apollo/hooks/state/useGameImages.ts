@@ -25,11 +25,11 @@ export const useGameImages = () => {
   const [isCached, setIsCached] = useState(false);
   const { data, loading, error } = useQuery<ImagesData>(Images, {
     onCompleted: async (response) => {
-      // await cache(data.slice(0, 2));
+      await warmUpBrowserCache(response.images.slice(0, 2));
       await warmUpBrowserCache(response.images);
       setIsCached(true);
-      // await cache(data.slice(2, 5));
-      // await cache(data.slice(5));
+      await warmUpBrowserCache(response.images.slice(2, 5));
+      await warmUpBrowserCache(response.images.slice(5));
     },
     onError: (err) => {
       setError(err);
