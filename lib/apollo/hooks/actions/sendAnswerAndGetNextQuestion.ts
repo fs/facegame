@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 
 import { useNotifier } from 'contexts/NotifierContext';
 import { useCallback } from 'react';
-import { Question } from './useStartGame';
+import Question from 'domain/Question';
 
 type SendAnswerAndGetNextQuestionProps = {
   gameId: string | number;
@@ -14,6 +14,7 @@ type SendAnswerAndGetNextQuestionData = {
   sendAnswerAndGetNextQuestion: {
     correctAnswerValue: string;
     question: Question;
+    correctAnswersCount: number;
   };
 };
 

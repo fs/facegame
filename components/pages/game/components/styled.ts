@@ -126,23 +126,22 @@ export const ButtonForQuestion = styled(Button)(
   `,
 );
 
-const getColor = (isCorrect: boolean, isMatchSelected: boolean): keyof typeof Colors => {
+const getColor = (isCorrect: boolean | null): keyof typeof Colors => {
   if (isCorrect) {
     return 'green';
   }
-  if (!isCorrect && isMatchSelected) {
+  if (isCorrect === false) {
     return 'red';
   }
   return 'pink';
 };
 interface IButtonForAnswer {
-  isCorrect: boolean;
-  isMatchSelected: boolean;
+  isCorrect: boolean | null;
 }
 
 export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
-  ({ theme: { colors, down, breakpoints }, isCorrect, isMatchSelected }) => {
-    const color = getColor(isCorrect, isMatchSelected);
+  ({ theme: { colors, down, breakpoints }, isCorrect }) => {
+    const color = getColor(isCorrect);
     return css`
       flex: 1 1 40%;
 
@@ -161,7 +160,7 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
         position: absolute;
         right: 5%;
 
-        display: ${isCorrect || isMatchSelected ? 'block' : 'none'};
+        display: block;
         ${down(breakpoints.md)} {
           right: 0;
           max-height: 1rem;

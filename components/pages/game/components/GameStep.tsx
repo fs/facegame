@@ -1,22 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import IQuestion from 'interfaces/questionType';
-import type { Question } from 'lib/apollo/hooks/actions/useStartGame';
-import ImageNext from 'next/image';
-import logoIcon from 'public/images/loader-logo.gif';
+import Question from 'domain/Question';
 import { component as CorrectIcon } from 'public/images/icons/correct.svg';
 import { component as IncorrectIcon } from 'public/images/icons/incorrect.svg';
 
 import TimerBar from 'components/shared/atoms/TimerBar';
-import Loader from 'components/shared/atoms/Loader';
 
 import { PageContent, Content, PreviewImg, ButtonForAnswer, ButtonForQuestion, TitleDescription } from './styled';
 
 const FULL_BAR = 100;
 const FULL_TIME = 45;
-interface IStep {
-  question: IQuestion | Question;
-  addAnswer: (answer: string) => void;
-}
+
+type Step = {
+  question: Question;
+  answer: (value: string) => void;
+  isCurrentAnswerCorrect: boolean | null;
+  currentAnswer: string | undefined;
+};
 
 function useTimer(limit: number, cb = console.log): number {
   const [time, setTime] = useState(limit);
@@ -35,58 +34,41 @@ function useTimer(limit: number, cb = console.log): number {
   return time;
 }
 
-const GameStep = ({ question, addAnswer }: IStep) => {
-  const [selectedId, setSelectedId] = useState<number | null>(null);
-  const isShowResultAnswer = selectedId !== null;
-  const optionsWithUi = question.options.map((name, id) => {
-    const isCorrect = name === question.fullName;
-    const isMatchSelected = id === selectedId;
-    return {
-      id,
-      name,
-      isCorrect,
-      isMatchSelected,
-    };
-  });
-  // const { endGame } = useGameProcess(gameProcess);
-  // const currentSecond = useTimer(FULL_TIME, endGame);
+const GameStep = ({ question, answer, isCurrentAnswerCorrect, currentAnswer }: Step) => {
+  const isShowResultAnswer = Boolean(currentAnswer);
+
+  const endGame = () => {};
+  const currentSecond = useTimer(FULL_TIME, endGame);
 
   const barWidth = (FULL_BAR * currentSecond) / FULL_TIME;
-  const callNextStep = (name: string) => () => {
-    setSelectedId(null);
-    addAnswer(name);
-  };
-  if (currentSecond === 0) {
-    return (
-      <Loader testId="profile-updating-loader">
-        <ImageNext src={logoIcon} width={192} height={72} />
-      </Loader>
-    );
-  }
+
   return (
     <PageContent data-testid="page-content">
       <TitleDescription>What is the name of that superhero?</TitleDescription>
       <TimerBar time={currentSecond} width={barWidth} />
       <PreviewImg key={question.avatarUrl} src={question.avatarUrl} />
       <Content>
-        {optionsWithUi.map(({ id, name, isCorrect, isMatchSelected }) => {
-          return isShowResultAnswer ? (
-            <ButtonForAnswer isCorrect={isCorrect} isMatchSelected={isMatchSelected} key={id}>
-              {isCorrect ? <CorrectIcon /> : <IncorrectIcon />}
-              {name}
+        {question.answerOptions.map((option) =>
+          isShowResultAnswer ? (
+            <ButtonForAnswer isCorrect={currentAnswer === option ? isCurrentAnswerCorrect : null} key={option}>
+              {(() => {
+                switch (currentAnswer === option ? isCurrentAnswerCorrect : null) {
+                  case true:
+                    return <CorrectIcon />;
+                  case false:
+                    return <IncorrectIcon />;
+                  default:
+                    return null;
+                }
+              })()}
+              {option}
             </ButtonForAnswer>
           ) : (
-            <ButtonForQuestion
-              key={id}
-              onClick={() => {
-                setSelectedId(id);
-                setTimeout(callNextStep(name), 500);
-              }}
-            >
-              {name}
+            <ButtonForQuestion key={option} onClick={() => answer(option)}>
+              {option}
             </ButtonForQuestion>
-          );
-        })}
+          ),
+        )}
       </Content>
     </PageContent>
   );
