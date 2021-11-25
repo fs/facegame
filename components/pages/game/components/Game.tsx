@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { RESULT } from 'config/routes';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import TimerBar from 'components/shared/atoms/TimerBar';
+import useEndGame from 'lib/apollo/hooks/actions/endGame';
 import useSendAnswerAndGetNextQuestion from 'lib/apollo/hooks/actions/sendAnswerAndGetNextQuestion';
 import { useRouter } from 'next/router';
 import GameStep from './GameStep';
@@ -38,15 +39,14 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
   const [currentQuestion, setCurrentQuestion] = useState<Question>(initialQuestion);
   const [currentAnswer, setCurrentAnswer] = useState<string | undefined>(undefined);
 
-  const [sendAnswerAndGetNextQuestion, sendAnswerAndGetNextQuestionState] = useSendAnswerAndGetNextQuestion();
+  const [sendAnswerAndGetNextQuestion, { data, loading, error }] = useSendAnswerAndGetNextQuestion();
+  const [endGame] = useEndGame();
+
   const router = useRouter();
 
   const isCurrentAnswerCorrect =
-    !sendAnswerAndGetNextQuestionState.loading &&
-    !sendAnswerAndGetNextQuestionState.error &&
-    sendAnswerAndGetNextQuestionState.data &&
-    sendAnswerAndGetNextQuestionState.data.sendAnswerAndGetNextQuestion.question !== currentQuestion
-      ? sendAnswerAndGetNextQuestionState.data.sendAnswerAndGetNextQuestion.correctAnswerValue === currentAnswer
+    !loading && !error && data && data.sendAnswerAndGetNextQuestion.question !== currentQuestion
+      ? data.sendAnswerAndGetNextQuestion.correctAnswerValue === currentAnswer
       : null;
 
   useEffect(() => {
@@ -56,12 +56,8 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
   }, [currentAnswer, gameId, sendAnswerAndGetNextQuestion]);
 
   useEffect(() => {
-    if (
-      !sendAnswerAndGetNextQuestionState.loading &&
-      !sendAnswerAndGetNextQuestionState.error &&
-      sendAnswerAndGetNextQuestionState.data
-    ) {
-      const newQuestion = sendAnswerAndGetNextQuestionState.data.sendAnswerAndGetNextQuestion.question;
+    if (!loading && !error && data) {
+      const newQuestion = data.sendAnswerAndGetNextQuestion.question;
       const timeoutID = setTimeout(() => {
         setCurrentAnswer(undefined);
         setCurrentQuestion(newQuestion);
@@ -73,20 +69,18 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
     }
 
     return () => {};
-  }, [
-    sendAnswerAndGetNextQuestionState.data,
-    sendAnswerAndGetNextQuestionState.error,
-    sendAnswerAndGetNextQuestionState.loading,
-  ]);
+  }, [data, error, loading]);
 
   const answer = (value: string) => {
     setCurrentAnswer(value);
   };
 
-  const endGame = () => {
+  const endGameHandler = () => {
+    endGame(gameId);
     router.push(RESULT);
   };
-  const currentSecond = useTimer(FULL_TIME, endGame);
+
+  const currentSecond = useTimer(FULL_TIME, endGameHandler);
 
   const barWidth = (FULL_BAR * currentSecond) / FULL_TIME;
 
@@ -95,8 +89,8 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
       title="What is the name of that superhero?"
       headerChildren={
         <HeaderChildren
-          endGame={endGame}
-          correctAnswersCount={sendAnswerAndGetNextQuestionState.data?.sendAnswerAndGetNextQuestion.correctAnswersCount}
+          endGame={endGameHandler}
+          correctAnswersCount={data?.sendAnswerAndGetNextQuestion.correctAnswersCount}
         />
       }
     >

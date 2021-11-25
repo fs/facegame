@@ -12,12 +12,6 @@ import GameProvider from './components/GameProvider';
 import Game from './components/Game';
 
 const GamePage = () => {
-  // const { resetCorrectAnswersCount, resetAnswers } = useGameProcess(gameProcess);
-  // useEffect(() => {
-  //   resetCorrectAnswersCount();
-  //   resetAnswers();
-  // }, []);
-
   return (
     <NotifierProvider>
       <GameProvider>
