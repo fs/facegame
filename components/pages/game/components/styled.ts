@@ -1,6 +1,5 @@
 import { Colors } from 'public/styles/theme';
 import styled, { css, keyframes } from 'styled-components';
-import { component as Exit } from 'public/images/icons/exit.svg';
 
 import Button from 'components/shared/atoms/Button';
 
@@ -12,22 +11,6 @@ const fadeIn = {
     opacity: 1,
   },
 };
-
-export const ExitIcon = styled(Exit)(
-  ({ theme: { breakpoints, down } }) => css`
-    cursor: pointer;
-
-    ${down(breakpoints.lg)} {
-      width: 2rem;
-    }
-  `,
-);
-
-export const StarIcon = styled.img(
-  () => css`
-    width: 2.85rem;
-  `,
-);
 
 export const TitleDescription = styled.div(
   ({ theme: { breakpoints, down } }) => css`
@@ -44,15 +27,6 @@ export const TitleDescription = styled.div(
 
 export const Title = styled.h1`
   font-size: 2rem;
-`;
-
-export const Timer = styled.h2`
-  font-size: 1.5rem;
-`;
-
-export const Portret = styled.img`
-  height: 500px;
-  border-radius: 5%;
 `;
 
 export const PageContent = styled.div`
@@ -75,18 +49,7 @@ export const Content = styled.div(
     }
   `,
 );
-interface ITimeBar {
-  width: number;
-}
 
-export const TimeBar = styled.div<ITimeBar>(
-  ({ width }) => css`
-    width: ${width}px;
-    height: 8px;
-    border-radius: 90px;
-    background-color: ${({ theme: { colors } }) => colors.red};
-  `,
-);
 interface IImgStyles {
   zIndex?: number;
   opacity?: number;
@@ -168,17 +131,4 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
       }
     `;
   },
-);
-
-export const CountAnswer = styled.div(
-  ({ theme: { breakpoints, down } }) => css`
-    margin-left: 1rem;
-    margin-right: 3rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-
-    ${down(breakpoints.lg)} {
-      margin-right: 1rem;
-    }
-  `,
 );
