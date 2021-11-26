@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import Images from 'graphql/queries/images.graphql';
-import Image from 'domain/Image';
+import ImageType from 'domain/Image';
 import { useNotifier } from 'contexts/NotifierContext';
 
 type ImagesData = {
-  images: Image[];
+  images: ImageType[];
 };
 
-const warmUpBrowserCache = (data: Image[]) => {
+const warmUpBrowserCache = (data: ImageType[]) => {
   const promises = data.map((url: string) => {
     return new Promise((resolve, reject) => {
       const img = new Image();
