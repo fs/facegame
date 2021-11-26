@@ -1,26 +1,54 @@
 import React from 'react';
+import styled, { css } from 'styled-components';
 
-import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
-import { useGetGameProcess } from 'lib/apollo/hooks/state/useGetGameProcess';
-// import useGameProcess from 'lib/apollo/hooks/actions/useGameProcess';
-// import { gameProcess } from 'lib/cache';
+import { component as Exit } from 'public/images/icons/exit.svg';
 
-import { CountAnswer, ExitIcon, StarIcon } from './styled';
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+`;
 
-const HeaderChildren = () => {
-  const { user } = useCurrentUser(false);
-  const {
-    gameProcess: { correctAnswersCount },
-  } = useGetGameProcess();
-  // const { endGame } = useGameProcess(gameProcess);
-  return user ? (
-    <>
-      <StarIcon src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
+const CountAnswer = styled.div(
+  ({ theme: { breakpoints, down } }) => css`
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    ${down(breakpoints.lg)} {
+      margin-right: 1rem;
+    }
+  `,
+);
+
+const StarIcon = styled.img`
+  width: 2.85rem;
+  margin-left: 1rem;
+`;
+
+const ExitIcon = styled(Exit)(
+  ({ theme: { breakpoints, down } }) => css`
+    cursor: pointer;
+    margin-left: 2rem;
+
+    ${down(breakpoints.lg)} {
+      width: 2rem;
+    }
+  `,
+);
+
+const HeaderChildren = ({
+  correctAnswersCount,
+}: // endGame,
+{
+  correctAnswersCount: number | undefined;
+  // endGame: (gameId: string) => void;
+}) => {
+  return (
+    <Wrapper>
       <CountAnswer>{correctAnswersCount}</CountAnswer>
+      <StarIcon src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
       <ExitIcon onClick={() => {}} />
-    </>
-  ) : (
-    <div />
+    </Wrapper>
   );
 };
 
