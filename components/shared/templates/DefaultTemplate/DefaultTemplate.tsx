@@ -7,8 +7,10 @@ import Header from 'components/shared/organisms/Header';
 import { Wrapper, PageContent } from './styled';
 
 interface IProps extends ITest {
-  headerChildren: JSX.Element;
+  children?: (false | JSX.Element)[] | JSX.Element;
+  headerChildren?: JSX.Element;
   title?: string;
+  testId?: string;
 }
 const DefaultTemplate = ({
   children,

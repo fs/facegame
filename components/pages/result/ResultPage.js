@@ -37,9 +37,7 @@ const ResultPage = () => {
               <PopularityRating />
             </ResultContainer>
           )}
-          {!loading && topResults && currentUserResult && (
-            <LeaderBoard topResults={topResults} currentUserResult={currentUserResult} />
-          )}
+          {!loading && topResults && <LeaderBoard topResults={topResults} currentUserResult={currentUserResult} />}
         </WrapperFlexCenter>
         {!loading && (
           <Footer>

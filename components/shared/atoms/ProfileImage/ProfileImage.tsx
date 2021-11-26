@@ -3,8 +3,8 @@ import React from 'react';
 import { StyledImageWrapper, StyledImage } from './styled';
 
 interface Props {
-  avatar: string;
-  alt: string;
+  avatar: string | null;
+  alt?: string;
 }
 
 const ProfileImage = ({ avatar, alt }: Props): JSX.Element => {
