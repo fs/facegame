@@ -10,9 +10,10 @@ type Step = {
   answer: (value: string) => void;
   isCurrentAnswerCorrect: boolean | null;
   currentAnswer: string | undefined;
+  correctAnswerValue: string | undefined;
 };
 
-const GameStep = ({ question, answer, isCurrentAnswerCorrect, currentAnswer }: Step) => {
+const GameStep = ({ question, answer, isCurrentAnswerCorrect, currentAnswer, correctAnswerValue }: Step) => {
   const isShowResultAnswer = Boolean(currentAnswer);
 
   return (
@@ -21,7 +22,11 @@ const GameStep = ({ question, answer, isCurrentAnswerCorrect, currentAnswer }: S
       <Content>
         {question.answerOptions.map((option) =>
           isShowResultAnswer ? (
-            <ButtonForAnswer isCorrect={currentAnswer === option ? isCurrentAnswerCorrect : null} key={option}>
+            <ButtonForAnswer
+              isShowCorrectResult={!isCurrentAnswerCorrect && option === correctAnswerValue}
+              isCorrect={currentAnswer === option ? isCurrentAnswerCorrect : null}
+              key={option}
+            >
               {(() => {
                 switch (currentAnswer === option ? isCurrentAnswerCorrect : null) {
                   case true:
@@ -32,6 +37,7 @@ const GameStep = ({ question, answer, isCurrentAnswerCorrect, currentAnswer }: S
                     return null;
                 }
               })()}
+              {!isCurrentAnswerCorrect && option === correctAnswerValue && <CorrectIcon />}
               {option}
             </ButtonForAnswer>
           ) : (

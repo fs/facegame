@@ -45,8 +45,8 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
   const router = useRouter();
 
   const isCurrentAnswerCorrect =
-    !loading && !error && data && data.sendAnswerAndGetNextQuestion.question !== currentQuestion
-      ? data.sendAnswerAndGetNextQuestion.correctAnswerValue === currentAnswer
+    !loading && !error && data?.sendAnswerAndGetNextQuestion.question !== currentQuestion
+      ? data?.sendAnswerAndGetNextQuestion.correctAnswerValue === currentAnswer
       : null;
 
   useEffect(() => {
@@ -101,6 +101,7 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
         answer={answer}
         isCurrentAnswerCorrect={isCurrentAnswerCorrect}
         currentAnswer={currentAnswer}
+        correctAnswerValue={data?.sendAnswerAndGetNextQuestion.correctAnswerValue}
       />
     </DefaultTemplate>
   );
