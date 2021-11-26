@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 import Question from 'domain/Question';
 
 type SendAnswerAndGetNextQuestionProps = {
-  gameId: string | number;
+  gameId: string;
   value: string | undefined;
 };
 
@@ -38,7 +38,7 @@ const useSendAnswerAndGetNextQuestion = () => {
 
   const sendAnswerAndGetNextQuestion = useCallback(
     ({ gameId, value }: SendAnswerAndGetNextQuestionProps) => {
-      const sendAnswerAndGetNextQuestionInput = { gameId: +gameId, value };
+      const sendAnswerAndGetNextQuestionInput = { gameId, value };
       return mutation({
         variables: { input: sendAnswerAndGetNextQuestionInput },
       });

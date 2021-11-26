@@ -38,16 +38,16 @@ const ExitIcon = styled(Exit)(
 
 const HeaderChildren = ({
   correctAnswersCount,
-  endGame,
-}: {
+}: // endGame,
+{
   correctAnswersCount: number | undefined;
-  endGame: () => void;
+  // endGame: (gameId: string) => void;
 }) => {
   return (
     <Wrapper>
       <CountAnswer>{correctAnswersCount}</CountAnswer>
       <StarIcon src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
-      <ExitIcon onClick={endGame} />
+      <ExitIcon onClick={() => {}} />
     </Wrapper>
   );
 };

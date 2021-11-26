@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { RESULT } from 'config/routes';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import TimerBar from 'components/shared/atoms/TimerBar';
-import useEndGame from 'lib/apollo/hooks/actions/endGame';
+// import useEndGame from 'lib/apollo/hooks/actions/endGame';
 import useSendAnswerAndGetNextQuestion from 'lib/apollo/hooks/actions/sendAnswerAndGetNextQuestion';
 import { useRouter } from 'next/router';
 import GameStep from './GameStep';
@@ -40,7 +40,7 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
   const [currentAnswer, setCurrentAnswer] = useState<string | undefined>(undefined);
 
   const [sendAnswerAndGetNextQuestion, { data, loading, error }] = useSendAnswerAndGetNextQuestion();
-  const [endGame] = useEndGame();
+  // const [endGame] = useEndGame();
 
   const router = useRouter();
 
@@ -76,7 +76,7 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
   };
 
   const endGameHandler = () => {
-    endGame(gameId);
+    // endGame(gameId);
     router.push(RESULT);
   };
 
@@ -89,7 +89,7 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
       title="What is the name of that superhero?"
       headerChildren={
         <HeaderChildren
-          endGame={endGameHandler}
+          // endGame={endGameHandler}
           correctAnswersCount={data?.sendAnswerAndGetNextQuestion.correctAnswersCount}
         />
       }

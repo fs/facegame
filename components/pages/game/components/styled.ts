@@ -62,7 +62,7 @@ export const PreviewImg = styled.img<IImgStyles>(
     border-radius: 10px;
     background-color: ${colors.lightGrey};
     transform-origin: 50% 50% 0;
-    animation: 1s ${keyframes`${fadeIn}`};
+    animation: 1.5s ${keyframes`${fadeIn}`};
 
     ${between(breakpoints.sm, breakpoints.md, true)} {
       height: 330px;
@@ -89,8 +89,8 @@ export const ButtonForQuestion = styled(Button)(
   `,
 );
 
-const getColor = (isCorrect: boolean | null): keyof typeof Colors => {
-  if (isCorrect) {
+const getColor = (isCorrect: boolean | null, isShowCorrectResult: boolean | null): keyof typeof Colors => {
+  if (isCorrect || isShowCorrectResult) {
     return 'green';
   }
   if (isCorrect === false) {
@@ -100,14 +100,14 @@ const getColor = (isCorrect: boolean | null): keyof typeof Colors => {
 };
 interface IButtonForAnswer {
   isCorrect: boolean | null;
+  isShowCorrectResult: boolean | null;
 }
 
 export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
-  ({ theme: { colors, down, breakpoints }, isCorrect }) => {
-    const color = getColor(isCorrect);
+  ({ theme: { colors, down, breakpoints }, isCorrect, isShowCorrectResult }) => {
+    const color = getColor(isCorrect, isShowCorrectResult);
     return css`
       flex: 1 1 40%;
-
       margin: 5px;
       color: ${colors[color]};
       border: 2px solid ${colors[color]};
