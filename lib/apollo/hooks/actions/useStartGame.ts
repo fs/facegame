@@ -1,18 +1,13 @@
 import { useMutation } from '@apollo/client';
 import type { MutationResult } from '@apollo/client';
 import StartGame from 'graphql/mutations/startGame.graphql';
+import Question from 'domain/Question';
 
 import { useNotifier } from 'contexts/NotifierContext';
 import { useEffect } from 'react';
 
-export type Question = {
-  answerOptions: string;
-  avatarUrl: string;
-};
-
 type StartGameData = {
-  gameId: string;
-  question: Question;
+  startGame: { gameId: string; question: Question };
 };
 
 const useStartGame = (): [() => void, MutationResult<StartGameData>] => {

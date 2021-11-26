@@ -10,14 +10,12 @@ interface Props {
   href?: string;
 }
 
-const ButtonedLink = React.forwardRef(
-  ({ children, customStyles, onClick, href }: Props, ref: any): JSX.Element => {
-    return (
-      <ButtonWrapper href={href} onClick={onClick} ref={ref} customStyles={customStyles}>
-        {children}
-      </ButtonWrapper>
-    );
-  },
-);
+const ButtonedLink = React.forwardRef(({ children, customStyles, onClick, href }: Props, ref: any): JSX.Element => {
+  return (
+    <ButtonWrapper href={href} onClick={onClick} ref={ref} customStyles={customStyles}>
+      {children}
+    </ButtonWrapper>
+  );
+});
 
 export default ButtonedLink;

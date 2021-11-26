@@ -34,7 +34,6 @@ export const Title = styled.span(
     font-weight: bold;
 
     ${down(breakpoints.lg)} {
-      /* max-width: ${breakpoints.xl}px; */
       display: none;
     }
   `,

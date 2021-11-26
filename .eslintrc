@@ -4,12 +4,11 @@
   },
   "extends": [
     "airbnb",
-    "prettier",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
-    "plugin:cypress/recommended"
+    "plugin:cypress/recommended",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "globals": {
@@ -21,7 +20,6 @@
   },
   "plugins": [
     "@typescript-eslint/eslint-plugin",
-    "prettier",
     "react-hooks",
     "testing-library",
     "jest-dom"
@@ -29,7 +27,7 @@
   "rules": {
     "react/jsx-filename-extension": [
       1,
-      { "extensions": [".js", ".jsx", ".tsx", ".ts"] }
+      { "extensions": [".jsx", ".tsx"] }
     ],
     "no-console": "off",
     "prefer-destructuring": "off",
@@ -60,8 +58,9 @@
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/interface-name-prefix": 0,
+    "@typescript-eslint/no-explicit-any": "warn",
     "import/prefer-default-export": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.js","**/*.spec.js", "**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"]}],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.js","**/*.spec.js", "**/*.test.jsx", "**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"]}],
     "import/extensions": [
       "error",
       {

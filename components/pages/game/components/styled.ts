@@ -1,6 +1,5 @@
 import { Colors } from 'public/styles/theme';
 import styled, { css, keyframes } from 'styled-components';
-import { component as Exit } from 'public/images/icons/exit.svg';
 
 import Button from 'components/shared/atoms/Button';
 
@@ -12,22 +11,6 @@ const fadeIn = {
     opacity: 1,
   },
 };
-
-export const ExitIcon = styled(Exit)(
-  ({ theme: { breakpoints, down } }) => css`
-    cursor: pointer;
-
-    ${down(breakpoints.lg)} {
-      width: 2rem;
-    }
-  `,
-);
-
-export const StarIcon = styled.img(
-  () => css`
-    width: 2.85rem;
-  `,
-);
 
 export const TitleDescription = styled.div(
   ({ theme: { breakpoints, down } }) => css`
@@ -44,15 +27,6 @@ export const TitleDescription = styled.div(
 
 export const Title = styled.h1`
   font-size: 2rem;
-`;
-
-export const Timer = styled.h2`
-  font-size: 1.5rem;
-`;
-
-export const Portret = styled.img`
-  height: 500px;
-  border-radius: 5%;
 `;
 
 export const PageContent = styled.div`
@@ -75,18 +49,7 @@ export const Content = styled.div(
     }
   `,
 );
-interface ITimeBar {
-  width: number;
-}
 
-export const TimeBar = styled.div<ITimeBar>(
-  ({ width }) => css`
-    width: ${width}px;
-    height: 8px;
-    border-radius: 90px;
-    background-color: ${({ theme: { colors } }) => colors.red};
-  `,
-);
 interface IImgStyles {
   zIndex?: number;
   opacity?: number;
@@ -99,7 +62,7 @@ export const PreviewImg = styled.img<IImgStyles>(
     border-radius: 10px;
     background-color: ${colors.lightGrey};
     transform-origin: 50% 50% 0;
-    animation: 1s ${keyframes`${fadeIn}`};
+    animation: 1.5s ${keyframes`${fadeIn}`};
 
     ${between(breakpoints.sm, breakpoints.md, true)} {
       height: 330px;
@@ -126,26 +89,25 @@ export const ButtonForQuestion = styled(Button)(
   `,
 );
 
-const getColor = (isCorrect: boolean, isMatchSelected: boolean): keyof typeof Colors => {
-  if (isCorrect) {
+const getColor = (isCorrect: boolean | null, isShowCorrectResult: boolean | null): keyof typeof Colors => {
+  if (isCorrect || isShowCorrectResult) {
     return 'green';
   }
-  if (!isCorrect && isMatchSelected) {
+  if (isCorrect === false) {
     return 'red';
   }
   return 'pink';
 };
 interface IButtonForAnswer {
-  isCorrect: boolean;
-  isMatchSelected: boolean;
+  isCorrect: boolean | null;
+  isShowCorrectResult: boolean | null;
 }
 
 export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
-  ({ theme: { colors, down, breakpoints }, isCorrect, isMatchSelected }) => {
-    const color = getColor(isCorrect, isMatchSelected);
+  ({ theme: { colors, down, breakpoints }, isCorrect, isShowCorrectResult }) => {
+    const color = getColor(isCorrect, isShowCorrectResult);
     return css`
       flex: 1 1 40%;
-
       margin: 5px;
       color: ${colors[color]};
       border: 2px solid ${colors[color]};
@@ -161,7 +123,7 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
         position: absolute;
         right: 5%;
 
-        display: ${isCorrect || isMatchSelected ? 'block' : 'none'};
+        display: block;
         ${down(breakpoints.md)} {
           right: 0;
           max-height: 1rem;
@@ -169,17 +131,4 @@ export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
       }
     `;
   },
-);
-
-export const CountAnswer = styled.div(
-  ({ theme: { breakpoints, down } }) => css`
-    margin-left: 1rem;
-    margin-right: 3rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-
-    ${down(breakpoints.lg)} {
-      margin-right: 1rem;
-    }
-  `,
 );
