@@ -1,0 +1,5 @@
+mutation endGame($input: EndGameInput!) {
+  endGame(input: $input) {
+    score
+  }
+}
