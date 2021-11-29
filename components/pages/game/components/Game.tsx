@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { RESULT } from 'config/routes';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import TimerBar from 'components/shared/atoms/TimerBar';
-// import useEndGame from 'lib/apollo/hooks/actions/endGame';
+import useEndGame from 'lib/apollo/hooks/actions/useEndGame';
 import useSendAnswerAndGetNextQuestion from 'lib/apollo/hooks/actions/sendAnswerAndGetNextQuestion';
 import { useRouter } from 'next/router';
 import GameStep from './GameStep';
@@ -40,9 +40,13 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
   const [currentAnswer, setCurrentAnswer] = useState<string | undefined>(undefined);
 
   const [sendAnswerAndGetNextQuestion, { data, loading, error }] = useSendAnswerAndGetNextQuestion();
-  // const [endGame] = useEndGame();
+  const [endGame, endGameState] = useEndGame();
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (endGameState.data?.endGame) router.push(RESULT);
+  }, [endGameState.data?.endGame, router]);
 
   const isCurrentAnswerCorrect =
     !loading && !error && data?.sendAnswerAndGetNextQuestion.question !== currentQuestion
@@ -76,8 +80,7 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
   };
 
   const endGameHandler = () => {
-    // endGame(gameId);
-    router.push(RESULT);
+    endGame({ gameId });
   };
 
   const currentSecond = useTimer(FULL_TIME, endGameHandler);
@@ -89,7 +92,7 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
       title="What is the name of that superhero?"
       headerChildren={
         <HeaderChildren
-          // endGame={endGameHandler}
+          endGame={endGameHandler}
           correctAnswersCount={data?.sendAnswerAndGetNextQuestion.correctAnswersCount}
         />
       }
