@@ -9,7 +9,7 @@ import { useCurrentUser } from 'lib/apollo/hooks/state/useCurrentUser';
 
 import Homepage from 'pages/index';
 
-jest.mock('lib/apollo/hooks/state/currentUser');
+jest.mock('lib/apollo/hooks/state/useCurrentUser');
 
 describe('HomePage', () => {
   test('should render correctly', async () => {
