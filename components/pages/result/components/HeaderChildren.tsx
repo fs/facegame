@@ -2,7 +2,7 @@ import React from 'react';
 
 import { component as ExitDoor } from 'public/images/icons/exit-door.svg';
 
-import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
+import { useCurrentUser } from 'lib/apollo/hooks/state/useCurrentUser';
 import useSignOut from 'lib/apollo/hooks/actions/useSignOut';
 
 import Avatar from 'components/shared/atoms/Avatar';
