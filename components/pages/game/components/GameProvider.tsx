@@ -18,7 +18,7 @@ const GameProvider = ({
   const [startGame, startGameState] = useStartGame();
 
   useEffect(() => {
-    startGame();
+    if (imagesState?.images) startGame();
   }, [imagesState?.images]);
 
   return children({ imagesState, startGameState });
