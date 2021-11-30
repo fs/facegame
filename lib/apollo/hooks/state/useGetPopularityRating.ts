@@ -1,5 +1,5 @@
 import { ApolloError, useQuery } from '@apollo/client';
-import ResultsBoard from 'graphql/queries/pages/popularityRating.graphql';
+import ResultsBoard from 'graphql/queries/popularityRating.graphql';
 
 export type TPopularityRating = {
   popularityRating: {

@@ -1,4 +1,4 @@
-query resultsBoard {
+query ResultsBoard {
   resultsBoard(limit: 5) {
     topResults {
       rate
