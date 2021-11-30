@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled, { css } from 'styled-components';
 
 import { component as Exit } from 'public/images/icons/exit.svg';
@@ -38,16 +38,21 @@ const ExitIcon = styled(Exit)(
 
 const HeaderChildren = ({
   correctAnswersCount,
-}: // endGame,
-{
+  endGame,
+}: {
   correctAnswersCount: number | undefined;
-  // endGame: (gameId: string) => void;
+  endGame: () => void;
 }) => {
+  const refCount = useRef(0);
+  if (correctAnswersCount) {
+    refCount.current = correctAnswersCount;
+  }
+
   return (
     <Wrapper>
-      <CountAnswer>{correctAnswersCount}</CountAnswer>
+      <CountAnswer>{correctAnswersCount || refCount.current}</CountAnswer>
       <StarIcon src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
-      <ExitIcon onClick={() => {}} />
+      <ExitIcon onClick={endGame} />
     </Wrapper>
   );
 };
