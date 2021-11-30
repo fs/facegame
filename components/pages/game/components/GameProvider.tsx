@@ -19,7 +19,7 @@ const GameProvider = ({
 
   useEffect(() => {
     startGame();
-  }, [startGame]);
+  }, [imagesState?.images]);
 
   return children({ imagesState, startGameState });
 };

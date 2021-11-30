@@ -5,6 +5,9 @@ import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
 import WithAuthSecurity from 'lib/auth/withAuthSecurity';
 
+import Router from 'next/router';
+import { HOME } from 'config/routes';
+
 import { NotifierProvider } from 'contexts/NotifierContext';
 import Loader from 'components/shared/atoms/Loader';
 import logoIcon from 'public/images/loader-logo.gif';
@@ -46,6 +49,13 @@ const GamePage = () => {
       </GameProvider>
     </NotifierProvider>
   );
+};
+
+GamePage.getInitialProps = ({ res, accessTokenManager }: { res: any; accessTokenManager: any }) => {
+  if (!accessTokenManager.accessToken) {
+    res ? res.redirect(302, HOME) : Router.push(HOME);
+  }
+  return {};
 };
 
 export default withApolloClient(WithAuth(WithAuthSecurity(GamePage)));
