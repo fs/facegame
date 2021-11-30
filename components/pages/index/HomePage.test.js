@@ -5,11 +5,11 @@ import 'jest-styled-components';
 import renderWithApolloClient from '__tests__/helpers/renderWithApolloClient';
 import renderWithTheme from '__tests__/helpers/renderWithTheme';
 
-import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
+import { useCurrentUser } from 'lib/apollo/hooks/state/useCurrentUser';
 
 import Homepage from 'pages/index';
 
-jest.mock('lib/apollo/hooks/state/currentUser');
+jest.mock('lib/apollo/hooks/state/useCurrentUser');
 
 describe('HomePage', () => {
   test('should render correctly', async () => {

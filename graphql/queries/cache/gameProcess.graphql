@@ -1,6 +1,0 @@
-query gameProcess {
-  gameProcess @client {
-    correctAnswersCount
-    answers
-  }
-}

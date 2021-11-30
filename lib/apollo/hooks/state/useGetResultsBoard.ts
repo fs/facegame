@@ -1,5 +1,5 @@
 import { ApolloError, useQuery } from '@apollo/client';
-import ResultsBoard from 'graphql/queries/pages/resultsBoard.graphql';
+import ResultsBoard from 'graphql/queries/resultsBoard.graphql';
 import IResultsBoard from 'interfaces/resultsBoard';
 
 interface IUseGetResultsBoard {

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
-import { useCurrentUser } from 'lib/apollo/hooks/state/currentUser';
+import { useCurrentUser } from 'lib/apollo/hooks/state/useCurrentUser';
 
 import { NotifierProvider } from 'contexts/NotifierContext';
 import { GAME } from 'config/routes';
