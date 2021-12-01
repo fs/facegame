@@ -100,12 +100,12 @@ const getColor = (isCorrect: boolean | null, isShowCorrectResult: boolean | null
 };
 interface IButtonForAnswer {
   isCorrect: boolean | null;
-  isShowCorrectResult: boolean | null;
+  isShowCorrectAnswer: boolean | null;
 }
 
 export const ButtonForAnswer = styled(Button)<IButtonForAnswer>(
-  ({ theme: { colors, down, breakpoints }, isCorrect, isShowCorrectResult }) => {
-    const color = getColor(isCorrect, isShowCorrectResult);
+  ({ theme: { colors, down, breakpoints }, isCorrect, isShowCorrectAnswer }) => {
+    const color = getColor(isCorrect, isShowCorrectAnswer);
     return css`
       flex: 1 1 40%;
       margin: 5px;

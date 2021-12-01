@@ -49,8 +49,8 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
   }, [endGameState.data?.endGame, router]);
 
   const isCurrentAnswerCorrect =
-    !loading && !error && data?.sendAnswerAndGetNextQuestion.question !== currentQuestion
-      ? data?.sendAnswerAndGetNextQuestion.correctAnswerValue === currentAnswer
+    !loading && !error && data && data.sendAnswerAndGetNextQuestion.question !== currentQuestion
+      ? data.sendAnswerAndGetNextQuestion.correctAnswerValue === currentAnswer
       : null;
 
   useEffect(() => {
