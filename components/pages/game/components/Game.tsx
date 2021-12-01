@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { RESULT } from 'config/routes';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import GameStep from './GameStep';
 import HeaderChildren from './HeaderChildren';
 import { TitleDescription } from './styled';
+import useTimer from '../useTimer';
 
 interface Question {
   answerOptions: string[];
@@ -17,23 +18,6 @@ interface Question {
 
 const FULL_BAR = 100;
 const FULL_TIME = 45;
-
-function useTimer(limit: number, cb = console.log): number {
-  const [time, setTime] = useState(limit);
-  const onceCallRef = useRef(false);
-  if (time <= 0 && onceCallRef.current === false) {
-    cb();
-    onceCallRef.current = true;
-  }
-  useEffect(() => {
-    function tick() {
-      setTime((prevTime) => (prevTime === 0 ? 0 : prevTime - 1));
-    }
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [time]);
-  return time;
-}
 
 const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: string }) => {
   const [currentQuestion, setCurrentQuestion] = useState<Question>(initialQuestion);
