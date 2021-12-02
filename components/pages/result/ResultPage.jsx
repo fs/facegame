@@ -1,4 +1,5 @@
 import React from 'react';
+import styled, { css } from 'styled-components';
 
 import Image from 'next/image';
 import logoIcon from 'public/images/loader-logo.gif';
@@ -15,9 +16,21 @@ import HeaderChildrenResult from './components/HeaderChildren';
 import GameResult from './components/GameResult';
 import LeaderBoard from './components/LeaderBoard';
 
-import { WrapperFlexCenter, ResultContainer } from './components/styled';
+import { WrapperFlexCenter } from './components/styled';
 import { Footer } from '../index/styled';
 import PopularityRating from './components/PopularityRating';
+
+const ResultContainer = styled.div(
+  ({ theme: { breakpoints, down } }) => css`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    ${down(breakpoints.lg)} {
+      width: 100%;
+    }
+  `,
+);
 
 const ResultPage = () => {
   const { topResults, currentUserResult, loading } = useGetResultsBoard();

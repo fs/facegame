@@ -1,11 +1,11 @@
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 
-import type Props from 'interfaces/testType';
+import Test from 'types/Test';
 
 import { Wrapper, Title } from './styled';
 
-const Loader = ({ children, testId }: PropsWithChildren<Props>): JSX.Element => (
+const Loader = ({ children, testId }: PropsWithChildren<Test>): JSX.Element => (
   <Wrapper data-testid={testId} data-cy={testId}>
     <Title>{children}</Title>
   </Wrapper>
