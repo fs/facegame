@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import IResultsBoard from 'interfaces/resultsBoard';
+import IResultsBoard from 'domain/ResultsBoard';
 import { GAME } from 'config/routes';
 import ButtonedLink from 'components/shared/atoms/ButtonedLink';
 
