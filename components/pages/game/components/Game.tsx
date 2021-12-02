@@ -4,7 +4,7 @@ import { RESULT } from 'config/routes';
 import DefaultTemplate from 'components/shared/templates/DefaultTemplate';
 import TimerBar from 'components/shared/atoms/TimerBar';
 import useEndGame from 'lib/apollo/hooks/actions/useEndGame';
-import useSendAnswerAndGetNextQuestion from 'lib/apollo/hooks/actions/sendAnswerAndGetNextQuestion';
+import useSendAnswerAndGetNextQuestion from 'lib/apollo/hooks/actions/useSendAnswerAndGetNextQuestion';
 import { useRouter } from 'next/router';
 import GameStep from './GameStep';
 import HeaderChildren from './HeaderChildren';
