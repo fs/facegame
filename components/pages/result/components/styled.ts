@@ -10,23 +10,13 @@ export const WrapperCard = styled.div(
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    padding: 1rem 0px;
+    padding: 1rem 0;
     ${down(breakpoints.lg)} {
       width: 100%;
     }
   `,
 );
-export const ResultContainer = styled.div(
-  ({ theme: { breakpoints, down } }) => css`
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    width: 45%;
-    ${down(breakpoints.lg)} {
-      width: 100%;
-    }
-  `,
-);
+
 export const WrapperGameResult = styled(WrapperCard)(
   () => css`
     flex-grow: 1;
@@ -34,6 +24,7 @@ export const WrapperGameResult = styled(WrapperCard)(
     justify-content: space-around;
   `,
 );
+
 export const WrapperPopularityRating = styled(WrapperCard)(
   ({ theme: { colors } }) => css`
     margin-top: 1rem;
@@ -92,6 +83,7 @@ export const FullNameInfo = styled.div`
 export const EmailInfo = styled.div`
   font-size: 0.8rem;
 `;
+
 export const WrapperFlex = styled.div`
   display: flex;
   justify-content: space-between;
@@ -201,6 +193,7 @@ export const TextBold = styled.div`
 export const FullName = styled.div`
   flex-grow: 1;
 `;
+
 export const Rate = styled.div`
   min-width: 2rem;
   text-align: center;
@@ -232,6 +225,7 @@ export const WrapperTop = styled.div<IWrapperTop>(
 interface IHoverIcon {
   onClick: any;
 }
+
 export const HoverIcon = styled.div<IHoverIcon>`
   cursor: pointer;
 `;
