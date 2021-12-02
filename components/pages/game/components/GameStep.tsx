@@ -23,7 +23,7 @@ const GameStep = ({ question, answer, isCurrentAnswerCorrect, currentAnswer, cor
         {question.answerOptions.map((option) =>
           isShowResultAnswer ? (
             <ButtonForAnswer
-              isShowCorrectResult={!isCurrentAnswerCorrect && option === correctAnswerValue}
+              isShowCorrectAnswer={!isCurrentAnswerCorrect && option === correctAnswerValue}
               isCorrect={currentAnswer === option ? isCurrentAnswerCorrect : null}
               key={option}
             >
