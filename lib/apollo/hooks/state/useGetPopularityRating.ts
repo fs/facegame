@@ -3,8 +3,7 @@ import ResultsBoard from 'graphql/queries/popularityRating.graphql';
 
 export type TPopularityRating = {
   popularityRating: {
-    answersCount: number;
-    correctAnswersCount: number;
+    statistic: string;
     avatarUrl: string;
   };
   loading: boolean;

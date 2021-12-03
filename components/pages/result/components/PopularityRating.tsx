@@ -20,10 +20,10 @@ const PopularityRating = () => {
       />
       <div>
         <TextBold>Statistics of your photo</TextBold>
-        {popularityRating.correctAnswersCount === 0 ? (
+        {!popularityRating.statistic ? (
           <div>No one recognized you in the last week.</div>
         ) : (
-          <div>{`You have been recognized (${popularityRating.correctAnswersCount} of ${popularityRating.answersCount})  time/times in the last week.`}</div>
+          <div>{`You have been recognized ${popularityRating.statistic} in the last week.`}</div>
         )}
       </div>
     </WrapperPopularityRating>
