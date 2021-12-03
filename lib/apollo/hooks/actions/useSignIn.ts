@@ -8,7 +8,7 @@ import CurrentUser from 'graphql/queries/currentUser.graphql';
 
 import { useNotifier } from 'contexts/NotifierContext';
 
-import User from 'interfaces/userType';
+import User from 'domain/User';
 
 type SignInProps = {
   email?: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from 'components/shared/atoms/Avatar';
-import IResultsBoard from 'interfaces/resultsBoard';
+import IResultsBoard from 'domain/ResultsBoard';
 import { FullName, Rate, WrapperTop, ScoreTop, Trophy } from './styled';
 
 interface IProps {

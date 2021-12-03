@@ -1,12 +1,11 @@
 import React from 'react';
 import type { PropsWithChildren } from 'react';
-import ITest from 'interfaces/testType';
 
 import Header from 'components/shared/organisms/Header';
 
 import { Wrapper, PageContent } from './styled';
 
-interface IProps extends ITest {
+interface IProps {
   children?: (false | JSX.Element)[] | JSX.Element;
   headerChildren?: JSX.Element;
   title?: string;

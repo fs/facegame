@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IResultsBoard from 'interfaces/resultsBoard';
+import IResultsBoard from 'domain/ResultsBoard';
 
 import LeaderBoardItem from './LeaderBoardItem';
 import { StarWrapperRight, Title, WrapperLeaderBoard } from './styled';
