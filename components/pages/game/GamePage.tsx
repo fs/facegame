@@ -15,12 +15,12 @@ const GamePage = () => {
   return (
     <NotifierProvider>
       <GameProvider>
-        {({ imagesState, startGameState }) => {
-          if (imagesState.error || startGameState.error) {
+        {({ startGameState }) => {
+          if (startGameState.error) {
             return null;
           }
 
-          if (imagesState.loading || startGameState.loading) {
+          if (startGameState.loading) {
             return (
               <Loader testId="profile-updating-loader">
                 <ImageNext src={logoIcon} width={192} height={72} />
@@ -28,7 +28,7 @@ const GamePage = () => {
             );
           }
 
-          if (!startGameState.data || !imagesState.images) {
+          if (!startGameState.data) {
             return null;
           }
 

@@ -1,27 +1,18 @@
 import { useEffect } from 'react';
-import { useGameImages } from 'lib/apollo/hooks/state/useGameImages';
 import useStartGame from 'lib/apollo/hooks/actions/useStartGame';
 
 const GameProvider = ({
   children,
 }: {
-  children: ({
-    imagesState,
-    startGameState,
-  }: {
-    imagesState: ReturnType<typeof useGameImages>;
-    startGameState: ReturnType<typeof useStartGame>[1];
-  }) => JSX.Element | null;
+  children: ({ startGameState }: { startGameState: ReturnType<typeof useStartGame>[1] }) => JSX.Element | null;
 }) => {
-  const imagesState = useGameImages();
-
   const [startGame, startGameState] = useStartGame();
 
   useEffect(() => {
     startGame();
   }, [startGame]);
 
-  return children({ imagesState, startGameState });
+  return children({ startGameState });
 };
 
 export default GameProvider;
