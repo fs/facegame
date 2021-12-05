@@ -1,7 +1,6 @@
 query popularityRating {
   popularityRating {
-    answersCount
-    correctAnswersCount
+    statistic
     avatarUrl
   }
 }
