@@ -13,12 +13,17 @@ type Step = {
   correctAnswerValue: string | undefined;
 };
 
+const useAvatarUrlWithoutParams = (url: string) => {
+  const removeAfter = url.indexOf('?');
+  return url.substring(0, removeAfter);
+};
+
 const GameStep = ({ question, answer, isCurrentAnswerCorrect, currentAnswer, correctAnswerValue }: Step) => {
   const isShowResultAnswer = Boolean(currentAnswer);
 
   return (
     <PageContent data-testid="page-content">
-      <PreviewImg key={question.avatarUrl} src={question.avatarUrl} />
+      <PreviewImg key={question.avatarUrl} src={useAvatarUrlWithoutParams(question.avatarUrl)} />
       <Content>
         {question.answerOptions.map((option) =>
           isShowResultAnswer ? (

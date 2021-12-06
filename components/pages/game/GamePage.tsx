@@ -5,22 +5,29 @@ import WithAuth from 'lib/auth/withAuth';
 import { withApolloClient } from 'lib/withApolloClient';
 import WithAuthSecurity from 'lib/auth/withAuthSecurity';
 
+import { HOME } from 'config/routes';
+
 import { NotifierProvider } from 'contexts/NotifierContext';
 import Loader from 'components/shared/atoms/Loader';
 import logoIcon from 'public/images/loader-logo.gif';
 import GameProvider from './components/GameProvider';
 import Game from './components/Game';
 
+type Context = {
+  res: any;
+  req: any;
+};
+
 const GamePage = () => {
   return (
     <NotifierProvider>
       <GameProvider>
-        {({ imagesState, startGameState }) => {
-          if (imagesState.error || startGameState.error) {
+        {({ startGameState }) => {
+          if (startGameState.error) {
             return null;
           }
 
-          if (imagesState.loading || startGameState.loading) {
+          if (startGameState.loading) {
             return (
               <Loader testId="profile-updating-loader">
                 <ImageNext src={logoIcon} width={192} height={72} />
@@ -28,7 +35,7 @@ const GamePage = () => {
             );
           }
 
-          if (!startGameState.data || !imagesState.images) {
+          if (!startGameState.data) {
             return null;
           }
 
@@ -46,6 +53,15 @@ const GamePage = () => {
       </GameProvider>
     </NotifierProvider>
   );
+};
+
+GamePage.getInitialProps = async (context: Context) => {
+  const { req, res } = context;
+
+  if (!!req && !!res) {
+    res.redirect(302, HOME);
+  }
+  return {};
 };
 
 export default withApolloClient(WithAuth(WithAuthSecurity(GamePage)));

@@ -6,5 +6,8 @@ mutation sendAnswerAndGetNextQuestion($input: AnswerAndNewQuestionInput!) {
       avatarUrl
     }
     correctAnswersCount
+    pendingQuestion {
+      avatarUrl
+    }
   }
 }

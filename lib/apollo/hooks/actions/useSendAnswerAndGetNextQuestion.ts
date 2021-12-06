@@ -1,9 +1,11 @@
+import { useCallback } from 'react';
 import SendAnswerAndGetNextQuestion from 'graphql/mutations/sendAnswerAndGetNextQuestion.graphql';
 import { useMutation } from '@apollo/client';
 
 import { useNotifier } from 'contexts/NotifierContext';
-import { useCallback } from 'react';
+import warmUpBrowserCache from 'lib/warmUpBrowserCache';
 import Question from 'domain/Question';
+import PendingQuestion from 'domain/PendingQuestion';
 
 type SendAnswerAndGetNextQuestionProps = {
   gameId: string;
@@ -15,6 +17,7 @@ type SendAnswerAndGetNextQuestionData = {
     correctAnswerValue: string;
     question: Question;
     correctAnswersCount: number;
+    pendingQuestion: PendingQuestion;
   };
 };
 
@@ -33,6 +36,9 @@ const useSendAnswerAndGetNextQuestion = () => {
   >(SendAnswerAndGetNextQuestion, {
     onError: (error) => {
       if (setError) setError(error);
+    },
+    onCompleted: async (response) => {
+      await warmUpBrowserCache(response.sendAnswerAndGetNextQuestion.pendingQuestion.avatarUrl);
     },
   });
 
