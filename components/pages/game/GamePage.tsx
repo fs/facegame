@@ -40,7 +40,7 @@ const GamePage = () => {
           }
 
           if (!startGameState.data.startGame.question) {
-            return <div>Нет вопросов</div>;
+            return <div>No questions</div>;
           }
 
           return (
