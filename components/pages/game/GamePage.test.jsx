@@ -8,6 +8,8 @@ import renderWithTheme from '__tests__/helpers/renderWithTheme';
 import useStartGame from 'lib/apollo/hooks/actions/useStartGame';
 import useSendAnswerAndGetNextQuestion from 'lib/apollo/hooks/actions/useSendAnswerAndGetNextQuestion';
 import useEndGame from 'lib/apollo/hooks/actions/useEndGame';
+import { useRouter } from 'next/router';
+import { RESULT } from 'config/routes';
 import useTimer from './useTimer';
 
 import GamePage from '.';
@@ -16,6 +18,7 @@ jest.mock('lib/apollo/hooks/actions/useStartGame');
 jest.mock('lib/apollo/hooks/actions/useSendAnswerAndGetNextQuestion');
 jest.mock('./useTimer');
 jest.mock('lib/apollo/hooks/actions/useEndGame');
+jest.mock('next/router');
 jest.mock('next/image');
 jest.mock('next/image', () => 'img');
 
@@ -47,15 +50,19 @@ describe('Game page', () => {
     const currentSecond = 45;
     useTimer.mockImplementation(() => currentSecond);
 
-    const endGameState = {
+    let endGameState = {
       error: undefined,
       loading: null,
-      endGame: {
-        score: 1,
+      data: {
+        endGame: undefined,
       },
     };
     const endGame = jest.fn();
     useEndGame.mockImplementation(() => [endGame, endGameState]);
+
+    const router = jest.fn();
+    router.push = jest.fn();
+    useRouter.mockImplementation(() => router);
 
     test('should show answer options', () => {
       // Act
@@ -76,13 +83,27 @@ describe('Game page', () => {
       expect(screen.getByText(currentSecond)).toBeInTheDocument();
     });
 
-    test('should end game after clicking on end game icon in header', () => {
+    test('should end game after clicking on end game icon in header and redirect to result page', () => {
+      // Arrange
+      endGameState = {
+        error: undefined,
+        loading: null,
+        data: {
+          endGame: {
+            score: 1,
+          },
+        },
+      };
+      useEndGame.mockImplementation(() => [endGame, endGameState]);
+
       // Act
       render(renderWithTheme(renderWithApolloClient(<GamePage />)));
       fireEvent.click(screen.getByTestId('exit-game-icon'));
 
       // Assert
       expect(endGame).toHaveBeenCalledTimes(1);
+      expect(router.push).toHaveBeenCalledWith(RESULT);
+      expect(screen.getByText('Game result')).toBeInTheDocument();
       // more detail of the useTimer is tested in useTimer.test.js
     });
 
