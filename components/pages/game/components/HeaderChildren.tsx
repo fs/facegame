@@ -52,7 +52,7 @@ const HeaderChildren = ({
     <Wrapper>
       <CountAnswer>{correctAnswersCount || refCount.current}</CountAnswer>
       <StarIcon src={`${process.env.ASSET_HOST}/images/icons/star.png`} />
-      <ExitIcon onClick={endGame} />
+      <ExitIcon onClick={endGame} data-testid="exit-game-icon" />
     </Wrapper>
   );
 };
