@@ -154,7 +154,7 @@ describe('Game page', () => {
     expect(screen.queryByText('option1')).not.toBeInTheDocument();
   });
 
-  test('should show "No questions" if questions is not exists', () => {
+  test('should show "No questions" if questions are not exists', () => {
     // Arrange
     const startGame = jest.fn();
     const startGameState = {
