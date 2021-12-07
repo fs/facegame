@@ -103,7 +103,6 @@ describe('Game page', () => {
       // Assert
       expect(endGame).toHaveBeenCalledTimes(1);
       expect(router.push).toHaveBeenCalledWith(RESULT);
-      expect(screen.getByText('Game result')).toBeInTheDocument();
       // more detail of the useTimer is tested in useTimer.test.js
     });
 
