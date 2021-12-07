@@ -23,7 +23,7 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
   const [currentQuestion, setCurrentQuestion] = useState<Question>(initialQuestion);
   const [currentAnswer, setCurrentAnswer] = useState<string | undefined>(undefined);
 
-  const [sendAnswerAndGetNextQuestion, { data, loading, error }] = useSendAnswerAndGetNextQuestion();
+  const [sendAnswerAndGetNextQuestion, { data, loading, error, reset }] = useSendAnswerAndGetNextQuestion();
   const [endGame, endGameState] = useEndGame();
 
   const router = useRouter();
@@ -49,6 +49,7 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
       const timeoutID = setTimeout(() => {
         setCurrentAnswer(undefined);
         setCurrentQuestion(newQuestion);
+        reset();
       }, 500);
 
       return () => {
@@ -57,7 +58,7 @@ const Game = ({ initialQuestion, gameId }: { initialQuestion: Question; gameId: 
     }
 
     return () => {};
-  }, [data, error, loading]);
+  }, [data, error, loading, reset]);
 
   const answer = (value: string) => {
     setCurrentAnswer(value);
